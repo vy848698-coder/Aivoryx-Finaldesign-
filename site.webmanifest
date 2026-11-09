@@ -1,0 +1,12 @@
+{
+  "name": "Aivoryx",
+  "short_name": "Aivoryx",
+  "description": "Websites built like software — not like templates.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F6F2EA",
+  "theme_color": "#F6F2EA",
+  "icons": [
+    { "src": "assets/img/brand/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

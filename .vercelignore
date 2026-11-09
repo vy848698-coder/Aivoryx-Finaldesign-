@@ -1,0 +1,5 @@
+# Vercel serves this site as static files and cannot run PHP, so the form
+# backend is left out there (the form shows its error state instead of
+# exposing the PHP source as downloads). Upload api/ only to PHP hosting.
+api/
+README.md

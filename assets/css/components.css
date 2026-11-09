@@ -1,0 +1,75 @@
+/* ============================================================
+   AIVORYX · components — nav, buttons, links, browser frame
+   ============================================================ */
+
+/* ---------- NAV ---------- */
+.nav{position:fixed;top:0;left:0;right:0;z-index:90;transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
+.nav.scrolled,.nav.open{background:rgba(246,242,234,.94);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom-color:var(--hair)}
+.nav .in{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 var(--gut);height:var(--nav-h)}
+.brand{justify-self:start;display:flex;align-items:center;gap:13px;font-weight:700;font-size:24px;letter-spacing:-.025em}
+.brand svg{width:36px;height:42px;flex:none}
+.brand em{font-style:normal;color:var(--accent)}
+/* menu — a single hairline capsule that holds the centre of the bar (five stops).
+   Sizes scale with the viewport so it never reads small on a big screen. */
+.menu{display:flex;align-items:center;gap:2px;padding:5px;border:1px solid var(--hair);border-radius:999px;background:rgba(253,252,249,.55);
+  font-size:clamp(15px,.55vw + 8px,17.5px);font-weight:600;color:var(--walnut);white-space:nowrap}
+.menu a{--px:clamp(16px,1.1vw + 2px,24px);position:relative;display:inline-flex;align-items:center;padding:clamp(9px,.4vw + 3px,12px) var(--px);border-radius:999px;transition:color .2s,background .25s,box-shadow .25s}
+/* the dot sits in the left padding and scales in place, so text never shifts */
+.menu a::before{content:"";position:absolute;left:calc(var(--px) / 2 - 3px);top:50%;width:6px;height:6px;margin-top:-3px;border-radius:50%;background:var(--accent);transform:scale(0);opacity:0;transition:transform .25s var(--ease),opacity .2s}
+.menu a:hover{color:var(--ink);background:rgba(23,21,15,.05)}
+.menu a[aria-current]{color:var(--ink);background:var(--card);box-shadow:0 0 0 1px var(--hair2),0 6px 16px -10px rgba(23,21,15,.35)}
+.menu a[aria-current]::before{transform:none;opacity:1}
+.nav.scrolled .menu{background:rgba(253,252,249,.8)}
+.nav-right{justify-self:end;display:flex;align-items:center;gap:10px}
+.cta{display:inline-flex;align-items:center;gap:11px;background:var(--ink);color:var(--paper);font-weight:600;font-size:clamp(15px,.55vw + 8px,17px);padding:clamp(13px,.4vw + 8px,16px) clamp(24px,1.4vw + 6px,32px);border-radius:999px;transition:background .2s}
+.cta:hover{background:var(--accent)}
+
+/* burger — shown at 1080px and below, where the links no longer fit */
+.burger{display:none;width:46px;height:46px;border-radius:50%;border:1px solid var(--hair);align-items:center;justify-content:center;flex-direction:column;gap:5px}
+.burger span{width:18px;height:2px;background:var(--ink);transition:transform .25s var(--ease),opacity .2s}
+.nav.open .burger span:nth-child(1){transform:translateY(3.5px) rotate(45deg)}
+.nav.open .burger span:nth-child(2){transform:translateY(-3.5px) rotate(-45deg)}
+
+/* mobile sheet */
+.sheet{position:fixed;inset:var(--nav-h) 0 0 0;z-index:89;background:var(--paper);padding:28px var(--gut) 40px;display:flex;flex-direction:column;
+  opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity .25s,transform .25s var(--ease),visibility 0s .25s}
+.nav.open + .sheet{opacity:1;visibility:visible;transform:none;transition:opacity .25s,transform .25s var(--ease)}
+.sheet a.big{font-size:clamp(34px,9vw,44px);font-weight:700;letter-spacing:-.03em;padding:14px 0;border-bottom:1px solid var(--hair);display:flex;justify-content:space-between;align-items:center}
+.sheet a.big span{font-family:var(--mono);font-size:12px;letter-spacing:.2em;color:var(--sand);font-weight:400}
+.sheet .btn{margin-top:auto;justify-content:center}
+body.locked{overflow:hidden}
+
+/* ---------- BUTTONS & LINKS ---------- */
+.btn{display:inline-flex;align-items:center;gap:12px;background:var(--accent);color:#FFF;font-weight:600;font-size:17px;padding:17px 32px;border-radius:999px;transition:background .2s,transform .15s}
+.btn:hover{background:var(--accent-press);transform:translateY(-1px)}
+.btn-ink{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:var(--paper);font-weight:600;font-size:15.5px;padding:14px 28px;border-radius:999px;transition:background .2s}
+.btn-ink:hover{background:var(--accent)}
+.tl{font-size:16.5px;font-weight:600;display:inline-flex;gap:8px;align-items:center}
+.tl span{transition:transform .18s}
+.tl:hover{color:var(--accent)}
+.tl:hover span{transform:translateX(4px)}
+.ul{font-weight:700;color:var(--ink);border-bottom:2px solid var(--accent);padding-bottom:1px;transition:color .18s}
+.ul:hover{color:var(--accent)}
+.biglink{display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:17px;border-bottom:2px solid currentColor;padding-bottom:3px;transition:color .18s,border-color .18s}
+.biglink svg{transition:transform .18s}
+.biglink:hover{color:var(--accent);border-color:var(--accent)}
+.biglink:hover svg{transform:translateX(4px)}
+
+/* ---------- BROWSER FRAME — real screenshots of shipped work ---------- */
+.browser{position:relative;border:1px solid var(--hair);border-radius:14px;overflow:hidden;background:var(--card);box-shadow:0 1px 0 var(--hair2),0 18px 40px -26px rgba(23,21,15,.35)}
+.browser .bar{display:flex;align-items:center;gap:12px;height:34px;padding:0 14px;border-bottom:1px solid var(--hair2);background:var(--paper)}
+.browser .dots{display:flex;gap:6px;flex:none}
+.browser .dots i{width:9px;height:9px;border-radius:50%;background:var(--hair)}
+.browser .url{flex:1;min-width:0;font-family:var(--mono);font-size:11px;color:var(--walnut);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:flex;align-items:center;gap:7px}
+.browser .url::before{content:"";width:7px;height:7px;border-radius:50%;background:#2E9E5B;flex:none}
+.browser .view{aspect-ratio:16/10;overflow:hidden;background:var(--hair2)}
+.browser .view.wide{aspect-ratio:16/9}
+.browser img{width:100%;height:100%;object-fit:cover;object-position:left top;transition:transform .7s var(--ease)}
+.browser figcaption{position:absolute;left:14px;bottom:14px;background:rgba(23,21,15,.84);color:var(--paper);font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;padding:7px 12px;border-radius:999px}
+a:hover .browser img,.browser:hover img{transform:scale(1.025)}
+
+/* on the dark band */
+.browser.on-ink{border-color:var(--on-ink-hair);background:#221F17;box-shadow:0 22px 50px -28px rgba(0,0,0,.8)}
+.browser.on-ink .bar{background:#1D1B14;border-bottom-color:var(--on-ink-hair)}
+.browser.on-ink .dots i{background:rgba(246,242,234,.2)}
+.browser.on-ink .url{color:var(--on-ink-dim)}

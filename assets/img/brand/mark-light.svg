@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="7 -6 90 104" fill="none" width="180" height="208">
+  <title>Aivoryx — A/X Confluence Monogram (light background)</title>
+  <!-- A left leg -->
+  <path d="M12 90 L52 2" stroke="#161512" stroke-width="11.5" stroke-linecap="square"/>
+  <!-- A right leg = X descending diagonal (shared stroke) -->
+  <path d="M52 2 L92 90" stroke="#161512" stroke-width="11.5" stroke-linecap="square"/>
+  <!-- X ascending diagonal -->
+  <path d="M52 90 L92 2" stroke="#161512" stroke-width="11.5" stroke-linecap="square"/>
+  <!-- signature bar — print-grade deep orange for light contrast -->
+  <path d="M32 46 L72 46" stroke="#DE4308" stroke-width="11.5" stroke-linecap="square"/>
+</svg>

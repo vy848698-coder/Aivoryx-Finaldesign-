@@ -1,0 +1,21 @@
+# OS
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Editors
+.vscode/
+.idea/
+*.code-workspace
+
+# Tooling
+.vercel/
+node_modules/
+*.log
+
+# Local secrets
+.env
+.env.*
+
+# Mail credentials — create on the server from api/config.example.php. Never commit.
+/api/config.php

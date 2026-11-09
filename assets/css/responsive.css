@@ -1,0 +1,192 @@
+/* ============================================================
+   AIVORYX · responsive — loaded last. Real structure, not a shrink.
+   1080 · 860 · 560, then reduced motion and print.
+   ============================================================ */
+@media (min-width:1700px){
+  :root{--max:1480px}
+}
+
+@media (max-width:1080px){
+  .hero{grid-template-columns:1fr}
+  .hero-r{border-left:none;border-top:1px solid var(--hair)}
+  .proj.wide .story{grid-template-columns:1fr 1fr}
+  .proj.wide .story > :first-child{grid-column:1/-1}
+  .work-head{grid-template-columns:1fr}
+  .work-head .note{text-align:left}
+  .std-row{grid-template-columns:1fr}
+  .menu{display:none}
+  .burger{display:inline-flex}
+  .tools-head{grid-template-columns:1fr}
+  .tools-head .note{text-align:left}
+  .why{grid-template-columns:1fr}
+  .why-q{border-right:0;border-bottom:1px solid var(--hair2);padding-right:var(--gut)}
+  .why-list li:first-child{padding-left:var(--gut)}
+  /* the close */
+  .sec-head{grid-template-columns:1fr}
+  .sec-head .note{text-align:left}
+  .fit{grid-template-columns:minmax(0,1fr) auto}
+  .fit-a{grid-column:1;grid-row:2;border-left:0;padding-left:0}
+  .fit .btn-ink{grid-column:2;grid-row:1 / span 2}
+  .talk-body{grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr)}
+  .foot-top{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .foot-studio{grid-column:1 / -1;display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px 48px;align-items:start}
+  .foot-studio .foot-about{margin-top:0;max-width:52ch}
+  .foot-cta{grid-template-columns:1fr}
+}
+
+@media (max-width:860px){
+  :root{--nav-h:70px}
+  .nav .in{grid-template-columns:1fr auto}
+  .menu{display:none}
+  .burger{display:inline-flex}
+  .brand{font-size:21px;gap:11px}
+  .brand svg{width:30px;height:35px}
+  .nav-right .cta{display:none}
+  .std-grid{grid-template-columns:1fr 1fr}
+  .grid{grid-template-columns:1fr}
+  .grid .proj.card:nth-child(odd){border-right:0}
+  .grid .proj.card + .proj.card{border-top:1px solid var(--hair)}
+  .proj.wide .stage{--ar:4/3.1;--mw:84%;--my:10%;--dw:36%;--dy:6%;--gsize:clamp(70px,22vw,170px)}
+  .proj.wide .stage .detail{top:auto;bottom:6%;transform:none}
+  .proj.wide .stage:hover .detail{transform:translateY(-12px)}
+  .proj.wide.flip .stage .main{right:8%}
+  .proj.card .stage{--mw:84%;--dw:34%}
+  .std-grid .c{padding-right:var(--gut)}
+  .std-grid .c:nth-child(odd){border-left:0;padding-left:var(--gut);padding-right:26px}
+  .std-grid .c:nth-child(odd)::before{left:var(--gut)}
+  .std-grid .c:nth-child(-n+2){border-bottom:1px solid var(--hair2)}
+  .js .std-grid.reveal.in .c:nth-child(3){transition-delay:0s,0s,0s}
+  .js .std-grid.reveal.in .c:nth-child(4){transition-delay:.1s,.1s,0s}
+  .rail{grid-template-columns:1fr 1fr}
+  .stat{padding:22px 18px 24px}
+  .stat:nth-child(odd){border-left:0;padding-left:var(--gut)}
+  .stat:nth-child(odd)::before{left:var(--gut)}
+  .stat:nth-child(-n+2){border-bottom:1px solid var(--hair2)}
+  /* tools: one column, 01 → 08 in order; each row reveals as it arrives */
+  .tools-grid{grid-template-columns:1fr;grid-template-rows:none;grid-auto-flow:row}
+  .tool,.tool:nth-child(-n+4),.tool:nth-child(n+5){border-right:0;padding:28px var(--gut) 30px;--d:0s !important}
+  .tool::before,.tool::after,.tool:nth-child(-n+4)::before,.tool:nth-child(-n+4)::after{left:var(--gut);right:var(--gut)}
+  .tool:nth-child(5)::after{display:block}
+  .free-rail{grid-template-columns:1fr 1fr}
+  .free-rail .stat:nth-child(even){padding-right:var(--gut)}
+  .why-list{grid-template-columns:1fr}
+  .why-list li,.why-list li:first-child,.why-list li:last-child{padding:26px var(--gut) 28px}
+  .why-list li + li{border-left:0;border-top:1px solid var(--hair2)}
+  .why-list li::before{left:var(--gut);right:var(--gut)}
+  /* pricing: stacked cards, natural order */
+  .plans{display:flex;flex-direction:column;gap:16px}
+  .plan{display:flex}
+  .plan-name{margin-top:22px}
+  .costs{grid-template-columns:1fr}
+  .cost,.cost:first-child,.cost:last-child{border-left:0;padding:24px var(--gut) 26px;border-bottom:1px solid var(--hair2)}
+  .cost:last-child{border-bottom:0}
+  .cost::before,.cost:first-child::before{left:var(--gut);right:var(--gut)}
+  .fit{grid-template-columns:1fr;gap:12px}
+  .fit-a,.fit .btn-ink{grid-column:auto;grid-row:auto}
+  .fit .btn-ink{justify-self:start;margin-top:10px}
+  /* conversation: people first, then the form */
+  .talk-head{padding-top:68px;padding-bottom:40px}
+  .talk-body{grid-template-columns:1fr}
+  .talk-l{padding-top:36px;padding-bottom:44px}
+  .talk-l-in{position:static}
+  .talk-r{border-left:0;border-top:1px solid var(--hair);padding:36px var(--gut) 44px}
+  /* footer */
+  .foot-top{grid-template-columns:1fr 1fr;padding-top:56px;padding-bottom:44px}
+  .foot-studio{display:block}
+  .foot-studio .foot-about{margin-top:20px}
+}
+
+@media (min-width:1081px){
+  .sheet{display:none}
+}
+
+@media (max-width:560px){
+  body{font-size:16.5px}
+  .hero-l{padding-top:40px}
+  .hero-l .cta-row{margin-bottom:40px}
+  .stat .v{font-size:32px}
+  .stat .d{font-size:13px}
+  .eyebrow{margin-bottom:24px;font-size:11px}
+  .sub{font-size:16.5px}
+  .cta-row{gap:20px}
+  .btn{padding:16px 26px;font-size:16px}
+  .hero-r{padding-top:40px}
+  .o{padding:14px 15px}
+  .o .v{font-size:21px}
+  .work-head{padding-top:56px;padding-bottom:30px}
+  .proj{padding-top:30px;padding-bottom:36px}
+  .proj.wide .story{grid-template-columns:1fr;gap:26px;margin-top:28px}
+  .stage{border-radius:14px}
+  .stage .detail img{border-radius:8px}
+  .stage .detail figcaption{font-size:8px;letter-spacing:.08em;padding:4px 8px;left:6px}
+  .stage .detail figcaption::before{width:4px;height:4px;margin-right:5px}
+  .stage .browser .bar{height:22px;padding:0 9px}
+  .stage .browser .dots i{width:6px;height:6px}
+  .stage .browser .url{font-size:9px}
+  .proof div{padding-right:10px}
+  .proof div + div{padding-left:12px}
+  .proof span{font-size:12.5px}
+  .proof b em{display:block;margin:6px 0 0}
+  .logo{height:38px}
+  .logo.word{height:24px}
+  .proj-meta{font-size:10.5px;letter-spacing:.14em}
+  .proj-meta .x{display:none}
+  .proj-meta > span:first-child{white-space:nowrap}
+  .browser .bar{height:30px}
+  .work-foot{flex-direction:column}
+  .tools-head{padding-top:56px;padding-bottom:30px}
+  .tool,.tool:nth-child(-n+4),.tool:nth-child(n+5){padding-top:24px;padding-bottom:26px;gap:0 16px}
+  .t-n{font-size:34px}
+  .t-meta{letter-spacing:.12em}
+  .tools-foot{flex-direction:column;align-items:flex-start}
+  .std-head{padding-top:60px;padding-bottom:36px}
+  .std-grid{grid-template-columns:1fr}
+  .std-grid .c,.std-grid .c:nth-child(odd){border-left:0;padding:26px var(--gut) 32px;border-bottom:1px solid var(--hair2)}
+  .std-grid .c:last-child{border-bottom:0}
+  .std-grid .c::before{left:var(--gut)}
+  .js .std-grid.reveal.in .c{transition-delay:0s,0s,0s !important}
+  /* the close */
+  .sec-head{padding-top:60px;padding-bottom:32px}
+  .plan{padding:24px 20px 26px;border-radius:16px}
+  .plan-name{font-size:52px}
+  .plan-amt{font-size:40px}
+  .plan-cta{align-self:stretch;justify-content:center}
+  .plan .biglink{align-self:flex-start}
+  .js .plans.reveal .plan{--d:0s !important}
+  .fit-q{font-size:28px}
+  .fit .btn-ink{justify-self:stretch;justify-content:center}
+  .talk-head{padding-top:56px;padding-bottom:32px}
+  .talk-head h2{font-size:clamp(38px,11vw,52px)}
+  .line{column-gap:14px;padding:18px 0}
+  .line-ico{width:40px;height:40px}
+  .line-v{font-size:19px}
+  .talk-r{padding:30px var(--gut) 40px}
+  .f-row{grid-template-columns:1fr}
+  .pill span{padding:9px 14px;font-size:14px}
+  .enq-foot{flex-direction:column;align-items:stretch}
+  .enq-send{justify-content:center}
+  .enq-fine{text-align:center;font-size:17px}
+  .enq-time{display:none}
+  .foot-top{grid-template-columns:1fr 1fr;gap:38px 20px}
+  .foot-col a{font-size:16.5px}
+  .foot-about{font-size:16px}
+  .foot-cta-r{width:100%}
+  .foot-cta-r .btn{width:100%;justify-content:center}
+  .foot-studio{grid-column:1 / -1}
+  .foot-col:last-child{grid-column:1 / -1}
+  .foot-bar{flex-direction:column;align-items:flex-start;gap:8px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none !important;transition:none !important}
+  .js .reveal,.js .std-grid.reveal .c{opacity:1;transform:none}
+  .js .tool.reveal::after{transform:none}
+  .js .plans.reveal .plan{opacity:1;transform:none}
+  .done-mark path{stroke-dashoffset:0}
+}
+
+@media print{
+  .nav,.sheet,.hero-r{display:none}
+  body{padding-top:0}
+}

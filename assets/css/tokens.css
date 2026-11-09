@@ -1,0 +1,39 @@
+/* ============================================================
+   AIVORYX · design tokens
+   Everything else reads from here — change a colour once.
+   ============================================================ */
+:root{
+  /* colour */
+  --paper:#F6F2EA;          /* page */
+  --card:#FDFCF9;           /* raised surfaces */
+  --ink:#17150F;            /* text, dark bands */
+  --walnut:#4E493B;         /* secondary text */
+  --sand:#97907E;           /* labels, meta */
+  --accent:#E8431C;         /* the one colour — use sparingly */
+  --accent-press:#D23812;
+  --hair:rgba(23,21,15,.16);
+  --hair2:rgba(23,21,15,.08);
+  --on-ink:rgba(246,242,234,.75);
+  --on-ink-dim:rgba(246,242,234,.55);
+  --on-ink-hair:rgba(246,242,234,.14);
+  --plum:#231D45;           /* the one deep surface in pricing */
+  --on-plum:rgba(246,242,234,.78);
+  --on-plum-dim:rgba(246,242,234,.58);
+  --on-plum-hair:rgba(246,242,234,.16);
+  --accent-on-dark:#FF7A57; /* coral lifted for small text on plum / ink (AA) */
+  --err:#C2330F;            /* field errors — the accent, pressed darker for AA on card */
+
+  /* type */
+  --sans:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --serif:"Instrument Serif",Georgia,serif;
+  --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+
+  /* layout */
+  --max:1340px;
+  --nav-h:84px;
+  --gut:clamp(20px,3.6vw,58px);   /* outer section padding */
+  --gut-sm:clamp(20px,3.2vw,52px);
+
+  /* motion */
+  --ease:cubic-bezier(.2,.6,.2,1);
+}
