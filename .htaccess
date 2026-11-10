@@ -1,0 +1,43 @@
+# ============================================================
+#  AIVORYX · Apache (BigRock) — HTTPS, security headers, file guards.
+#  Vercel ignores this file; vercel.json carries the same headers.
+# ============================================================
+Options -Indexes
+ServerSignature Off
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # HTTPS only.
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !=https
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+  # Never serve dotfiles (.git, .env …) or project docs.
+  RewriteRule (^|/)\.(?!well-known/) - [F,L]
+  RewriteRule \.(md|log|bak|sql|example|sh)$ - [F,L,NC]
+
+  # api/: only the form endpoint is public. config.php and mailer.php are
+  # include-only (each also refuses direct requests itself).
+  RewriteCond %{REQUEST_URI} ^/api/
+  RewriteCond %{REQUEST_URI} !^/api/send\.php$
+  RewriteRule ^ - [F,L]
+</IfModule>
+
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
+  Header always set X-Frame-Options "DENY"
+  # HSTS: 1 day to start. Raise to 31536000 after a clean week; add
+  # includeSubDomains only once every *.aivoryx.com host redirects to HTTPS.
+  Header always set Strict-Transport-Security "max-age=86400" "expr=%{HTTPS} == 'on'"
+  # Verified locally as ENFORCED with zero violations across every page and tool
+  # (2026-11-11). Ships report-only first; rename the header to
+  # Content-Security-Policy to enforce. If an inline <script> changes, its
+  # sha256 must be updated (see SECURITY notes in the audit pack).
+  Header always set Content-Security-Policy-Report-Only "default-src 'self'; script-src 'self' 'wasm-unsafe-eval' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com 'sha256-b+vJxiRsVmx84AQXRdTOniJJS/Oqion3Q711bC+NGVw=' 'sha256-gxBSvnX8MhfFKGqQrNa9zgPUsi9IiDFsGEVqxt+buJE=' 'sha256-p6IFAMf+q8Cky/BWxMhZtDVZXMatkbZuHp4vZGOau60='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com blob: data:; worker-src 'self' blob: https://cdnjs.cloudflare.com; media-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'"
+  <FilesMatch "\.(html)$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+</IfModule>

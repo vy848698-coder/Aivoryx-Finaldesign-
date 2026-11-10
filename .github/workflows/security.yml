@@ -1,0 +1,40 @@
+name: security
+
+# Runs on every push and pull request. Blocks on: leaked secrets, PHP syntax
+# errors, and CSP drift (an inline script changed without its hash). It does
+# NOT block on low-severity findings — see the severity policy in the audit pack.
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: "17 4 * * 1"   # weekly re-scan, Mondays
+
+permissions:
+  contents: read
+
+jobs:
+  secrets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0          # scan the whole history, not just the tip
+      - name: Gitleaks (secret scan)
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: PHP syntax (api/)
+        run: |
+          for f in api/*.php; do php -l "$f"; done
+      - name: CSP hashes match inline scripts
+        run: python3 scripts/check-csp.py
+      - name: config.php must never be committed
+        run: |
+          if git ls-files --error-unmatch api/config.php 2>/dev/null; then
+            echo "api/config.php is tracked — it holds the SMTP password"; exit 1
+          fi

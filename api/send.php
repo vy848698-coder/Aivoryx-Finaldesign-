@@ -29,7 +29,20 @@ function ax_out($ok, $msg, $code = 200) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+  header('Allow: POST');
   ax_out(false, 'Method not allowed.', 405);
+}
+
+/* Same-origin only. Browsers attach Origin to cross-site POSTs, so another
+   site can't make its visitors' browsers submit this form. Requests with no
+   Origin (some privacy tools strip it) are still accepted; the honeypot,
+   validation and rate limit below handle those. */
+if (!empty($_SERVER['HTTP_ORIGIN'])) {
+  $oHost = strtolower((string) parse_url($_SERVER['HTTP_ORIGIN'], PHP_URL_HOST));
+  $sHost = strtolower(preg_replace('/:\d+$/', '', isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : ''));
+  if ($oHost === '' || $oHost !== $sHost) {
+    ax_out(false, 'Forbidden.', 403);
+  }
 }
 
 $cfgFile = __DIR__ . '/config.php';
@@ -103,8 +116,13 @@ if ($quick) {
   if (ax_len($name) < 2)                                     $errors[] = 'name';
   if (strlen($digits) < 10 || strlen($digits) > 13)          $errors[] = 'phone';
   if (!filter_var($email, FILTER_VALIDATE_EMAIL))            $errors[] = 'email';
-  if ($need === '')                                          $errors[] = 'need';
-  if ($budget === '')                                        $errors[] = 'budget';
+  /* The form offers fixed choices; anything else did not come from it.
+     Keeping these to known values also means the confirmation email below
+     can only ever repeat text we wrote. */
+  $needs   = array('Business website', 'Web application', 'Mobile app', 'Online store', 'AI automation', 'Other');
+  $budgets = array('Under ₹8,000', '₹8,000 – ₹15,000', '₹15,000 – ₹25,000', '₹25,000+', "Tell me what's realistic");
+  if (!in_array($need, $needs, true))                        $errors[] = 'need';
+  if (!in_array($budget, $budgets, true))                    $errors[] = 'budget';
 }
 
 if ($errors) {
@@ -254,8 +272,13 @@ try {
    Best-effort: the enquiry is already safely in the inbox, so a
    bounce here must not report failure to the sender. */
 if (!empty($cfg['autoreply'])) {
+  /* The auto-reply goes to whatever address was typed in, so it must not
+     carry text a stranger wrote — otherwise the form becomes a way to send
+     their message (a link, a scam) from our mailbox to anyone. It repeats
+     only the fixed choices, and a first name that looks like a name. */
   $first = preg_split('/\s+/', $name);
-  $first = $first[0];
+  $first = ax_cut($first[0], 30);
+  if (!preg_match('/^[\p{L}\p{M}\'’-]+$/u', $first)) $first = 'there';
 
   $replyHtml = ax_letter(
       ax_p('Dear ' . ax_e($first) . ',')
@@ -264,7 +287,7 @@ if (!empty($cfg['autoreply'])) {
     . ax_p('For your reference, here is what you sent us:')
     . '<p style="margin:0 0 14px;padding-left:14px;border-left:2px solid #dddddd;color:#555555">'
     . ax_e($need) . '<br>Budget: ' . ax_e($budget)
-    . ($message !== '' ? '<br><br>' . nl2br(ax_e($message)) : '')
+    . ($message !== '' ? '<br><br>Plus the message you wrote — we have it.' : '')
     . '</p>'
     . ax_p('If you need to reach us sooner, you can call or WhatsApp us on +91 93995 93499.')
     . ax_p('Kind regards,<br>Aivoryx'
@@ -278,7 +301,7 @@ if (!empty($cfg['autoreply'])) {
     . "For your reference, here is what you sent us:\n\n"
     . "  " . $need . "\n"
     . "  Budget: " . $budget . "\n"
-    . ($message !== '' ? "\n  " . str_replace("\n", "\n  ", $message) . "\n" : '')
+    . ($message !== '' ? "\n  Plus the message you wrote - we have it.\n" : '')
     . "\nIf you need to reach us sooner, you can call or WhatsApp us on +91 93995 93499.\n\n"
     . "Kind regards,\nAivoryx\n"
     . ($site ? $siteHost . "\n" : '');
