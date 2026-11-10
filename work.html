@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Work — Aivoryx | The parts that sell, cut out of six live sites</title>
+<meta name="description" content="Not homepages — the working parts inside them. Savings and shipment calculators, symptom-first booking, live OPD boards, lead funnels and an assistant that speaks Odia, cut out of six live client sites and annotated.">
+<meta name="theme-color" content="#F6F2EA">
+<link rel="canonical" href="https://aivoryx.com/work.html">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Aivoryx">
+<meta property="og:title" content="Aivoryx — Not the homepage. The parts that sell.">
+<meta property="og:description" content="Twenty-three working parts, cut out of six live client sites and annotated — what each one does, and why we built it.">
+<meta property="og:url" content="https://aivoryx.com/work.html">
+<meta property="og:image" content="https://aivoryx.com/assets/img/work/features/kam-doctors.webp">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="assets/img/brand/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="site.webmanifest">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+Oriya:wght@600&family=Noto+Sans+Devanagari:wght@600&display=swap" rel="stylesheet">
+
+<!-- order matters: tokens first, responsive then work last -->
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/close.css">
+<link rel="stylesheet" href="assets/css/responsive.css">
+<link rel="stylesheet" href="assets/css/work.css">
+<script>
+document.documentElement.classList.add('js');
+/* Big screens: zoom the whole page as one piece (same as the homepage; 1340 must
+   match tokens.css). --vh is the visible window height in page pixels. */
+(function (r, W) {
+  var lastW = 0;
+  function fit() {
+    var z = innerWidth > W ? innerWidth / W : 1;
+    r.style.zoom = z > 1 ? z : '';
+    if (innerWidth !== lastW || z > 1 || matchMedia('(hover:hover)').matches) {
+      r.style.setProperty('--vh', (innerHeight / z / 100) + 'px');
+      lastW = innerWidth;
+    }
+  }
+  fit();
+  addEventListener('resize', fit);
+})(document.documentElement, 1340);
+</script>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"CollectionPage","name":"Aivoryx — The parts that sell","url":"https://aivoryx.com/work.html",
+ "description":"Working parts cut out of six live client websites built by Aivoryx, each annotated.",
+ "hasPart":[
+  {"@type":"CreativeWork","name":"Clans Machina","url":"https://clansmachina.com","about":"Rooftop solar website with a bill-to-savings calculator, verified installation records and an Odisha coverage map"},
+  {"@type":"CreativeWork","name":"MarketIQ Infotech","url":"https://dmarketiq.com","about":"Digital marketing agency website with a result on every service, a public comparison and a free-audit funnel"},
+  {"@type":"CreativeWork","name":"Odisha Workforce Solutions","url":"https://odishaworkforce.com","about":"Recruitment website that splits job seekers and employers on the first screen and re-tailors its services in one tap"},
+  {"@type":"CreativeWork","name":"Kamini Clinic & Labs","url":"https://kaminilabs.in","about":"Diagnostics website with symptom-first test finder, public prices, a live OPD board and home-collection booking"},
+  {"@type":"CreativeWork","name":"Jay Jagannath Marine Eximss","url":"https://jjmeexporthouse.com","about":"Bulk minerals exporter website with a shipment calculator, grade specifications and HSN-coded catalogue"},
+  {"@type":"SoftwareApplication","name":"Solar Saathi","url":"https://saathi.clansmachina.com","applicationCategory":"AI assistant","about":"Talking solar assistant for Clans Machina in Odia, Hindi and English"}]}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- ================= NAV — same five, Work is current ================= -->
+<nav class="nav" id="nav" aria-label="Main">
+  <div class="in">
+    <a class="brand" href="index.html" aria-label="Aivoryx — home">
+      <svg viewBox="7 -6 90 104" fill="none" aria-hidden="true">
+        <path d="M12 90 L52 2" stroke="#17150F" stroke-width="11.5" stroke-linecap="square"/>
+        <path d="M52 2 L92 90" stroke="#17150F" stroke-width="11.5" stroke-linecap="square"/>
+        <path d="M52 90 L92 2" stroke="#17150F" stroke-width="11.5" stroke-linecap="square"/>
+        <path d="M32 46 L72 46" stroke="#E8431C" stroke-width="11.5" stroke-linecap="square"/>
+      </svg>
+      <span>Aivory<em>x</em></span>
+    </a>
+    <div class="menu">
+      <a href="index.html"><i aria-hidden="true">01</i><span class="lbl"><b>Home</b><em aria-hidden="true">Home</em></span></a>
+      <a href="work.html" aria-current="page"><i aria-hidden="true">02</i><span class="lbl"><b>Work</b><em aria-hidden="true">Work</em></span></a>
+      <a href="index.html#tools"><i aria-hidden="true">03</i><span class="lbl"><b>Free tools</b><em aria-hidden="true">Free tools</em></span></a>
+      <a href="index.html#pricing"><i aria-hidden="true">04</i><span class="lbl"><b>How we price</b><em aria-hidden="true">How we price</em></span></a>
+      <a href="index.html#contact"><i aria-hidden="true">05</i><span class="lbl"><b>Contact us</b><em aria-hidden="true">Contact us</em></span></a>
+    </div>
+    <div class="nav-right">
+      <a class="cta" href="index.html#contact">Start a project</a>
+      <button class="burger" id="burger" type="button" aria-controls="sheet" aria-expanded="false" aria-label="Open menu"><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="sheet" id="sheet">
+  <a class="big" href="index.html">Home <span>01</span></a>
+  <a class="big" href="work.html" aria-current="page">Work <span>02</span></a>
+  <a class="big" href="index.html#tools">Free tools <span>03</span></a>
+  <a class="big" href="index.html#pricing">How we price <span>04</span></a>
+  <a class="big" href="index.html#contact">Contact us <span>05</span></a>
+  <a class="btn" href="index.html#contact">Start a project
+    <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.8"/></svg>
+  </a>
+</div>
+
+<main class="frame" id="top">
+<span id="main"></span>
+
+  <!-- ============ HERO — the parts, not the pages ============ -->
+  <section class="wt-hero" aria-labelledby="hero-h">
+    <div class="wt-hero-in">
+      <div class="wt-hero-l">
+        <div class="wt-lab rise"><i></i>Work · the parts list · 2024 – 2026</div>
+        <h1 class="rise d1" id="hero-h"><span class="ln">Not the homepage.</span> <em class="ln">The parts that sell.</em></h1>
+        <p class="wt-sub rise d2">You've seen our six sites from the outside. Here they're opened up: <b>23 working parts</b>, cut out of the live sites and marked up with what each one does and why it's there.</p>
+        <div class="wt-act rise d3">
+          <a class="btn-ink" href="#c1">Open the first file
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2v11M3.5 9 8 13.5 12.5 9" stroke="currentColor" stroke-width="1.8"/></svg>
+          </a>
+          <span class="wt-hint"><i></i>Drag any reel · tap any pin</span>
+        </div>
+      </div>
+
+      <aside class="wt-hero-r rise d2" aria-label="Contents">
+        <div class="toc-k"><span>Contents · six case files</span><span>Parts</span></div>
+        <ol class="toc">
+          <li><a href="#c1"><i>01</i><b>Kamini Clinic <em>&amp; Labs</em></b><span>Diagnostics</span><u>05</u></a></li>
+          <li><a href="#c2"><i>02</i><b>Jay Jagannath Marine</b><span>Export</span><u>04</u></a></li>
+          <li><a href="#saathi"><i>03</i><b>Solar <em>Saathi</em></b><span>AI assistant</span><u>02</u></a></li>
+          <li><a href="#c4"><i>04</i><b>Clans Machina</b><span>Solar</span><u>03</u></a></li>
+          <li><a href="#c5"><i>05</i><b>MarketIQ Infotech</b><span>Marketing</span><u>04</u></a></li>
+          <li><a href="#c6"><i>06</i><b>Odisha Workforce</b><span>Recruitment</span><u>02</u></a></li>
+        </ol>
+        <ul class="hs" aria-label="At a glance">
+          <li><b>06</b><em>sites, all live</em></li>
+          <li class="hot"><b>23</b><em>parts shown</em></li>
+          <li><b>03</b><em>languages</em></li>
+          <li><b>00</b><em>templates</em></li>
+        </ul>
+      </aside>
+    </div>
+
+    <!-- the parts tray: small cut-outs drifting past; each jumps to its plate -->
+    <div class="tray rise d3" aria-label="A few of the parts below">
+      <div class="tray-row">
+        <div class="tray-track">
+          <a class="chip" href="#p-04-1" style="--o:70% 18%;--z:2.1"><span class="chip-img"><img src="assets/img/work/features/clans-calc.webp" alt="" width="1600" height="710"></span><span class="chip-k"><b>04.1</b> Savings calculator</span></a>
+          <a class="chip" href="#p-01-4" style="--o:60% 12%;--z:1.6"><span class="chip-img"><img src="assets/img/work/features/kam-doctors.webp" alt="" width="1240" height="1920"></span><span class="chip-k"><b>01.4</b> In clinic today</span></a>
+          <a class="chip" href="#p-02-1" style="--o:92% 30%;--z:2.3"><span class="chip-img"><img src="assets/img/work/features/jj-calc-bag.webp" alt="" width="1600" height="862"></span><span class="chip-k"><b>02.1</b> Shipment calculator</span></a>
+          <a class="chip" href="#p-05-3" style="--o:84% 34%;--z:2.2"><span class="chip-img"><img src="assets/img/work/features/miq-audit.webp" alt="" width="1600" height="784"></span><span class="chip-k"><b>05.3</b> The free audit</span></a>
+          <a class="chip" href="#saathi" style="--o:80% 32%;--z:2"><span class="chip-img"><img src="assets/img/work/features/saathi-or.webp" alt="" width="1600" height="971"></span><span class="chip-k"><b>03</b> Saathi, in Odia</span></a>
+          <a class="chip" href="#p-06-1" style="--o:14% 80%;--z:2.4"><span class="chip-img"><img src="assets/img/work/features/ows-hero.webp" alt="" width="1600" height="944"></span><span class="chip-k"><b>06.1</b> Two front doors</span></a>
+        </div>
+      </div>
+      <div class="tray-row rev">
+        <div class="tray-track">
+          <a class="chip" href="#p-04-2" style="--o:22% 66%;--z:2.4"><span class="chip-img"><img src="assets/img/work/features/clans-verified.webp" alt="" width="1600" height="613"></span><span class="chip-k"><b>04.2</b> Before → after bills</span></a>
+          <a class="chip" href="#p-01-1" style="--o:10% 30%;--z:1.9"><span class="chip-img"><img src="assets/img/work/features/kam-symptom.webp" alt="" width="1600" height="661"></span><span class="chip-k"><b>01.1</b> Start from the symptom</span></a>
+          <a class="chip" href="#p-05-2" style="--o:62% 20%;--z:1.9"><span class="chip-img"><img src="assets/img/work/features/miq-compare.webp" alt="" width="1600" height="775"></span><span class="chip-k"><b>05.2</b> Us vs them</span></a>
+          <a class="chip" href="#p-02-3" style="--o:30% 10%;--z:2"><span class="chip-img"><img src="assets/img/work/features/jj-spec.webp" alt="" width="1600" height="604"></span><span class="chip-k"><b>02.3</b> Grade spec sheet</span></a>
+          <a class="chip" href="#p-01-2" style="--o:8% 40%;--z:2.4"><span class="chip-img"><img src="assets/img/work/features/kam-prices.webp" alt="" width="1600" height="627"></span><span class="chip-k"><b>01.2</b> Prices up front</span></a>
+          <a class="chip" href="#p-05-1" style="--o:12% 50%;--z:2.4"><span class="chip-img"><img src="assets/img/work/features/miq-services.webp" alt="" width="1600" height="1003"></span><span class="chip-k"><b>05.1</b> A result on every service</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===================================================================
+       01 · KAMINI CLINIC & LABS
+       =================================================================== -->
+  <section class="case" id="c1" aria-labelledby="c1-h" style="--tint:#F4E7C2;--tint-ink:#8A6A00">
+    <header class="case-head reveal">
+      <div class="ch-id">
+        <span class="ch-no">01<i>/06</i></span>
+        <div class="ch-name"><img src="assets/img/clients/kamini.webp" alt="" width="44" height="44"><h2 id="c1-h">Kamini Clinic <em>&amp; Labs</em></h2></div>
+        <span class="ch-trade">Diagnostics &amp; OPD · Bhubaneswar</span>
+      </div>
+      <div class="ch-hard">
+        <span class="k">The hard part</span>
+        <p>Patients don't search for “LFT”. They search for what's wrong, <em>and they want the price before they walk in.</em></p>
+      </div>
+      <div class="ch-meta">
+        <span class="k">Parts shown</span>
+        <b>05</b>
+        <a class="ul" href="https://kaminilabs.in" target="_blank" rel="noopener">kaminilabs.in ↗</a>
+      </div>
+    </header>
+
+    <div class="reel" data-reel>
+      <div class="reel-ctl">
+        <span class="reel-hint">Drag, swipe or use the arrows</span>
+        <span class="reel-count"><b>01</b> / 06</span>
+        <span class="reel-prog" aria-hidden="true"><i></i></span>
+        <button class="reel-btn prev" type="button" aria-label="Previous part"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M14 8H3M7 3.5 2.5 8 7 12.5" stroke="currentColor" stroke-width="1.8"/></svg></button>
+        <button class="reel-btn next" type="button" aria-label="Next part"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.8"/></svg></button>
+      </div>
+      <div class="reel-track" tabindex="0" aria-label="Kamini Clinic and Labs — parts">
+
+        <article class="part" id="p-01-1" style="--w:680px">
+          <div class="shot">
+            <img src="assets/img/work/features/kam-symptom.webp" alt="Ten symptom tiles with photos: heart, liver, kidney, thyroid, vitamin D, diabetes, CBC, fever, bone, allergy, each naming its tests" width="1600" height="661" loading="lazy">
+            <button class="pin" type="button" style="--x:3%;--y:18%" data-n="1" aria-label="Note 1">1</button>
+            <button class="pin" type="button" style="--x:1%;--y:60%" data-n="2" aria-label="Note 2">2</button>
+            <button class="pin" type="button" style="--x:71%;--y:64%" data-n="3" aria-label="Note 3">3</button>
+          </div>
+          <div class="cap">
+            <span class="fig">Fig 01.1 · Symptom-first finder</span>
+            <h3>Start from the symptom, not the test name.</h3>
+            <p>Ten plain-language tiles (heart, liver, thyroid, fever) that each open the exact tests and packages for it.</p>
+            <ol class="notes">
+              <li data-n="1">Pick the body part, not the medical term.</li>
+              <li data-n="2">The tests are named underneath: Lipid profile &amp; ECG.</li>
+              <li data-n="3">Everyday worries too: fever, bone pain, allergy.</li>
+            </ol>
+          </div>
+        </article>
+
+        <article class="part" id="p-01-2" style="--w:680px">
+          <div class="shot">
+            <img src="assets/img/work/features/kam-prices.webp" alt="Price list cards: Complete Blood Count ₹300, Lipid Profile ₹400, Thyroid Profile ₹400, HbA1c ₹400, each with old price, discount badge and report time" width="1600" height="627" loading="lazy">
+            <button class="pin" type="button" style="--x:1%;--y:40%" data-n="1" aria-label="Note 1">1</button>
+            <button class="pin" type="button" style="--x:17%;--y:38%" data-n="2" aria-label="Note 2">2</button>
+            <button class="pin" type="button" style="--x:38%;--y:11%" data-n="3" aria-label="Note 3">3</button>
+          </div>
+          <div class="cap">
+            <span class="fig">Fig 01.2 · Public price list</span>
+            <h3>No surprises at the counter.</h3>
+            <p>Every common test with its price, the old price, the discount and how fast the report comes back.</p>
+            <ol class="notes">
+              <li data-n="1">₹300, with the counter price struck out beside it.</li>
+              <li data-n="2">The discount as a badge: 25% off.</li>
+              <li data-n="3">Report time on every card: same day, 6 hrs, 24 hrs.</li>
+            </ol>
+            <a class="twin" href="#p-04-1"><span>Same idea</span> 04.1 · a number before a phone number →</a>
+          </div>
+        </article>
+
+        <article class="part" id="p-01-3" style="--w:640px">
+          <div class="shot">
+            <img src="assets/img/work/features/kam-packages.webp" alt="Three health packages: Basic-Lite ₹999, Full Body ₹1,499 marked Most booked, Ultra ₹1,999, each with free home collection" width="1600" height="754" loading="lazy">
+            <button class="pin" type="button" style="--x:67%;--y:5%" data-n="1" aria-label="Note 1">1</button>
+            <button class="pin" type="button" style="--x:52%;--y:33%" data-n="2" aria-label="Note 2">2</button>
+            <button class="pin" type="button" style="--x:68%;--y:58%" data-n="3" aria-label="Note 3">3</button>
+          </div>
+          <div class="cap">
+            <span class="fig">Fig 01.3 · Health packages</span>
+            <h3>Three choices, one obvious one.</h3>
+            <p>Basic, Full Body, Ultra. The middle one is dark and marked “Most booked”, so most people don't have to decide.</p>
+            <ol class="notes">
+              <li data-n="1">“Most booked”: the social proof is just a label.</li>
+              <li data-n="2">₹1,499, with free home collection right under the price.</li>
+              <li data-n="3">What's inside, ticked off line by line.</li>
+            </ol>
+          </div>
+        </article>
+
+        <article class="part tall" id="p-01-4" style="--w:660px">
+          <div class="shot">
+            <img src="assets/img/work/features/kam-doctors.webp" alt="In clinic today board: date, 10 of 12 consultants sitting today, each doctor with specialty, timing and In clinic or Booking open status" width="1240" height="1920" loading="lazy">
+            <button class="pin" type="button" style="--x:70%;--y:7%" data-n="1" aria-label="Note 1">1</button>
+            <button class="pin" type="button" style="--x:95.5%;--y:17%" data-n="2" aria-label="Note 2">2</button>
+            <button class="pin" type="button" style="--x:95.5%;--y:36%" data-n="3" aria-label="Note 3">3</button>
+          </div>
+          <div class="cap">
+            <span class="fig">Fig 01.4 · The OPD board</span>
+            <h3>Who's in today.</h3>
+            <p>Twelve consultants with today's timings, so nobody travels to a closed door.</p>
+            <ol class="notes">
+              <li data-n="1">The date and the headcount: 10 of 12 sitting today.</li>
+              <li data-n="2">In clinic, right now.</li>
+              <li data-n="3">Booking open, for later today.</li>
+            </ol>
+          </div>
+        </article>
+
+        <article class="part tall" id="p-01-5" style="--w:680px">
+          <div class="shot">
+            <img src="assets/img/work/features/kam-collection.webp" alt="Reserve a home collection slot: pick a day, pick a time window with fasting advice, enter locality, continue to booking" width="1280" height="1360" loading="lazy">
+            <button class="pin" type="button" style="--x:4%;--y:22%" data-n="1" aria-label="Note 1">1</button>
+            <button class="pin" type="button" style="--x:96%;--y:60%" data-n="2" aria-label="Note 2">2</button>
+            <button class="pin" type="button" style="--x:4%;--y:86%" data-n="3" aria-label="Note 3">3</button>
+          </div>
+          <div class="cap">
+            <span class="fig">Fig 01.5 · Home collection</span>
+            <h3>A home visit in three taps.</h3>
+            <p>Pick a day, a window and your locality, and the clinic calls back. Nothing is paid upfront.</p>
+            <ol class="notes">
+              <li data-n="1">Step 1: today, tomorrow or the day after.</li>
+              <li data-n="2">Step 2: a time window, with “best for fasting” advice.</li>
+              <li data-n="3">Step 3: locality, then continue. No payment now.</li>
+            </ol>
+          </div>
+        </article>
+
+        <aside class="part-end">
+          <span class="k">See it working</span>
+          <a class="end-url" href="https://kaminilabs.in" target="_blank" rel="noopener">kaminilabs<span>.in</span> ↗</a>
+          <ul>
+            <li><b>₹0</b>home collection charge</li>
+            <li><b>12</b>consultants, live on the board</li>
+          </ul>
+          <a class="end-next" href="#patterns">Its two-step booking helper is in Patterns →</a>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       02 · JAY JAGANNATH MARINE EXIMSS
+       =================================================================== -->
+  <section class="case" id="c2" aria-labelledby="c2-h" style="--tint:#DCE2EB;--tint-ink:#1B2F4E">
+    <header class="case-head reveal">
+      <div class="ch-id">
+        <span class="ch-no">02<i>/06</i></span>
+        <div class="ch-name"><img src="assets/img/clients/jjme.webp" alt="" width="43" height="44"><h2 id="c2-h">Jay Jagannath Marine</h2></div>
+        <span class="ch-trade">Bulk minerals export · Cuttack, Odisha</span>
+      </div>
+      <div class="ch-hard">
+        <span class="k">The hard part</span>
+        <p>Overseas buyers think in tonnes and containers. <em>The site had to answer in their units</em> before the first email.</p>
+      </div>
+      <div class="ch-meta">
+        <span class="k">Parts shown</span>
+        <b>04</b>
+        <a class="ul" href="https://jjmeexporthouse.com" target="_blank" rel="noopener">jjmeexporthouse.com ↗</a>
+      </div>
+    </header>
+
+    <div class="reel" data-reel>
+      <div class="reel-ctl">
+        <span class="reel-hint">Drag, swipe or use the arrows</span>
+        <span class="reel-count"><b>01</b> / 05</span>
+        <span class="reel-prog" aria-hidden="true"><i></i></span>
+        <button class="reel-btn prev" type="button" aria-label="Previous part"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M14 8H3M7 3.5 2.5 8 7 12.5" stroke="currentColor" stroke-width="1.8"/></svg></button>
+        <button class="reel-btn next" type="button" aria-label="Next part"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.8"/></svg></button>
+      </div>
+      <div class="reel-track" tabindex="0" aria-label="Jay Jagannath Marine — parts">
+
+        <article class="part flip" id="p-02-1" style="--w:640px">
+          <div class="flip-tabs" role="group" aria-label="Packing format">
+            <button type="button" aria-pressed="true" data-i="0">50 kg bags</button>
+            <button type="button" aria-pressed="false" data-i="1">1 MT jumbo</button>
+            <button type="button" aria-pressed="false" data-i="2">Bulker · 5,000 MT</button>
+            <span class="flip-k">Real states · tap</span>
+          </div>
+          <div class="shot">
+            <img class="on" data-i="0" src="assets/img/work/features/jj-calc-bag.webp" alt="Shipment calculator, 50 kg bags, 1,000 MT: 20,000 bags, about 50 twenty-foot containers" width="1600" height="862" loading="lazy">
+            <img data-i="1" src="assets/img/work/features/jj-calc-jumbo.webp" alt="Shipment calculator, 1 MT jumbo bags, 1,000 MT: 1,000 bags, about 50 containers" width="1600" height="862" loading="lazy">
+            <img data-i="2" src="assets/img/work/features/jj-calc-bulker.webp" alt="Shipment calculator, bulker, 5,000 MT: loose bulk, pneumatic discharge, about 250 containers" width="1600" height="862" loading="lazy">
+            <button class="pin" type="button" style="--x:6%;--y:22%" data-n="1" aria-label="Note 1">1</button>
+            <button class="pin" type="button" style="--x:5%;--y:47%" data-n="2" aria-label="Note 2">2</button>
+            <button class="pin" type="button" style="--x:96%;--y:14%" data-n="3" aria-label="Note 3">3</button>
+            <button class="pin" type="button" style="--x:73%;--y:62%" data-n="4" aria-label="Note 4">4</button>
+          </div>
+          <div class="cap">
+            <span class="fig">Fig 02.1 · Shipment calculator</span>
+            <h3>Tonnes in, bags and containers out.</h3>
+            <p>Choose a packing format and a tonnage, and the page answers in bags, bag size and 20-foot containers.</p>
+            <ol class="notes">
+              <li data-n="1">Packing format: four choices. Switch them above.</li>
+              <li data-n="2">Quantity on a slider, 100 to 15,000 MT.</li>
+              <li data-n="3">The answer in the buyer's own units: 20,000 bags.</li>
+              <li data-n="4">Request this quotation, with the numbers already filled in.</li>
+            </ol>
+            <a class="twin" href="#p-04-1"><span>Same idea</span> 04.1 · a savings calculator for solar →</a>
+          </div>
+        </article>
+
+        <article class="part" id="p-02-2" style="--w:620px">
+          <div class="shot">
+            <img src="assets/img/work/features/jj-catalog.webp" alt="Product catalogue cards for Fly Ash Class F, Class C and Zinc Ash, each with HSN code, standard, packing and market" width="1600" height="782" loading="lazy">
+            <button class="pin" type="button" style="--x:1.5%;--y:46%" data-n="1" aria-label="Note 1">1</button>
+            <button class="pin" type="button" style="--x:1.5%;--y:86%" data-n="2" aria-label="Note 2">2</button>
+            <button class="pin" type="button" style="--x:86%;--y:20%" data-n="3" aria-label="Note 3">3</button>
+          </div>
+          <div class="cap">
+            <span class="fig">Fig 02.2 · Bulk catalogue</span>
+            <h3>Every product, with its customs code.</h3>
+            <p>Each grade carries its export HSN code, standard, packing and market, the details customs and buyers check first.</p>
+            <ol class="notes">
+              <li data-n="1">HSN 26219000, printed right on the card.</li>
+              <li data-n="2">Standard: ASTM C618 / EN 450.</li>
+              <li data-n="3">Real photographs of the material itself.</li>
+            </ol>
+          </div>
+        </article>
+
+        <article class="part" id="p-02-3" style="--w:640px">
+          <div class="shot">
+            <img src="assets/img/work/features/jj-spec.webp" alt="Technical table comparing Class F and Class C fly ash on coal source, calcium content, composition, reactivity and best use" width="1600" height="604" loading="lazy">
+            <button class="pin" type="button" style="--x:48%;--y:8%" data-n="1" aria-label="Note 1">1</button>
+            <button class="pin" type="button" style="--x:1%;--y:40%" data-n="2" aria-label="Note 2">2</button>
+            <button class="pin" type="button" style="--x:1%;--y:82%" data-n="3" aria-label="Note 3">3</button>
+          </div>
+          <div class="cap">
+            <span class="fig">Fig 02.3 · Grade spec sheet</span>
+            <h3>The engineer's questions, answered on the page.</h3>
+            <p>Class F against Class C fly ash, compared on source, calcium, composition, reactivity and best use.</p>
+            <ol class="notes">
+              <li data-n="1">Two grades, side by side, in one table.</li>
+              <li data-n="2">Calcium content: the number that decides the grade.</li>
+              <li data-n="3">Best use: what you can build with each.</li>
+            </ol>
+          </div>
+        </article>
+
+        <article class="part" id="p-02-4" style="--w:600px">
+          <div class="shot dark">
+            <img src="assets/img/work/features/jj-ports.webp" alt="Loaded in Odisha, tracked to your discharge port: Paradip, Dhamra, Gopalpur, Visakhapatnam, Gangavaram" width="1600" height="704" loading="lazy">
+            <button class="pin" type="button" style="--x:33%;--y:27%" data-n="1" aria-label="Note 1">1</button>
+            <button class="pin" type="button" style="--x:50%;--y:80%" data-n="2" aria-label="Note 2">2</button>
+          </div>
+          <div class="cap">
+            <span class="fig">Fig 02.4 · At the berth</span>
+            <h3>Loaded in Odisha, tracked to your port.</h3>
+            <p>The promise an importer wants in writing: loading photos the same day, and documents released against the bank's terms.</p>
+            <ol class="notes">
+              <li data-n="1">From the loading berth to the buyer's discharge port.</li>
+              <li data-n="2">Five ports named: Paradip, Dhamra, Gopalpur, Visakhapatnam, Gangavaram.</li>
+            </ol>
+          </div>
+        </article>
+
+        <aside class="part-end">
+          <span class="k">See it working</span>
+          <a class="end-url" href="https://jjmeexporthouse.com" target="_blank" rel="noopener">jjmeexporthouse<span>.com</span> ↗</a>
+          <ul>
+            <li><b>5</b>loading ports, named</li>
+            <li><b>2017</b>trading since, Cuttack</li>
+          </ul>
+          <a class="end-next" href="#saathi">Next: an assistant that speaks Odia →</a>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       03 · SOLAR SAATHI — a stage, not a reel: switch the language
+       =================================================================== -->
+  <section class="case night" id="saathi" aria-labelledby="c3-h">
+    <header class="case-head reveal">
+      <div class="ch-id">
+        <span class="ch-no">03<i>/06</i></span>
+        <div class="ch-name"><img src="assets/img/clients/clans-mark.webp" alt="" width="41" height="44"><h2 id="c3-h">Solar <em>Saathi</em></h2></div>
+        <span class="ch-trade">Talking assistant · built for Clans Machina</span>
+      </div>
+      <div class="ch-hard">
+        <span class="k">The hard part</span>
+        <p>Buyers in Odisha think in Odia or Hindi. <em>English forms were being abandoned halfway.</em></p>
+      </div>
+      <div class="ch-meta">
+        <span class="k">Languages</span>
+        <b>03</b>
+        <a class="ul" href="https://saathi.clansmachina.com" target="_blank" rel="noopener">Talk to Saathi ↗</a>
+      </div>
+    </header>
+
+    <div class="stage reveal" data-flip data-auto>
+      <div class="stage-l">
+        <span class="k">Pick a language · these are real screens</span>
+        <div class="lang" role="group" aria-label="Language">
+          <button type="button" aria-pressed="true" data-i="0" lang="or"><b>ଓଡ଼ିଆ</b><span>Odia</span></button>
+          <button type="button" aria-pressed="false" data-i="1" lang="hi"><b>हिन्दी</b><span>Hindi</span></button>
+          <button type="button" aria-pressed="false" data-i="2"><b>English</b><span>English</span></button>
+        </div>
+        <div class="said" aria-live="polite">
+          <p class="on" data-i="0" lang="or">ଆସନ୍ତୁ, ପରସ୍ପରକୁ ଜାଣିବା। ଆପଣଙ୍କ ପୂରା ନାମ କ'ଣ?</p>
+          <p data-i="1" lang="hi">चलिए शुरू करते हैं! आपका पूरा नाम क्या है?</p>
+          <p data-i="2">Let's get started! May I know your full name?</p>
+        </div>
+        <ol class="notes on-dark">
+          <li data-n="1">Saathi speaks first. Tap anywhere and it talks.</li>
+          <li data-n="2">The language is chosen on screen one (bottom left), and every word after it follows.</li>
+          <li data-n="3">One question at a time, with progress shown: 1 of 5.</li>
+          <li data-n="4">A mic in every field, for people who'd rather say it than type it.</li>
+          <li data-n="5">It ends with a solar plan, sent to the client as a warm lead.</li>
+        </ol>
+      </div>
+      <div class="stage-r">
+        <div class="shot dark">
+          <img class="on" data-i="0" src="assets/img/work/features/saathi-or.webp" alt="Solar Saathi robot asking for the visitor's full name in Odia" width="1600" height="971" loading="lazy">
+          <img data-i="1" src="assets/img/work/features/saathi-hi.webp" alt="Solar Saathi asking for the visitor's full name in Hindi" width="1600" height="971" loading="lazy">
+          <img data-i="2" src="assets/img/work/features/saathi-en.webp" alt="Solar Saathi asking for the visitor's full name in English" width="1600" height="971" loading="lazy">
+          <button class="pin" type="button" style="--x:70%;--y:22%" data-n="2" aria-label="Note 2">2</button>
+          <button class="pin" type="button" style="--x:63%;--y:42%" data-n="3" aria-label="Note 3">3</button>
+          <button class="pin" type="button" style="--x:92%;--y:52%" data-n="4" aria-label="Note 4">4</button>
+          <figure class="inset">
+            <img src="assets/img/work/features/saathi-hello.webp" alt="Saathi's first screen: a welcome spoken aloud and three language buttons, Odia, Hindi and English" width="1600" height="1000" loading="lazy">
+            <figcaption>Screen one · the welcome</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       04 · CLANS MACHINA
+       =================================================================== -->
+  <section class="case" id="c4" aria-labelledby="c4-h" style="--tint:#DCEEE4;--tint-ink:#0F7A4E">
+    <header class="case-head reveal">
+      <div class="ch-id">
+        <span class="ch-no">04<i>/06</i></span>
+        <div class="ch-name"><img src="assets/img/clients/clans-mark.webp" alt="" width="41" height="44"><h2 id="c4-h">Clans Machina</h2></div>
+        <span class="ch-trade">Rooftop solar · Odisha &amp; across India</span>
+      </div>
+      <div class="ch-hard">
+        <span class="k">The hard part</span>
+        <p>People buy solar on one number, <em>their own savings.</em> Getting that number used to take a site visit.</p>
+      </div>
+      <div class="ch-meta">
+        <span class="k">Parts shown</span>
+        <b>03</b>
+        <a class="ul" href="https://clansmachina.com" target="_blank" rel="noopener">clansmachina.com ↗</a>
+      </div>
+    </header>
+
+    <div class="reel" data-reel>
+      <div class="reel-ctl">
+        <span class="reel-hint">Drag, swipe or use the arrows</span>
+        <span class="reel-count"><b>01</b> / 04</span>
+        <span class="reel-prog" aria-hidden="true"><i></i></span>
+        <button class="reel-btn prev" type="button" aria-label="Previous part"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M14 8H3M7 3.5 2.5 8 7 12.5" stroke="currentColor" stroke-width="1.8"/></svg></button>
+        <button class="reel-btn next" type="button" aria-label="Next part"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.8"/></svg></button>
+      </div>
+      <div class="reel-track" tabindex="0" aria-label="Clans Machina — parts">
+
+        <article class="part" id="p-04-1" style="--w:680px">
+          <div class="shot">
+            <img src="assets/img/work/features/clans-calc.webp" alt="Clans Machina savings calculator: a ₹5,000 monthly bill gives ₹19,68,800 of 25-year savings, a 5 kW system, ₹4,500 a month saved and about 4 years payback" width="1600" height="710" loading="lazy">
+            <button class="pin" type="button" style="--x:3%;--y:36%" data-n="1" aria-label="Note 1">1</button>
+            <button class="pin" type="button" style="--x:91%;--y:21%" data-n="2" aria-label="Note 2">2</button>
+            <button class="pin" type="button" style="--x:59%;--y:40%" data-n="3" aria-label="Note 3">3</button>
+            <button class="pin" type="button" style="--x:3%;--y:82%" data-n="4" aria-label="Note 4">4</button>
+          </div>
+          <div class="cap">
+            <span class="fig">Fig 04.1 · Savings calculator</span>
+            <h3>The quote, before the phone call.</h3>
+            <p>Slide your monthly bill and the page sizes the system, then works out 25-year savings, payback and CO₂. There's no form and no wait.</p>
+            <ol class="notes">
+              <li data-n="1">The bill is a slider, not a form field.</li>
+              <li data-n="2">25-year savings in rupees, the number people actually buy on.</li>
+              <li data-n="3">System size, monthly saving, payback and CO₂ cut, side by side.</li>
+              <li data-n="4">Only now does it ask for anything: a detailed estimate and EMI plan.</li>
+            </ol>
+            <a class="twin" href="#p-02-1"><span>Built again</span> 02.1 · a shipment calculator for an exporter →</a>
+          </div>
+        </article>
+
+        <article class="part" id="p-04-2" style="--w:680px">
+          <div class="shot">
+            <img src="assets/img/work/features/clans-verified.webp" alt="Verified installations: Mumbai 3BHK rooftop bill ₹5,800 to ₹1,350, Delhi NCR factory ₹2.4 lakh to ₹94,000, Pune housing society ₹64,000 to ₹21,500" width="1600" height="613" loading="lazy">
+            <button class="pin" type="button" style="--x:1%;--y:13%" data-n="1" aria-label="Note 1">1</button>
+            <button class="pin" type="button" style="--x:31%;--y:34%" data-n="2" aria-label="Note 2">2</button>
+            <button class="pin" type="button" style="--x:3%;--y:68%" data-n="3" aria-label="Note 3">3</button>
+            <button class="pin" type="button" style="--x:46%;--y:57%" data-n="4" aria-label="Note 4">4</button>
+          </div>
+          <div class="cap">
+            <span class="fig">Fig 04.2 · Verified installations</span>
+            <h3>Results, published as records.</h3>
+            <p>Three real installs, a 3BHK, a factory and a housing society, each shown with its electricity bill before and after.</p>
+            <ol class="notes">
+              <li data-n="1">The footprint first: 29 cities, 1,000+ homes, 66% average bill cut.</li>
+              <li data-n="2">Each record is colour-coded: residential, commercial, society.</li>
+              <li data-n="3">Before → after: ₹5,800 a month down to ₹1,350.</li>
+              <li data-n="4">The saving as a percentage, where nobody can miss it.</li>
+            </ol>
+            <a class="twin" href="#p-05-4"><span>Same idea</span> 05.4 · proof as names you can check →</a>
+          </div>
+        </article>
+
+        <article class="part" id="p-04-3" style="--w:600px">
+          <div class="shot">
+            <img src="assets/img/work/features/clans-map.webp" alt="Map of India with service pins in Odisha and a panel: Serving 10 districts in Odisha, 1,000+ installations, 29+ cities, 25-year warranty" width="1600" height="932" loading="lazy">
+            <button class="pin" type="button" style="--x:33%;--y:52%" data-n="1" aria-label="Note 1">1</button>
+            <button class="pin" type="button" style="--x:88%;--y:17%" data-n="2" aria-label="Note 2">2</button>
+            <button class="pin" type="button" style="--x:97%;--y:72%" data-n="3" aria-label="Note 3">3</button>
+          </div>
+          <div class="cap">
+            <span class="fig">Fig 04.3 · Coverage map</span>
+            <h3>“Do you install near me?” Tap a district.</h3>
+            <p>An interactive map of the ten districts served, so the most common question gets answered before anyone has to ask it.</p>
+            <ol class="notes">
+              <li data-n="1">Service pins, with the head office marked apart.</li>
+              <li data-n="2">The district panel: what's been installed there.</li>
+              <li data-n="3">The next step, already filtered: check availability in your city.</li>
+            </ol>
+          </div>
+        </article>
+
+        <aside class="part-end">
+          <span class="k">See it working</span>
+          <a class="end-url" href="https://clansmachina.com" target="_blank" rel="noopener">clansmachina<span>.com</span> ↗</a>
+          <ul>
+            <li><b>1,000+</b>homes on the site's own record</li>
+            <li><b>25 yr</b>savings modelled, subsidy included</li>
+          </ul>
+          <a class="end-next" href="#saathi">It also has a voice: Solar Saathi, case 03 →</a>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       05 · MARKETIQ INFOTECH
+       =================================================================== -->
+  <section class="case" id="c5" aria-labelledby="c5-h" style="--tint:#F5DFE4;--tint-ink:#C2185B">
+    <header class="case-head reveal">
+      <div class="ch-id">
+        <span class="ch-no">05<i>/06</i></span>
+        <div class="ch-name"><img class="word" src="assets/img/clients/marketiq.webp" alt="" width="84" height="26"><h2 id="c5-h">MarketIQ Infotech</h2></div>
+        <span class="ch-trade">Digital marketing agency · Bhubaneswar</span>
+      </div>
+      <div class="ch-hard">
+        <span class="k">The hard part</span>
+        <p>An agency's own site has to prove it can sell. <em>So every claim on it comes with a number.</em></p>
+      </div>
+      <div class="ch-meta">
+        <span class="k">Parts shown</span>
+        <b>04</b>
+        <a class="ul" href="https://dmarketiq.com" target="_blank" rel="noopener">dmarketiq.com ↗</a>
+      </div>
+    </header>
+
+    <div class="reel" data-reel>
+      <div class="reel-ctl">
+        <span class="reel-hint">Drag, swipe or use the arrows</span>
+        <span class="reel-count"><b>01</b> / 05</span>
+        <span class="reel-prog" aria-hidden="true"><i></i></span>
+        <button class="reel-btn prev" type="button" aria-label="Previous part"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M14 8H3M7 3.5 2.5 8 7 12.5" stroke="currentColor" stroke-width="1.8"/></svg></button>
+        <button class="reel-btn next" type="button" aria-label="Next part"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.8"/></svg></button>
+      </div>
+      <div class="reel-track" tabindex="0" aria-label="MarketIQ Infotech — parts">
+
+        <article class="part" id="p-05-1" style="--w:620px">
+          <div class="shot">
+            <img src="assets/img/work/features/miq-services.webp" alt="MarketIQ service cards, each with a trend line and a result: SEO +300% organic traffic, PPC 4.8x average ROAS, Google Ads −58% cost per lead" width="1600" height="1003" loading="lazy">
+            <button class="pin" type="button" style="--x:3%;--y:57%" data-n="1" aria-label="Note 1">1</button>
+            <button class="pin" type="button" style="--x:62%;--y:52%" data-n="2" aria-label="Note 2">2</button>
+            <button class="pin" type="button" style="--x:96%;--y:56%" data-n="3" aria-label="Note 3">3</button>
+          </div>
+          <div class="cap">
+            <span class="fig">Fig 05.1 · Services, with receipts</span>
+            <h3>Every service carries its own result.</h3>
+            <p>Twelve services, and not one without a measured outcome and a trend line underneath it.</p>
+            <ol class="notes">
+              <li data-n="1">+300% organic traffic, printed on the card itself.</li>
+              <li data-n="2">A trend line for each service, drawn in that service's colour.</li>
+              <li data-n="3">−58% cost per lead, the number a buyer actually cares about.</li>
+            </ol>
+          </div>
+        </article>
+
+        <article class="part" id="p-05-2" style="--w:640px">
+          <div class="shot">
+            <img src="assets/img/work/features/miq-compare.webp" alt="Comparison table: traditional agencies with crossed-out points versus MarketIQ Infotech with ticked points such as real revenue and ROI tracking and live dashboards" width="1600" height="775" loading="lazy">
+            <button class="pin" type="button" style="--x:3%;--y:15%" data-n="1" aria-label="Note 1">1</button>
+            <button class="pin" type="button" style="--x:53%;--y:9%" data-n="2" aria-label="Note 2">2</button>
+            <button class="pin" type="button" style="--x:51%;--y:89%" data-n="3" aria-label="Note 3">3</button>
+          </div>
+          <div class="cap">
+            <span class="fig">Fig 05.2 · Us vs them</span>
+            <h3>The site picks a side.</h3>
+            <p>Traditional agencies on the left, MarketIQ on the right, six lines each. A visitor who nods along has already qualified themselves.</p>
+            <ol class="notes">
+              <li data-n="1">The “them” column: greyed out, every point crossed.</li>
+              <li data-n="2">The only dark, branded column on the page is theirs.</li>
+              <li data-n="3">It ends on a promise agencies rarely make: live dashboards.</li>
+            </ol>
+          </div>
+        </article>
+
+        <article class="part" id="p-05-3" style="--w:640px">
+          <div class="shot">
+            <img src="assets/img/work/features/miq-audit.webp" alt="Free marketing audit offer: six deliverables listed, value ₹25,000 struck through, FREE for a limited time, Claim my free audit button" width="1600" height="784" loading="lazy">
+            <button class="pin" type="button" style="--x:90%;--y:32%" data-n="1" aria-label="Note 1">1</button>
+            <button class="pin" type="button" style="--x:54%;--y:40%" data-n="2" aria-label="Note 2">2</button>
+            <button class="pin" type="button" style="--x:89.5%;--y:48%" data-n="3" aria-label="Note 3">3</button>
+          </div>
+          <div class="cap">
+            <span class="fig">Fig 05.3 · The free-audit funnel</span>
+            <h3>Value first, form later.</h3>
+            <p>A ₹25,000 audit, given away, with everything inside it listed before a single field appears.</p>
+            <ol class="notes">
+              <li data-n="1">The value, struck through: FREE, for a limited time.</li>
+              <li data-n="2">Six named deliverables, so the offer is concrete.</li>
+              <li data-n="3">One button. A 30-minute call, zero obligation.</li>
+            </ol>
+          </div>
+        </article>
+
+        <article class="part" id="p-05-4" style="--w:600px">
+          <div class="shot">
+            <img src="assets/img/work/features/miq-brands.webp" alt="Brand wall: Amazon, Flipkart, Reliance Industries, Odisha FC, Arundhati Jewellers, BPOC, Decobee, Odisha Workforce and more, under badges for 150+ brands, 12+ industries and 15+ years" width="1600" height="864" loading="lazy">
+            <button class="pin" type="button" style="--x:40%;--y:5%" data-n="1" aria-label="Note 1">1</button>
+            <button class="pin" type="button" style="--x:2.5%;--y:21%" data-n="2" aria-label="Note 2">2</button>
+            <button class="pin" type="button" style="--x:37.5%;--y:80%" data-n="3" aria-label="Note 3">3</button>
+          </div>
+          <div class="cap">
+            <span class="fig">Fig 05.4 · The brand wall</span>
+            <h3>Proof as names you can check.</h3>
+            <p>National names first, local ones after, each with what the company does. One of them is ours too.</p>
+            <ol class="notes">
+              <li data-n="1">150+ brands, 12+ industries, 15+ years, as three badges.</li>
+              <li data-n="2">The names a stranger recognises lead the wall.</li>
+              <li data-n="3">Odisha Workforce: another site we built. It's case 06.</li>
+            </ol>
+            <a class="twin" href="#c6"><span>Small world</span> 06 · Odisha Workforce →</a>
+          </div>
+        </article>
+
+        <aside class="part-end">
+          <span class="k">See it working</span>
+          <a class="end-url" href="https://dmarketiq.com" target="_blank" rel="noopener">dmarketiq<span>.com</span> ↗</a>
+          <ul>
+            <li><b>150+</b>brands served, shown not claimed</li>
+            <li><b>12</b>services, each with a measured result</li>
+          </ul>
+          <a class="end-next" href="#patterns">Its lead form is compared in Patterns →</a>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       06 · ODISHA WORKFORCE
+       =================================================================== -->
+  <section class="case" id="c6" aria-labelledby="c6-h" style="--tint:#D6EBE0;--tint-ink:#178A55">
+    <header class="case-head reveal">
+      <div class="ch-id">
+        <span class="ch-no">06<i>/06</i></span>
+        <div class="ch-name"><img src="assets/img/clients/odisha.webp" alt="" width="42" height="44"><h2 id="c6-h">Odisha Workforce</h2></div>
+        <span class="ch-trade">Recruitment &amp; HR · ISO 9001:2015</span>
+      </div>
+      <div class="ch-hard">
+        <span class="k">The hard part</span>
+        <p>Two audiences who want opposite things, <em>people looking for work and companies looking for people,</em> on one site, without either getting lost.</p>
+      </div>
+      <div class="ch-meta">
+        <span class="k">Parts shown</span>
+        <b>02</b>
+        <a class="ul" href="https://odishaworkforce.com" target="_blank" rel="noopener">odishaworkforce.com ↗</a>
+      </div>
+    </header>
+
+    <div class="reel" data-reel>
+      <div class="reel-ctl">
+        <span class="reel-hint">Drag, swipe or use the arrows</span>
+        <span class="reel-count"><b>01</b> / 03</span>
+        <span class="reel-prog" aria-hidden="true"><i></i></span>
+        <button class="reel-btn prev" type="button" aria-label="Previous part"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M14 8H3M7 3.5 2.5 8 7 12.5" stroke="currentColor" stroke-width="1.8"/></svg></button>
+        <button class="reel-btn next" type="button" aria-label="Next part"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.8"/></svg></button>
+      </div>
+      <div class="reel-track" tabindex="0" aria-label="Odisha Workforce — parts">
+
+        <article class="part" id="p-06-1" style="--w:640px">
+          <div class="shot">
+            <img src="assets/img/work/features/ows-hero.webp" alt="Odisha Workforce first screen: Hire Top Talent, Build Stronger Workforces, with Find Opportunities and Hire Talent buttons and service chips" width="1600" height="944" loading="lazy">
+            <button class="pin" type="button" style="--x:3%;--y:81%" data-n="1" aria-label="Note 1">1</button>
+            <button class="pin" type="button" style="--x:39%;--y:81%" data-n="2" aria-label="Note 2">2</button>
+            <button class="pin" type="button" style="--x:46%;--y:67%" data-n="3" aria-label="Note 3">3</button>
+            <button class="pin" type="button" style="--x:3%;--y:4%" data-n="4" aria-label="Note 4">4</button>
+          </div>
+          <div class="cap">
+            <span class="fig">Fig 06.1 · Two front doors</span>
+            <h3>Split on screen one.</h3>
+            <p>One button for job seekers, one for employers. Each leads to its own path, its own forms and its own inbox.</p>
+            <ol class="notes">
+              <li data-n="1">Find Opportunities: the job seeker's door.</li>
+              <li data-n="2">Hire Talent: the employer's door.</li>
+              <li data-n="3">Every service named up front: recruitment, training, job fairs, campus drives, study abroad.</li>
+              <li data-n="4">ISO, MSME and GST credentials on line one.</li>
+            </ol>
+          </div>
+        </article>
+
+        <article class="part flip" id="p-06-2" style="--w:660px">
+          <div class="flip-tabs" role="group" aria-label="Show the services for">
+            <button type="button" aria-pressed="true" data-i="0">For job seekers</button>
+            <button type="button" aria-pressed="false" data-i="1">For employers</button>
+            <span class="flip-k">Real states · tap</span>
+          </div>
+          <div class="shot">
+            <img class="on" data-i="0" src="assets/img/work/features/ows-seekers.webp" alt="Services for job seekers: career counselling, skill development, education consultancy, resume and interview prep" width="1600" height="684" loading="lazy">
+            <img data-i="1" src="assets/img/work/features/ows-employers.webp" alt="Services for employers: recruitment and staffing, HR consulting, campus recruitment drives, mega job fairs and bulk hiring" width="1600" height="684" loading="lazy">
+            <button class="pin" type="button" style="--x:30%;--y:9%" data-n="1" aria-label="Note 1">1</button>
+            <button class="pin" type="button" style="--x:3%;--y:50%" data-n="2" aria-label="Note 2">2</button>
+          </div>
+          <div class="cap">
+            <span class="fig">Fig 06.2 · One page, two audiences</span>
+            <h3>Re-tailored in one tap.</h3>
+            <p>The services section rewrites itself for whoever is reading: career counselling and interview prep for seekers, recruitment drives and bulk hiring for employers.</p>
+            <ol class="notes">
+              <li data-n="1">The switch. Try it above: these are both real states of the live page.</li>
+              <li data-n="2">Every card changes: its label, title and copy.</li>
+            </ol>
+          </div>
+        </article>
+
+        <aside class="part-end">
+          <span class="k">See it working</span>
+          <a class="end-url" href="https://odishaworkforce.com" target="_blank" rel="noopener">odishaworkforce<span>.com</span> ↗</a>
+          <ul>
+            <li><b>2</b>audiences, never mixed up</li>
+            <li><b>1</b>tap to switch every service card</li>
+          </ul>
+          <a class="end-next" href="#patterns">Next: the same problems, across clients →</a>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       PATTERNS — the same problem, solved for different trades
+       =================================================================== -->
+  <section class="pat" id="patterns" aria-labelledby="pat-h">
+    <div class="pat-head reveal">
+      <div class="wt-lab"><i></i>Patterns · across the six</div>
+      <h2 id="pat-h">Same problem. <em>Different trade.</em></h2>
+      <p>Every business asks a visitor for something. What it asks <b>first</b> decides whether they answer. Here's how three of our clients ask.</p>
+    </div>
+
+    <div class="trio">
+      <article class="q reveal" style="--tint:#F4E7C2">
+        <span class="q-who"><b>01</b> Kamini · clinic</span>
+        <h3>“What brings you in?”</h3>
+        <div class="q-shot" data-flip>
+          <img class="on" data-i="0" src="assets/img/work/features/kam-step1.webp" alt="Kamini booking helper step 1 of 2: What brings you in? Six choices such as blood test, health checkup and home collection" width="1000" height="1225" loading="lazy">
+          <img data-i="1" src="assets/img/work/features/kam-step2.webp" alt="Step 2 of 2: Where can we reach you? For: Blood test, with name, mobile and an optional note" width="1000" height="1225" loading="lazy">
+          <div class="flip-tabs mini" role="group" aria-label="Step">
+            <button type="button" aria-pressed="true" data-i="0">Step 1</button>
+            <button type="button" aria-pressed="false" data-i="1">Step 2</button>
+          </div>
+        </div>
+        <p><b>Asks the reason.</b> Six plain buttons, no typing. Step 2 carries the answer over (“For: Blood test”), so the call-back starts with the right person.</p>
+      </article>
+
+      <article class="q reveal" style="--tint:#F5DFE4">
+        <span class="q-who"><b>05</b> MarketIQ · agency</span>
+        <h3>“Let's grow your business.”</h3>
+        <div class="q-shot">
+          <img src="assets/img/work/features/miq-popup.webp" alt="MarketIQ free consultation form: name, phone, email, service you need, what's your goal" width="918" height="1374" loading="lazy">
+        </div>
+        <p><b>Asks the goal.</b> Service and “what's your goal?” sit next to the contact fields, and a strategist replies within 15 minutes with that context in hand.</p>
+      </article>
+
+      <article class="q reveal" style="--tint:#DCEEE4">
+        <span class="q-who"><b>04</b> Clans · solar</span>
+        <h3>“Switch to solar at ₹0.”</h3>
+        <div class="q-shot">
+          <img src="assets/img/work/features/clans-popup.webp" alt="Clans Machina pop-up: Switch to solar at ₹0 investment, save up to ₹78,000, with name, PIN code, WhatsApp number and monthly bill" width="940" height="570" loading="lazy">
+        </div>
+        <p><b>Asks the bill.</b> The subsidy is the headline, and the qualifying question is the monthly bill, because that's what sizes the system.</p>
+      </article>
+    </div>
+
+    <!-- threads: one idea, found in more than one build — each thumb jumps to its plate -->
+    <ul class="threads">
+      <li class="thread reveal">
+        <div class="th-t"><span class="k">Thread A</span><h3>A number before a phone number</h3><p>Answer the visitor's own question with a figure, and only then ask for anything.</p></div>
+        <div class="th-parts">
+          <a href="#p-04-1" style="--o:72% 22%"><img src="assets/img/work/features/clans-calc.webp" alt="" width="1600" height="710" loading="lazy"><span><b>04.1</b> Solar savings</span></a>
+          <a href="#p-02-1" style="--o:90% 28%"><img src="assets/img/work/features/jj-calc-bag.webp" alt="" width="1600" height="862" loading="lazy"><span><b>02.1</b> Bags &amp; containers</span></a>
+          <a href="#p-01-2" style="--o:8% 45%"><img src="assets/img/work/features/kam-prices.webp" alt="" width="1600" height="627" loading="lazy"><span><b>01.2</b> Test prices</span></a>
+        </div>
+      </li>
+      <li class="thread reveal">
+        <div class="th-t"><span class="k">Thread B</span><h3>Proof you can check</h3><p>Not adjectives: records, names and measured results, published where anyone can look.</p></div>
+        <div class="th-parts">
+          <a href="#p-04-2" style="--o:20% 68%"><img src="assets/img/work/features/clans-verified.webp" alt="" width="1600" height="613" loading="lazy"><span><b>04.2</b> Bills before/after</span></a>
+          <a href="#p-05-4" style="--o:20% 30%"><img src="assets/img/work/features/miq-brands.webp" alt="" width="1600" height="864" loading="lazy"><span><b>05.4</b> Brand wall</span></a>
+          <a href="#p-05-1" style="--o:12% 50%"><img src="assets/img/work/features/miq-services.webp" alt="" width="1600" height="1003" loading="lazy"><span><b>05.1</b> Result per service</span></a>
+        </div>
+      </li>
+      <li class="thread reveal">
+        <div class="th-t"><span class="k">Thread C</span><h3>Speak the customer's language</h3><p>Sometimes literally Odia, sometimes “heart” instead of “lipid profile”, or containers instead of tonnes.</p></div>
+        <div class="th-parts">
+          <a href="#saathi" style="--o:80% 30%"><img src="assets/img/work/features/saathi-or.webp" alt="" width="1600" height="971" loading="lazy"><span><b>03</b> Odia, Hindi, English</span></a>
+          <a href="#p-01-1" style="--o:8% 30%"><img src="assets/img/work/features/kam-symptom.webp" alt="" width="1600" height="661" loading="lazy"><span><b>01.1</b> Symptoms, not tests</span></a>
+          <a href="#p-06-2" style="--o:40% 10%"><img src="assets/img/work/features/ows-seekers.webp" alt="" width="1600" height="684" loading="lazy"><span><b>06.2</b> Seeker or employer</span></a>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ============ CASE 07 — the close ============ -->
+  <section class="wk-next" aria-labelledby="next-h">
+    <div class="reveal">
+      <div class="wt-lab"><i></i>Case 07 · open</div>
+      <h2 class="wk-h2" id="next-h">Your business has a hard part too. <em>That's the part we build.</em></h2>
+      <p class="l">Tell us what a visitor needs to see, decide or calculate before they call you. <b>We'll show you the part we'd build for it.</b></p>
+      <div class="wk-cta">
+        <a class="btn" href="index.html#contact">Start a project
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.8"/></svg>
+        </a>
+        <a class="tl" href="https://wa.me/919399593499?text=Hi%20Aivoryx%2C%20I%20saw%20your%20work%20and%20I%27d%20like%20to%20discuss%20a%20project" target="_blank" rel="noopener">WhatsApp us <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+    <div class="blank reveal" aria-hidden="true">
+      <div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url" data-type>yourbusiness.com</span></div>
+      <div class="body">
+        <p><b>Fig 07.1 · ________</b>The part your customers need<br>Designed from a blank page</p>
+        <span class="pin ghost" style="--x:30%;--y:30%">1</span>
+        <span class="pin ghost" style="--x:72%;--y:66%">2</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ================= FOOTER — the homepage's, minus its CTA block ================= -->
+<footer class="foot frame" aria-label="Site">
+  <div class="foot-top">
+    <div class="foot-studio">
+      <a class="brand" href="index.html" aria-label="Aivoryx — home">
+        <svg viewBox="7 -6 90 104" fill="none" aria-hidden="true">
+          <path d="M12 90 L52 2" stroke="currentColor" stroke-width="11.5" stroke-linecap="square"/>
+          <path d="M52 2 L92 90" stroke="currentColor" stroke-width="11.5" stroke-linecap="square"/>
+          <path d="M52 90 L92 2" stroke="currentColor" stroke-width="11.5" stroke-linecap="square"/>
+          <path d="M32 46 L72 46" stroke="#E8431C" stroke-width="11.5" stroke-linecap="square"/>
+        </svg>
+        <span>Aivory<em>x</em></span>
+      </a>
+      <p class="foot-about">An independent studio of <b>two builders</b>. Custom websites, web apps and mobile apps for businesses and startups — designed, coded and shipped in-house, and <b>owned by you</b> at handover.</p>
+    </div>
+
+    <nav class="foot-col" aria-labelledby="fc-nav">
+      <h3 id="fc-nav">Navigate</h3>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="work.html">Work</a></li>
+        <li><a href="index.html#tools">Free tools</a></li>
+        <li><a href="index.html#pricing">How we price</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <nav class="foot-col" aria-labelledby="fc-svc">
+      <h3 id="fc-svc">Services</h3>
+      <ul>
+        <li><a href="index.html#pricing">Business websites</a></li>
+        <li><a href="index.html#pricing">Web applications</a></li>
+        <li><a href="index.html#pricing">Mobile apps</a></li>
+        <li><a href="index.html#pricing">Online stores</a></li>
+        <li><a href="index.html#pricing">AI chat &amp; automation</a></li>
+      </ul>
+    </nav>
+
+    <nav class="foot-col" aria-labelledby="fc-tools">
+      <h3 id="fc-tools">Free tools</h3>
+      <ul>
+        <li><a href="https://fileshare.aivoryx.com/" target="_blank" rel="noopener">File sharing <span class="ext" aria-hidden="true">↗</span></a></li>
+        <li><a href="https://secret.aivoryx.com/" target="_blank" rel="noopener">One-time secrets <span class="ext" aria-hidden="true">↗</span></a></li>
+        <li><a href="https://pdf-tools.aivoryx.com/" target="_blank" rel="noopener">PDF tools <span class="ext" aria-hidden="true">↗</span></a></li>
+        <li><a href="https://gstreply.aivoryx.com/" target="_blank" rel="noopener">GST notice reply <span class="ext" aria-hidden="true">↗</span></a></li>
+        <li><a href="index.html#tools">All eight tools</a></li>
+      </ul>
+    </nav>
+
+    <div class="foot-col">
+      <h3>Talk to us</h3>
+      <ul>
+        <li><a href="https://wa.me/919399593499?text=Hi%20Aivoryx%2C%20I%27d%20like%20to%20discuss%20a%20project" target="_blank" rel="noopener">WhatsApp <span class="ext" aria-hidden="true">↗</span></a></li>
+        <li><a href="tel:+919399593499">+91 93995 93499</a></li>
+        <li><a href="mailto:admin@aivoryx.com">admin@aivoryx.com</a></li>
+      </ul>
+      <span class="addr">Dwarka Mor, New Delhi 110059</span>
+    </div>
+  </div>
+
+  <a class="foot-mark" href="#top" aria-label="Back to top">
+    <svg viewBox="7 -6 90 104" fill="none" aria-hidden="true">
+      <path d="M12 90 L52 2" stroke="currentColor" stroke-width="11.5" stroke-linecap="square"/>
+      <path d="M52 2 L92 90" stroke="currentColor" stroke-width="11.5" stroke-linecap="square"/>
+      <path d="M52 90 L92 2" stroke="currentColor" stroke-width="11.5" stroke-linecap="square"/>
+      <path d="M32 46 L72 46" stroke="#E8431C" stroke-width="11.5" stroke-linecap="square"/>
+    </svg>
+    <span aria-hidden="true">Aivory<em>x</em></span>
+  </a>
+
+  <div class="foot-bar">
+    <span>© <span data-year>2026</span> Aivoryx · All rights reserved</span>
+    <span>Hand-coded · zero page builders</span>
+    <a href="#top">Back to top ↑</a>
+  </div>
+</footer>
+
+<!-- close-up viewer -->
+<dialog class="lb" id="lb" aria-label="Close-up">
+  <figure>
+    <img src="" alt="">
+    <figcaption><b></b><button type="button" data-close>Close · Esc</button></figcaption>
+  </figure>
+</dialog>
+
+<script src="assets/js/nav.js" defer></script>
+<script src="assets/js/reveal.js" defer></script>
+<script src="assets/js/work.js" defer></script>
+</body>
+</html>
