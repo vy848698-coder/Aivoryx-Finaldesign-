@@ -67,9 +67,9 @@ document.documentElement.classList.add('js');
     <!-- five numbered links; hover / current roll the label into serif italic. nav.js sets aria-current -->
     <div class="menu">
       <a href="#top" data-spy="top"><i aria-hidden="true">01</i><span class="lbl"><b>Home</b><em aria-hidden="true">Home</em></span></a>
-      <a href="#work" data-spy="work"><i aria-hidden="true">02</i><span class="lbl"><b>Work</b><em aria-hidden="true">Work</em></span></a>
+      <a href="work.html" data-spy="work"><i aria-hidden="true">02</i><span class="lbl"><b>Work</b><em aria-hidden="true">Work</em></span></a>
       <a href="#tools" data-spy="tools"><i aria-hidden="true">03</i><span class="lbl"><b>Free tools</b><em aria-hidden="true">Free tools</em></span></a>
-      <a href="#pricing" data-spy="pricing"><i aria-hidden="true">04</i><span class="lbl"><b>Pricing</b><em aria-hidden="true">Pricing</em></span></a>
+      <a href="#pricing" data-spy="pricing"><i aria-hidden="true">04</i><span class="lbl"><b>How we price</b><em aria-hidden="true">How we price</em></span></a>
       <a href="#contact" data-spy="contact"><i aria-hidden="true">05</i><span class="lbl"><b>Contact us</b><em aria-hidden="true">Contact us</em></span></a>
     </div>
     <div class="nav-right">
@@ -80,9 +80,9 @@ document.documentElement.classList.add('js');
 </nav>
 <div class="sheet" id="sheet">
   <a class="big" href="#top">Home <span>01</span></a>
-  <a class="big" href="#work">Work <span>02</span></a>
+  <a class="big" href="work.html">Work <span>02</span></a>
   <a class="big" href="#tools">Free tools <span>03</span></a>
-  <a class="big" href="#pricing">Pricing <span>04</span></a>
+  <a class="big" href="#pricing">How we price <span>04</span></a>
   <a class="big" href="#contact">Contact us <span>05</span></a>
   <a class="btn" href="mailto:admin@aivoryx.com?subject=New%20project">Start a project
     <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.8"/></svg>
@@ -487,15 +487,15 @@ document.documentElement.classList.add('js');
   </section>
 
   <!-- ============ 08 · INVESTMENT ============
-       Prices are the confirmed figures from the current site (₹7,999 / ₹14,999 /
-       from ₹24,999). -->
+       No package prices on the page: each card leads with delivery time, and
+       every CTA promises a fixed quote within 24 hours. -->
   <section class="price" id="pricing" aria-labelledby="price-h">
     <div class="sec-head reveal">
       <div>
         <div class="lab">08 / Investment</div>
         <h2 id="price-h">Good work has a price. <em>No surprises.</em></h2>
       </div>
-      <p class="note"><b>Fixed prices, agreed up front.</b> Here is where most projects begin — tell us what you're building and we'll scope it right.</p>
+      <p class="note"><b>Two builders. No office rent, no sales team, no agency margin.</b> That's the whole reason our quotes come in low — not because the work is small.</p>
     </div>
 
     <div class="plans reveal">
@@ -507,8 +507,8 @@ document.documentElement.classList.add('js');
         <h3 class="plan-name" id="plan-starter">Starter</h3>
         <p class="plan-who">For a local business that needs to be findable, credible and easy to contact.</p>
         <div class="plan-price">
-          <div class="plan-amt"><span class="cur">₹</span>7,999</div>
-          <div class="plan-terms"><span>One-time project pricing</span><span>About 7 days</span></div>
+          <div class="plan-amt"><span class="lead">Live in</span><span class="v">~7<span class="u">days</span></span></div>
+          <div class="plan-terms"><span>One-time price</span><span>Fixed quote in 24 hrs</span></div>
         </div>
         <ul class="plan-list">
           <li>Up to 5 custom-designed pages</li>
@@ -516,7 +516,7 @@ document.documentElement.classList.add('js');
           <li>Responsive design, phone to desktop</li>
           <li>30 days of free fixes</li>
         </ul>
-        <a class="plan-cta biglink" href="#contact" data-plan="starter">Enquire about Starter <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.8"/></svg></a>
+        <a class="plan-cta biglink" href="#contact" data-plan="starter">Get your exact quote <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.8"/></svg></a>
       </article>
 
       <article class="plan feat" aria-labelledby="plan-growth" style="--d:.1s">
@@ -527,8 +527,8 @@ document.documentElement.classList.add('js');
         <h3 class="plan-name" id="plan-growth">Growth</h3>
         <p class="plan-who">For a business whose website has to earn its keep — qualify leads and answer questions before the call.</p>
         <div class="plan-price">
-          <div class="plan-amt"><span class="cur">₹</span>14,999</div>
-          <div class="plan-terms"><span>One-time project pricing</span><span>About 2–3 weeks</span></div>
+          <div class="plan-amt"><span class="lead">Live in</span><span class="v">2–3<span class="u">weeks</span></span></div>
+          <div class="plan-terms"><span>One-time price</span><span>Fixed quote in 24 hrs</span></div>
         </div>
         <ul class="plan-list">
           <li>Up to 12 custom-designed pages</li>
@@ -536,7 +536,7 @@ document.documentElement.classList.add('js');
           <li>One interactive calculator or quote engine</li>
           <li>60 days of free fixes</li>
         </ul>
-        <a class="plan-cta btn" href="#contact" data-plan="growth">Start with Growth <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.8"/></svg></a>
+        <a class="plan-cta btn" href="#contact" data-plan="growth">Get your fixed quote <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.8"/></svg></a>
       </article>
 
       <article class="plan" aria-labelledby="plan-custom" style="--d:.2s">
@@ -547,8 +547,8 @@ document.documentElement.classList.add('js');
         <h3 class="plan-name" id="plan-custom">Custom</h3>
         <p class="plan-who">For anything with logins, payments, stock or a phone icon — quoted against your actual requirements.</p>
         <div class="plan-price">
-          <div class="plan-amt"><span class="from">from</span><span class="cur">₹</span>24,999</div>
-          <div class="plan-terms"><span>Individually scoped quotation</span></div>
+          <div class="plan-amt"><span class="lead">Scoped in</span><span class="v">1<span class="u">call</span></span></div>
+          <div class="plan-terms"><span>Quoted fixed in 24 hrs</span></div>
         </div>
         <ul class="plan-list">
           <li>Web applications</li>
@@ -561,12 +561,12 @@ document.documentElement.classList.add('js');
       </article>
     </div>
 
-    <!-- what's paid once, kept apart from what recurs (figures from the current site) -->
+    <!-- what's paid once, kept apart from what recurs -->
     <div class="costs reveal" role="list" aria-label="What you pay, and to whom">
       <div class="cost" role="listitem">
         <div class="cost-k">Paid once · to us</div>
         <div class="cost-v">The build</div>
-        <p>Design, code, launch and handover — at the package price above. <b>Every price here is negotiable.</b></p>
+        <p>Design, code, launch and handover. Quoted fixed in 24 hours — and every quote is negotiable. <b>Most people tell us the number is lower than they feared.</b></p>
       </div>
       <div class="cost" role="listitem">
         <div class="cost-k">Paid yearly · to your providers</div>
@@ -582,7 +582,7 @@ document.documentElement.classList.add('js');
 
     <div class="fit reveal">
       <p class="fit-q">Not sure which package fits?</p>
-      <p class="fit-a">Tell us what you need. We'll recommend the right approach before you spend anything.</p>
+      <p class="fit-a">Tell us what you need. We'll recommend the right approach before you spend anything. The quote comes before any commitment.</p>
       <a class="btn-ink" href="#contact">Let's talk about your project <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.8"/></svg></a>
     </div>
   </section>
@@ -759,9 +759,9 @@ document.documentElement.classList.add('js');
     <nav class="foot-col" aria-labelledby="fc-nav">
       <h3 id="fc-nav">Navigate</h3>
       <ul>
-        <li><a href="#work">Work</a></li>
+        <li><a href="work.html">Work</a></li>
         <li><a href="#tools">Free tools</a></li>
-        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#pricing">How we price</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>

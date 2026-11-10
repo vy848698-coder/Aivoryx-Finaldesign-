@@ -52,4 +52,6 @@ auto-reply). Success is only shown when it answers `{"ok":true}`.
 - **Vercel:** static only, no PHP. `.vercelignore` leaves `api/` out, so on a
   Vercel preview the form shows its error state ("can't reach our inbox").
 
-Prices in section 08: ₹7,999 / ₹14,999 / from ₹24,999 — edit them in `index.html`.
+Section 08 shows no package prices — each card leads with delivery time
+(~7 days / 2–3 weeks / scoped in 1 call) and promises a fixed quote in 24 hours.
+Edit the copy in `index.html`.

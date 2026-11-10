@@ -175,11 +175,11 @@
   });
 
   /* Package CTAs pre-select the matching answers — only where the visitor
-     hasn't already chosen, so nothing they picked is overwritten. */
+     hasn't already chosen, so nothing they picked is overwritten. Budget is
+     left for the visitor: the cards show no prices, so the form doesn't either. */
   const PLANS = {
-    starter: { need: 'Business website', budget: 'Under ₹8,000' },
-    growth:  { need: 'Business website', budget: '₹8,000 – ₹15,000' },
-    custom:  { budget: '₹25,000+' }
+    starter: { need: 'Business website' },
+    growth:  { need: 'Business website' }
   };
   document.querySelectorAll('[data-plan]').forEach(a => a.addEventListener('click', () => {
     const p = PLANS[a.dataset.plan];

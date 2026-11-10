@@ -12,6 +12,7 @@
 .sec-head h2 em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.012em;color:var(--walnut)}
 .sec-head .note{font-size:16px;line-height:1.65;color:var(--walnut);max-width:30ch;border-left:1px solid var(--ink);padding:0 0 .45em 18px;text-wrap:pretty;justify-self:end}
 .sec-head .note b{color:var(--ink);font-weight:600}
+.price .sec-head .note{max-width:36ch}
 
 /* ================= 08 · INVESTMENT ================= */
 .price{border-top:1px solid var(--hair)}
@@ -39,8 +40,11 @@
 
 .plan-price{margin-top:26px;padding-top:22px;border-top:1px solid var(--hair2)}
 .plan-amt{display:flex;align-items:baseline;flex-wrap:wrap;gap:0 4px;font-size:clamp(38px,calc(3.3*var(--vw)),50px);font-weight:700;letter-spacing:-.035em;line-height:1;font-variant-numeric:tabular-nums;white-space:nowrap}
-.plan-amt .from{font-family:var(--serif);font-style:italic;font-weight:400;font-size:.46em;letter-spacing:0;color:var(--walnut);margin-right:8px}
-.plan-amt .cur{font-size:.62em;font-weight:600;letter-spacing:0}
+/* the big slot carries delivery time: serif-italic lead-in, bold figure,
+   unit set smaller the way the ₹ sign used to be */
+.plan-amt .lead{font-family:var(--serif);font-style:italic;font-weight:400;font-size:.46em;letter-spacing:0;color:var(--walnut);margin-right:8px}
+.plan-amt .v{display:inline-flex;align-items:baseline;gap:.16em;white-space:nowrap}
+.plan-amt .u{font-size:.62em;font-weight:600;letter-spacing:-.02em}
 .plan-terms{display:flex;flex-direction:column;gap:6px;margin-top:14px;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--walnut)}
 .plan-terms span + span{color:var(--sand)}
 
@@ -63,7 +67,7 @@
 .plan.feat:hover .plan-ico{border-color:rgba(246,242,234,.5)}
 .plan.feat .plan-k{color:var(--accent-on-dark);display:inline-flex;align-items:center;gap:8px}
 .plan.feat .plan-k::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent-on-dark)}
-.plan.feat .plan-who,.plan.feat .plan-terms,.plan.feat .plan-amt .from{color:var(--on-plum)}
+.plan.feat .plan-who,.plan.feat .plan-terms,.plan.feat .plan-amt .lead{color:var(--on-plum)}
 .plan.feat .plan-terms span + span{color:var(--on-plum-dim)}
 .plan.feat .plan-price,.plan.feat .plan-list,.plan.feat .plan-list li{border-color:var(--on-plum-hair)}
 .plan.feat .plan-list li::before{background:var(--accent-on-dark)}
