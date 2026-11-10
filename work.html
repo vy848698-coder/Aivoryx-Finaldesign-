@@ -32,18 +32,10 @@
 <link rel="stylesheet" href="assets/css/work.css">
 <script>
 document.documentElement.classList.add('js');
-/* Big screens: zoom the whole page as one piece (same as the homepage; 1340 must
-   match tokens.css). --vh is the visible window height in page pixels. */
+/* Big screens: scale the whole page as one piece (same as the homepage).
+   1340 must match the 1341px breakpoint in tokens.css. */
 (function (r, W) {
-  var lastW = 0;
-  function fit() {
-    var z = innerWidth > W ? innerWidth / W : 1;
-    r.style.zoom = z > 1 ? z : '';
-    if (innerWidth !== lastW || z > 1 || matchMedia('(hover:hover)').matches) {
-      r.style.setProperty('--vh', (innerHeight / z / 100) + 'px');
-      lastW = innerWidth;
-    }
-  }
+  function fit() { r.style.zoom = innerWidth > W ? innerWidth / W : ''; }
   fit();
   addEventListener('resize', fit);
 })(document.documentElement, 1340);
@@ -166,7 +158,7 @@ document.documentElement.classList.add('js');
   <!-- ===================================================================
        01 · KAMINI CLINIC & LABS
        =================================================================== -->
-  <section class="case" id="c1" aria-labelledby="c1-h" style="--tint:#F4E7C2;--tint-ink:#8A6A00">
+  <section class="case" id="c1" aria-labelledby="c1-h" style="--tint:#F4E7C2">
     <header class="case-head reveal">
       <div class="ch-id">
         <span class="ch-no">01<i>/06</i></span>
@@ -307,7 +299,7 @@ document.documentElement.classList.add('js');
   <!-- ===================================================================
        02 · JAY JAGANNATH MARINE EXIMSS
        =================================================================== -->
-  <section class="case" id="c2" aria-labelledby="c2-h" style="--tint:#DCE2EB;--tint-ink:#1B2F4E">
+  <section class="case" id="c2" aria-labelledby="c2-h" style="--tint:#DCE2EB">
     <header class="case-head reveal">
       <div class="ch-id">
         <span class="ch-no">02<i>/06</i></span>
@@ -496,7 +488,7 @@ document.documentElement.classList.add('js');
   <!-- ===================================================================
        04 · CLANS MACHINA
        =================================================================== -->
-  <section class="case" id="c4" aria-labelledby="c4-h" style="--tint:#DCEEE4;--tint-ink:#0F7A4E">
+  <section class="case" id="c4" aria-labelledby="c4-h" style="--tint:#DCEEE4">
     <header class="case-head reveal">
       <div class="ch-id">
         <span class="ch-no">04<i>/06</i></span>
@@ -604,7 +596,7 @@ document.documentElement.classList.add('js');
   <!-- ===================================================================
        05 · MARKETIQ INFOTECH
        =================================================================== -->
-  <section class="case" id="c5" aria-labelledby="c5-h" style="--tint:#F5DFE4;--tint-ink:#C2185B">
+  <section class="case" id="c5" aria-labelledby="c5-h" style="--tint:#F5DFE4">
     <header class="case-head reveal">
       <div class="ch-id">
         <span class="ch-no">05<i>/06</i></span>
@@ -726,7 +718,7 @@ document.documentElement.classList.add('js');
   <!-- ===================================================================
        06 · ODISHA WORKFORCE
        =================================================================== -->
-  <section class="case" id="c6" aria-labelledby="c6-h" style="--tint:#D6EBE0;--tint-ink:#178A55">
+  <section class="case" id="c6" aria-labelledby="c6-h" style="--tint:#D6EBE0">
     <header class="case-head reveal">
       <div class="ch-id">
         <span class="ch-no">06<i>/06</i></span>

@@ -3,9 +3,9 @@
    The homepage shows each project whole. This page takes them apart:
    feature crops on tinted mats, numbered pins tied to notes, real
    states you can switch, and threads that link one idea across clients.
-   Loaded after responsive.css. Never a raw vw/vh — see tokens.css.
+   Loaded after responsive.css. Never a raw vw — see tokens.css.
    ============================================================ */
-:root{--vh:1vh;--mat:clamp(9px,calc(1.15*var(--vw)),15px)}
+:root{--mat:clamp(9px,calc(1.15*var(--vw)),15px)}
 
 /* ---------- shared voices ---------- */
 .wt-lab{display:flex;align-items:center;gap:13px;font-family:var(--mono);font-size:11.5px;letter-spacing:.2em;color:var(--walnut);text-transform:uppercase}

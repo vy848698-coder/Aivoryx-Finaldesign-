@@ -211,7 +211,6 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 .t-cat{display:inline-flex;align-items:center;gap:10px;color:var(--walnut)}
 .t-cat svg{color:var(--ink);flex:none;transition:transform .35s var(--ease)}
 .tool:hover .t-cat svg{transform:translateY(-2px)}
-.t-cost{color:var(--sand)}
 .tool h3{margin-top:14px;font-size:clamp(21px,calc(1.8*var(--vw)),25px);line-height:1.15;letter-spacing:-.022em;font-weight:700}
 .tool h3 a::after{content:"";position:absolute;inset:0;z-index:1}   /* the whole row is the link */
 .tool p{margin:8px 0 20px;font-size:15px;line-height:1.6;color:var(--walnut);max-width:46ch}

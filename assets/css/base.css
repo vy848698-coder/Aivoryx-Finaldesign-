@@ -24,8 +24,6 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .frame{max-width:var(--max);margin:0 auto;border-left:1px solid var(--hair);border-right:1px solid var(--hair)}
 
 /* shared type roles */
-.mono-k{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--sand);text-transform:uppercase}
-.serif{font-family:var(--serif);font-style:italic;font-weight:400}
 
 /* live dot — used by every "LIVE" marker */
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(232,67,28,.5)}55%{box-shadow:0 0 0 7px rgba(232,67,28,0)}}
