@@ -1,8 +1,10 @@
 /* AIVORYX · welcome popup — homepage only (this script is only on index.html).
 
-   When:  3 seconds after EVERY page load — each refresh, each new tab, each
+   When:  3 seconds after EVERY homepage load — each refresh, each new tab, each
           visit. Nothing is written to cookies or storage, so it never
-          "remembers" a visitor and stays away. If the tab opens in the
+          "remembers" a visitor and stays away. Skipped for anyone who arrives
+          at, or jumps to, a section (#contact…) or is already at the form.
+          If the tab opens in the
           background, the 3 seconds start when it is first looked at.
    Never forced: ×, Esc and a click outside all close it, and it
           waits rather than interrupt someone typing in a form or using the
@@ -36,8 +38,24 @@
     const typing = a && a.matches && a.matches('input:not([type=range]),textarea,select') && !root.contains(a);
     return typing || document.body.classList.contains('locked'); // mobile menu open
   }
+  /* Only for people who landed on the homepage itself. Anyone sent to a
+     section (#contact from "Start a project" on another page, #pricing…)
+     or who jumps there before the 3 seconds are up came for that section —
+     a popup in front of the form they came to fill in is the irritation. */
+  const contact = document.getElementById('contact');
+  let skip = !!location.hash && location.hash !== '#top';
+  addEventListener('hashchange', () => { if (location.hash && location.hash !== '#top') skip = true; });
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a[href^="#"]');
+    if (a && a.getAttribute('href').length > 1 && a.getAttribute('href') !== '#top') skip = true;
+  });
+  function atForm() {
+    if (!contact) return false;
+    const r = contact.getBoundingClientRect();
+    return r.top < innerHeight && r.bottom > 0;
+  }
   function tryOpen() {
-    if (opened) return;
+    if (opened || skip || atForm()) return;
     if (busyElsewhere()) { setTimeout(tryOpen, 1500); return; }
     open();
   }

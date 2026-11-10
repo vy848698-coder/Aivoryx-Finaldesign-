@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Tools — Aivoryx | Eight tools you can use right here</title>
+<meta name="description" content="Eight free tools built by Aivoryx — secure file sharing, one-time secrets, a password vault, a JSON toolkit, an NRIC & FIN test-data generator, a GST notice reply generator, PDF tools and image tools. Try each one on this page before you open it.">
+<meta name="theme-color" content="#F6F2EA">
+<link rel="canonical" href="https://aivoryx.com/tools.html">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Aivoryx">
+<meta property="og:title" content="Aivoryx — Eight tools. Zero reasons to take our word for it.">
+<meta property="og:description" content="Not screenshots. Working previews of the eight free tools we built and keep running — JSON, PDF and image tools process real files right in your browser.">
+<meta property="og:url" content="https://aivoryx.com/tools.html">
+<meta property="og:image" content="https://aivoryx.com/assets/img/work/features/kam-doctors.webp">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="assets/img/brand/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="site.webmanifest">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<!-- order matters: tokens first, responsive, then this page last -->
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/close.css">
+<link rel="stylesheet" href="assets/css/responsive.css">
+<link rel="stylesheet" href="assets/css/tools.css">
+<link rel="modulepreload" href="assets/js/tools/lib.js">
+<link rel="modulepreload" href="assets/js/tools/t-json.js">
+<script>
+document.documentElement.classList.add('js');
+/* Big screens: scale the whole page as one piece (same as the homepage).
+   1340 must match the 1341px breakpoint in tokens.css. */
+(function (r, W) {
+  function fit() { r.style.zoom = innerWidth > W ? innerWidth / W : ''; }
+  fit();
+  addEventListener('resize', fit);
+})(document.documentElement, 1340);
+</script>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"CollectionPage","name":"Aivoryx — Free tools","url":"https://aivoryx.com/tools.html",
+ "description":"Eight free tools built and run by Aivoryx, each with a working preview.",
+ "publisher":{"@type":"Organization","name":"Aivoryx","url":"https://aivoryx.com/"},
+ "hasPart":[
+  {"@type":"SoftwareApplication","name":"Secure File Sharing","url":"https://fileshare.aivoryx.com/","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"}},
+  {"@type":"SoftwareApplication","name":"Self-destructing Secrets","url":"https://secret.aivoryx.com/","applicationCategory":"SecurityApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"}},
+  {"@type":"SoftwareApplication","name":"Aivoryx Vault","url":"https://vault.aivoryx.com/","applicationCategory":"SecurityApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"}},
+  {"@type":"SoftwareApplication","name":"JSON Beautifier & Toolkit","url":"https://jsonbeautifier.aivoryx.com/","applicationCategory":"DeveloperApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"}},
+  {"@type":"SoftwareApplication","name":"Singapore NRIC & FIN Generator","url":"https://nric-generator.aivoryx.com/","applicationCategory":"DeveloperApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"}},
+  {"@type":"SoftwareApplication","name":"AI GST Notice Reply Generator","url":"https://gstreply.aivoryx.com/","applicationCategory":"BusinessApplication","operatingSystem":"Web"},
+  {"@type":"SoftwareApplication","name":"PDF Toolkit","url":"https://pdf-tools.aivoryx.com/","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"}},
+  {"@type":"SoftwareApplication","name":"Image Toolkit","url":"https://image-tools.aivoryx.com/","applicationCategory":"MultimediaApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"}}]}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- ================= NAV — same five, Free tools is current ================= -->
+<nav class="nav" id="nav" aria-label="Main">
+  <div class="in">
+    <a class="brand" href="index.html" aria-label="Aivoryx — home">
+      <svg viewBox="7 -6 90 104" fill="none" aria-hidden="true">
+        <path d="M12 90 L52 2" stroke="#17150F" stroke-width="11.5" stroke-linecap="square"/>
+        <path d="M52 2 L92 90" stroke="#17150F" stroke-width="11.5" stroke-linecap="square"/>
+        <path d="M52 90 L92 2" stroke="#17150F" stroke-width="11.5" stroke-linecap="square"/>
+        <path d="M32 46 L72 46" stroke="#E8431C" stroke-width="11.5" stroke-linecap="square"/>
+      </svg>
+      <span>Aivory<em>x</em></span>
+    </a>
+    <div class="menu">
+      <a href="index.html"><i aria-hidden="true">01</i><span class="lbl"><b>Home</b><em aria-hidden="true">Home</em></span></a>
+      <a href="work.html"><i aria-hidden="true">02</i><span class="lbl"><b>Work</b><em aria-hidden="true">Work</em></span></a>
+      <a href="tools.html" aria-current="page"><i aria-hidden="true">03</i><span class="lbl"><b>Free tools</b><em aria-hidden="true">Free tools</em></span></a>
+      <a href="index.html#pricing"><i aria-hidden="true">04</i><span class="lbl"><b>How we price</b><em aria-hidden="true">How we price</em></span></a>
+      <a href="index.html#contact"><i aria-hidden="true">05</i><span class="lbl"><b>Contact us</b><em aria-hidden="true">Contact us</em></span></a>
+    </div>
+    <div class="nav-right">
+      <a class="cta" href="index.html#enquiry">Get a quote</a>
+      <button class="burger" id="burger" type="button" aria-controls="sheet" aria-expanded="false" aria-label="Open menu"><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="t-progress" aria-hidden="true"><i id="t-progress"></i></div>
+</nav>
+<div class="sheet" id="sheet">
+  <a class="big" href="index.html">Home <span>01</span></a>
+  <a class="big" href="work.html">Work <span>02</span></a>
+  <a class="big" href="tools.html" aria-current="page">Free tools <span>03</span></a>
+  <a class="big" href="index.html#pricing">How we price <span>04</span></a>
+  <a class="big" href="index.html#contact">Contact us <span>05</span></a>
+  <a class="btn" href="index.html#enquiry">Get a quote
+    <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.8"/></svg>
+  </a>
+</div>
+
+<main class="frame" id="top">
+<span id="main"></span>
+
+  <!-- ============ HERO — a working miniature instead of a picture ============ -->
+  <section class="th" aria-labelledby="hero-h">
+    <div class="th-in">
+      <div class="th-l">
+        <div class="wt-lab rise"><i></i>Aivoryx / Free software collection</div>
+        <h1 class="rise d1" id="hero-h"><span class="ln">Eight tools.</span> <span class="ln">Zero reasons to <em>take our word</em> for it.</span></h1>
+        <p class="th-sub rise d2">We built these tools to solve real problems. File sharing, security, development, documents and images. Every one of them is live. <b>Try them here, explore the experience, and decide for yourself.</b></p>
+        <div class="th-act rise d3">
+          <a class="btn" href="#tools">Explore the tools
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2v11M3.5 9 8 13.5 12.5 9" stroke="currentColor" stroke-width="1.8"/></svg>
+          </a>
+          <a class="biglink" href="#why">How we built them
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.8"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- the live miniature: real parser, real checksum -->
+      <div class="mini rise d2" id="mini" aria-label="Live miniature workspace">
+        <div class="mini-bar">
+          <span class="mini-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <div class="mini-tabs" role="tablist" aria-label="Miniature tools">
+            <button type="button" role="tab" id="mt-1" aria-selected="true" aria-controls="mp-1">04 · JSON</button>
+            <button type="button" role="tab" id="mt-2" aria-selected="false" aria-controls="mp-2" tabindex="-1">05 · NRIC</button>
+          </div>
+          <span class="lv">Live</span>
+        </div>
+        <div class="mini-pane" role="tabpanel" id="mp-1" aria-labelledby="mt-1">
+          <label class="mini-k" for="mini-in">Input · type or paste — it's real</label>
+          <input class="mini-in" id="mini-in" type="text" spellcheck="false" autocomplete="off" value='{"tool":"json","status":"live","checks":["parse","format"],"ms":0.4}'>
+          <div class="mini-k">Output · formatted in this tab</div>
+          <pre class="jx-hl mini-out" id="mini-out" aria-live="off"></pre>
+          <div class="mini-stat" id="mini-stat" data-s="ok" role="status">Valid</div>
+        </div>
+        <div class="mini-pane" role="tabpanel" id="mp-2" aria-labelledby="mt-2" hidden>
+          <div class="mini-k">Synthetic test ID · checksum-valid</div>
+          <output class="mini-id" id="mini-id" aria-live="polite"></output>
+          <div class="mini-sum" id="mini-sum"></div>
+          <button class="tw-btn ghost" type="button" id="mini-gen">Generate another</button>
+          <p class="mini-note">Not an issued identity. For software testing only.</p>
+        </div>
+        <a class="mini-foot" href="#tools" data-tool="json">Open the full workspace <span aria-hidden="true">↓</span></a>
+      </div>
+    </div>
+
+    <!-- the access facts, one per line, easy to change -->
+    <ul class="th-strip rise d3" aria-label="At a glance">
+      <li><b><span data-count="8" data-pad="2">08</span></b><span>tools built<em>and kept running by us</em></span></li>
+      <li class="hot"><b><span data-count="6" data-pad="2">06</span></b><span>need no sign-up<em>open the link and start</em></span></li>
+      <li><b><span data-count="1" data-pad="2">01</span></b><span>account-based vault<em>your vault, your master password</em></span></li>
+      <li><b><span data-count="1" data-pad="2">01</span></b><span>AI tool with credits<em>free summary, credits for full replies</em></span></li>
+    </ul>
+  </section>
+
+  <!-- ============ THE WORKSPACE ============ -->
+  <section class="tws" id="tools" aria-labelledby="tws-h">
+    <div class="sec-top reveal">
+      <div>
+        <div class="wt-lab"><i></i>01 / The playground</div>
+        <h2 id="tws-h">Pick a tool. <em>Use it.</em></h2>
+      </div>
+      <dl class="legend">
+        <div><dt><span class="ws-mode local">Live in your browser</span></dt><dd>Real processing on your device. Your files never leave it.</dd></div>
+        <div><dt><span class="ws-mode sample">Sample mode</span></dt><dd>Fictional data and clearly simulated steps where the real tool needs our servers.</dd></div>
+      </dl>
+    </div>
+
+    <div class="ws" id="ws">
+      <aside class="ws-rail" aria-label="Tools">
+        <div class="ws-find">
+          <label class="vh" for="ws-search">Search tools</label>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg>
+          <input id="ws-search" type="search" placeholder="Search tools" autocomplete="off">
+          <span class="ws-count" aria-live="polite"><span id="ws-count">08</span><span class="vh"> tools shown</span></span>
+        </div>
+        <div class="ws-filters" id="ws-filters" role="group" aria-label="Filter by category">
+          <button type="button" data-f="all" aria-pressed="true">All</button>
+          <button type="button" data-f="security" aria-pressed="false">Security</button>
+          <button type="button" data-f="developer" aria-pressed="false">Developer</button>
+          <button type="button" data-f="productivity" aria-pressed="false">Productivity</button>
+        </div>
+        <ul class="ws-list" id="ws-list" role="tablist" aria-orientation="vertical" aria-label="Tools"></ul>
+        <p class="ws-empty" id="ws-empty" hidden>No tool matches. Try “pdf”, “password” or “json”.</p>
+      </aside>
+
+      <div class="ws-main" id="ws-panel" role="tabpanel" tabindex="-1">
+        <header class="ws-top">
+          <div class="ws-title">
+            <span class="ws-tn" id="ws-n">04</span>
+            <h3 id="ws-name">JSON Beautifier &amp; Toolkit</h3>
+          </div>
+          <div class="ws-meta">
+            <span class="ws-mode local" id="ws-mode">Live in your browser</span>
+            <span class="ws-priv" id="ws-privacy">Runs in your browser · nothing is sent</span>
+            <span class="ws-status" id="ws-status" data-s="loading" role="status"><i aria-hidden="true"></i><span>Loading</span></span>
+          </div>
+          <a class="ws-open" id="ws-open" href="https://jsonbeautifier.aivoryx.com/" target="_blank" rel="noopener">Open full tool <span aria-hidden="true">↗</span></a>
+        </header>
+
+        <div class="ws-body">
+          <div class="ws-stage" id="ws-stage" aria-label="Tool"></div>
+          <aside class="ws-out" aria-label="Result">
+            <button class="ws-out-t" id="ws-out-toggle" type="button" aria-expanded="true" aria-controls="ws-out-body">Result &amp; output</button>
+            <div class="ws-out-b" id="ws-out-body"></div>
+          </aside>
+        </div>
+
+        <footer class="ws-foot">
+          <div><h4 class="tw-k">Try here</h4><ul id="ws-can"></ul></div>
+          <div><h4 class="tw-k">Preview limits</h4><ul id="ws-lim"></ul></div>
+          <a class="ws-cta" id="ws-cta" href="https://jsonbeautifier.aivoryx.com/" target="_blank" rel="noopener">
+            <span class="tw-k">The full application</span>
+            <b id="ws-cta-name">Open full JSON Toolkit</b>
+            <i aria-hidden="true">↗</i>
+          </a>
+        </footer>
+      </div>
+    </div>
+    <noscript><p class="ws-nojs">The previews need JavaScript. Every tool also works on its own — the links are in the footer below.</p></noscript>
+  </section>
+
+  <!-- ============ PRIVACY — five models, drawn ============ -->
+  <section class="pv" id="privacy" aria-labelledby="pv-h">
+    <div class="sec-top reveal">
+      <div>
+        <div class="wt-lab"><i></i>02 / Where your data goes</div>
+        <h2 id="pv-h"><span class="ln">Your files are yours.</span> <em class="ln">That&rsquo;s the point.</em></h2>
+      </div>
+      <p class="note">Not every tool can run without a server, so we won&rsquo;t pretend they all do. Here is exactly what each one does with what you give it.</p>
+    </div>
+
+    <ol class="pv-list">
+      <li class="pv-row reveal">
+        <div class="pv-t">
+          <span class="pv-n">A</span>
+          <h3>Processed in your browser</h3>
+          <p class="pv-tools">JSON Toolkit · NRIC &amp; FIN · PDF Toolkit · Image Toolkit</p>
+          <p>The code comes to your file, not the other way round. Formatting, page edits, compression and even the background-removal AI run on your own device. There is no upload step to switch off.</p>
+        </div>
+        <div class="dg" aria-label="Diagram: your file stays on your device; nothing goes to a server">
+          <div class="dg-box on"><span class="dg-k">Your device</span><b>file → tool → result</b><span class="dg-s">all in the tab</span></div>
+          <div class="dg-line cut"><span>nothing sent</span></div>
+          <div class="dg-box off"><span class="dg-k">Our server</span><b>never sees it</b></div>
+        </div>
+      </li>
+      <li class="pv-row reveal">
+        <div class="pv-t">
+          <span class="pv-n">B</span>
+          <h3>Stored on our server, under your rules</h3>
+          <p class="pv-tools">Secure File Sharing</p>
+          <p>A file has to live somewhere for someone else to download it. Direct access to stored files is blocked; each one is served only through its link — which stops working at the expiry date or download limit you set. A link password is stored only as a bcrypt hash. Files are not end-to-end encrypted, so don&rsquo;t send what needs that.</p>
+        </div>
+        <div class="dg" aria-label="Diagram: file goes over HTTPS to our server, then to the recipient while the link is valid">
+          <div class="dg-box"><span class="dg-k">You</span><b>PDF</b></div>
+          <div class="dg-line"><span>https</span></div>
+          <div class="dg-box on"><span class="dg-k">Server</span><b>expiry · limit · bcrypt</b></div>
+          <div class="dg-line"><span>link</span></div>
+          <div class="dg-box"><span class="dg-k">Recipient</span><b>until it expires</b></div>
+        </div>
+      </li>
+      <li class="pv-row reveal">
+        <div class="pv-t">
+          <span class="pv-n">C</span>
+          <h3>Encrypted, read once, then gone</h3>
+          <p class="pv-tools">Self-destructing Secrets</p>
+          <p>Your secret is stored as AES-256-GCM ciphertext. Each view is counted on the server, and the view that reaches the limit deletes the record in the same step. After that, the link has nothing left to show.</p>
+        </div>
+        <div class="dg" aria-label="Diagram: secret stored encrypted, read once, then deleted">
+          <div class="dg-box"><span class="dg-k">You</span><b>secret</b></div>
+          <div class="dg-line"><span>https</span></div>
+          <div class="dg-box on"><span class="dg-k">Server</span><b>AES-256-GCM</b></div>
+          <div class="dg-line"><span>1 view</span></div>
+          <div class="dg-box burn"><span class="dg-k">Then</span><b>row deleted</b></div>
+        </div>
+      </li>
+      <li class="pv-row reveal">
+        <div class="pv-t">
+          <span class="pv-n">D</span>
+          <h3>Encrypted before it leaves you</h3>
+          <p class="pv-tools">Vault · account required</p>
+          <p>Your master password is turned into a key with PBKDF2 on your device, and the vault is encrypted with AES-256-GCM before it is saved. We store ciphertext we cannot decrypt — which also means we cannot recover a forgotten master password.</p>
+        </div>
+        <div class="dg" aria-label="Diagram: vault is encrypted on your device; the server stores only ciphertext">
+          <div class="dg-box on wide"><span class="dg-k">Your device</span><b>master password → PBKDF2 → key → AES-256-GCM</b></div>
+          <div class="dg-line"><span>ciphertext</span></div>
+          <div class="dg-box"><span class="dg-k">Server</span><b>can&rsquo;t read it</b></div>
+        </div>
+      </li>
+      <li class="pv-row reveal">
+        <div class="pv-t">
+          <span class="pv-n">E</span>
+          <h3>Read by AI, paid for by credit</h3>
+          <p class="pv-tools">AI GST Notice Reply Generator · sign-in required</p>
+          <p>To draft a reply, the notice has to be read — so the PDF you upload is sent to our backend and an AI model. The summary is free; a full drafted reply costs one credit, and new accounts start with five. A qualified professional should review every draft.</p>
+        </div>
+        <div class="dg" aria-label="Diagram: notice goes to our server and an AI model; summary free, full draft one credit">
+          <div class="dg-box"><span class="dg-k">You</span><b>notice PDF</b></div>
+          <div class="dg-line"><span>https</span></div>
+          <div class="dg-box on"><span class="dg-k">Server + AI</span><b>reads the notice</b></div>
+          <div class="dg-line"><span>back</span></div>
+          <div class="dg-box"><span class="dg-k">You get</span><b>summary free · draft 1 credit</b></div>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ============ WHY — editorial ============ -->
+  <section class="wy" id="why" aria-labelledby="wy-h">
+    <div class="wy-in">
+      <div class="wy-l reveal">
+        <div class="wt-lab"><i></i>03 / How we built them</div>
+        <h2 id="wy-h"><span class="ln">Not a collection of demos.</span> <em class="ln">A demonstration of how we build.</em></h2>
+        <p class="wy-sub">Each tool started as a problem someone actually had. We built it the way we build for clients — then left it running, in public, where anyone can push on it.</p>
+      </div>
+      <!-- the subtle technical visual: the real build sheet -->
+      <figure class="sheet-x reveal" aria-label="What the eight tools are built with">
+        <figcaption><span>build.sheet</span><span>8 / 8 live</span></figcaption>
+        <ol>
+          <li><i>01</i><b>File sharing</b><span>PHP 8 · MySQL · bcrypt</span></li>
+          <li><i>02</i><b>Secrets</b><span>AES-256-GCM · PHP API</span></li>
+          <li><i>03</i><b>Vault</b><span>Expo · PBKDF2 · AES-GCM</span></li>
+          <li><i>04</i><b>JSON</b><span>React · Monaco · local</span></li>
+          <li><i>05</i><b>NRIC &amp; FIN</b><span>Vanilla JS · local</span></li>
+          <li><i>06</i><b>GST reply</b><span>React · AI backend · credits</span></li>
+          <li><i>07</i><b>PDF</b><span>Next.js · pdf-lib · WASM</span></li>
+          <li><i>08</i><b>Image</b><span>Next.js · ONNX Runtime · u2netp</span></li>
+        </ol>
+      </figure>
+    </div>
+    <ol class="wy-list">
+      <li class="reveal"><i>01</i><h3>We build <em>real</em> software</h3><p>Every tool on this page is in production, on its own domain, used by people we&rsquo;ve never met. Nothing here is a mock-up.</p></li>
+      <li class="reveal"><i>02</i><h3>We solve <em>practical</em> problems</h3><p>Sending a file without an account. Answering a tax notice before the deadline. Getting a PDF under an upload limit. Small problems, solved properly.</p></li>
+      <li class="reveal"><i>03</i><h3>We care about <em>speed</em> and use</h3><p>Heavy libraries load only when you open the tool that needs them. Errors tell you the line and the fix. Buttons do what they say.</p></li>
+      <li class="reveal"><i>04</i><h3>We put <em>privacy</em> first</h3><p>If a job can run on your device, it does. If it can&rsquo;t, we say so — and say exactly what happens to your data on the way.</p></li>
+      <li class="reveal"><i>05</i><h3>We write it <em>ourselves</em></h3><p>No page builders and no templates. The same hands that built these will build yours, around your problem, not a theme&rsquo;s idea of it.</p></li>
+    </ol>
+  </section>
+
+  <!-- ============ CLOSE ============ -->
+  <section class="tc" aria-labelledby="tc-h">
+    <div class="tc-in reveal">
+      <div class="wt-lab on-dark"><i></i>04 / Your turn</div>
+      <h2 id="tc-h"><span class="ln">You&rsquo;ve tried what we built.</span> <em class="ln">Imagine what we could build for you.</em></h2>
+      <p>From custom business websites to complex web applications, we build digital products around real business problems.</p>
+      <div class="tc-act">
+        <a class="btn" href="index.html#enquiry">Let&rsquo;s build yours
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.8"/></svg>
+        </a>
+        <a class="biglink" href="work.html">Explore our work
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.8"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="tc-tape" aria-hidden="true">
+      <span>file sharing · secrets · vault · json · nric &amp; fin · gst reply · pdf · image · your product next ·&nbsp;</span><span>file sharing · secrets · vault · json · nric &amp; fin · gst reply · pdf · image · your product next ·&nbsp;</span>
+    </div>
+  </section>
+</main>
+
+<!-- ================= FOOTER — the site's own ================= -->
+<footer class="foot frame" aria-label="Site">
+  <div class="foot-top">
+    <div class="foot-studio">
+      <a class="brand" href="index.html" aria-label="Aivoryx — home">
+        <svg viewBox="7 -6 90 104" fill="none" aria-hidden="true">
+          <path d="M12 90 L52 2" stroke="currentColor" stroke-width="11.5" stroke-linecap="square"/>
+          <path d="M52 2 L92 90" stroke="currentColor" stroke-width="11.5" stroke-linecap="square"/>
+          <path d="M52 90 L92 2" stroke="currentColor" stroke-width="11.5" stroke-linecap="square"/>
+          <path d="M32 46 L72 46" stroke="#E8431C" stroke-width="11.5" stroke-linecap="square"/>
+        </svg>
+        <span>Aivory<em>x</em></span>
+      </a>
+      <p class="foot-about">An independent studio of <b>two builders</b>. Custom websites, web apps and mobile apps for businesses and startups — designed, coded and shipped in-house, and <b>owned by you</b> at handover.</p>
+    </div>
+
+    <nav class="foot-col" aria-labelledby="fc-nav">
+      <h3 id="fc-nav">Navigate</h3>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="work.html">Work</a></li>
+        <li><a href="tools.html" aria-current="page">Free tools</a></li>
+        <li><a href="index.html#pricing">How we price</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <nav class="foot-col" aria-labelledby="fc-svc">
+      <h3 id="fc-svc">Services</h3>
+      <ul>
+        <li><a href="index.html#pricing">Business websites</a></li>
+        <li><a href="index.html#pricing">Web applications</a></li>
+        <li><a href="index.html#pricing">Mobile apps</a></li>
+        <li><a href="index.html#pricing">Online stores</a></li>
+        <li><a href="index.html#pricing">AI chat &amp; automation</a></li>
+      </ul>
+    </nav>
+
+    <nav class="foot-col foot-tools" aria-labelledby="fc-tools">
+      <h3 id="fc-tools">Free tools</h3>
+      <ul>
+        <li><a href="https://fileshare.aivoryx.com/" target="_blank" rel="noopener">File sharing <span class="ext" aria-hidden="true">↗</span></a></li>
+        <li><a href="https://secret.aivoryx.com/" target="_blank" rel="noopener">One-time secrets <span class="ext" aria-hidden="true">↗</span></a></li>
+        <li><a href="https://vault.aivoryx.com/" target="_blank" rel="noopener">Password vault <span class="ext" aria-hidden="true">↗</span></a></li>
+        <li><a href="https://jsonbeautifier.aivoryx.com/" target="_blank" rel="noopener">JSON toolkit <span class="ext" aria-hidden="true">↗</span></a></li>
+        <li><a href="https://nric-generator.aivoryx.com/" target="_blank" rel="noopener">NRIC &amp; FIN generator <span class="ext" aria-hidden="true">↗</span></a></li>
+        <li><a href="https://gstreply.aivoryx.com/" target="_blank" rel="noopener">GST notice reply <span class="ext" aria-hidden="true">↗</span></a></li>
+        <li><a href="https://pdf-tools.aivoryx.com/" target="_blank" rel="noopener">PDF tools <span class="ext" aria-hidden="true">↗</span></a></li>
+        <li><a href="https://image-tools.aivoryx.com/" target="_blank" rel="noopener">Image tools <span class="ext" aria-hidden="true">↗</span></a></li>
+      </ul>
+    </nav>
+
+    <div class="foot-col">
+      <h3>Talk to us</h3>
+      <ul>
+        <li><a href="https://wa.me/919399593499?text=Hi%20Aivoryx%2C%20I%27d%20like%20to%20discuss%20a%20project" target="_blank" rel="noopener">WhatsApp <span class="ext" aria-hidden="true">↗</span></a></li>
+        <li><a href="tel:+919399593499">+91 93995 93499</a></li>
+        <li><a href="mailto:admin@aivoryx.com">admin@aivoryx.com</a></li>
+      </ul>
+      <span class="addr">Dwarka Mor, New Delhi 110059</span>
+    </div>
+  </div>
+
+  <a class="foot-mark" href="#top" aria-label="Back to top">
+    <svg viewBox="7 -6 90 104" fill="none" aria-hidden="true">
+      <path d="M12 90 L52 2" stroke="currentColor" stroke-width="11.5" stroke-linecap="square"/>
+      <path d="M52 2 L92 90" stroke="currentColor" stroke-width="11.5" stroke-linecap="square"/>
+      <path d="M52 90 L92 2" stroke="currentColor" stroke-width="11.5" stroke-linecap="square"/>
+      <path d="M32 46 L72 46" stroke="#E8431C" stroke-width="11.5" stroke-linecap="square"/>
+    </svg>
+    <span aria-hidden="true">Aivory<em>x</em></span>
+  </a>
+
+  <div class="foot-bar">
+    <span>© <span data-year>2026</span> Aivoryx · All rights reserved</span>
+    <span>Hand-coded · zero page builders</span>
+    <a href="#top">Back to top ↑</a>
+  </div>
+</footer>
+
+<script>
+/* the year, and the thin reading-progress line under the nav */
+document.querySelectorAll('[data-year]').forEach(function (e) { e.textContent = new Date().getFullYear(); });
+(function () {
+  var bar = document.getElementById('t-progress'), t = false;
+  function upd() { t = false; var d = document.documentElement, m = d.scrollHeight - innerHeight; bar.style.transform = 'scaleX(' + (m > 0 ? Math.min(1, scrollY / m) : 0) + ')'; }
+  addEventListener('scroll', function () { if (!t) { t = true; requestAnimationFrame(upd); } }, { passive: true });
+  addEventListener('resize', upd); upd();
+})();
+</script>
+<script src="assets/js/nav.js" defer></script>
+<script src="assets/js/reveal.js" defer></script>
+<script type="module" src="assets/js/tools/app.js"></script>
+<script type="module" src="assets/js/tools/hero.js"></script>
+</body>
+</html>

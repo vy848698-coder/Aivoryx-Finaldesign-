@@ -30,6 +30,23 @@ Final-Aivoryx-design/
         └── work/            Site screenshots — <name>-800.webp and <name>-1440.webp
 ```
 
+## Free tools page (`tools.html`)
+
+A working preview of each of the eight tools — no screenshots. Files:
+
+    assets/css/tools.css         page + workspace + every tool's UI
+    assets/js/tools/app.js       tool registry (names, URLs, access facts, limits), selector, search, #tool-<id> deep links
+    assets/js/tools/lib.js       shared helpers + the pinned CDN library URLs
+    assets/js/tools/t-*.js       one module per tool, loaded only when opened
+    assets/js/tools/hero.js      the hero's live JSON / NRIC miniature
+    assets/models/u2netp.onnx    background-removal model (same as image-tools.aivoryx.com)
+
+JSON, NRIC, PDF and Image process real files in the browser (pdf-lib, PDF.js,
+heic2any and ONNX Runtime load from CDNs on first use). File sharing, secrets,
+vault and GST run in clearly labelled sample mode — nothing is uploaded.
+The hero's "at a glance" numbers are plain markup in `tools.html`; tool access
+facts live in the `TOOLS` array in `app.js`. ES modules need a server, not file://.
+
 ## Adding a project screenshot
 
 1. Capture the live site at 1440×900 with no browser chrome and no popups open.
