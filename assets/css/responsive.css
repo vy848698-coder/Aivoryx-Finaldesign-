@@ -1,10 +1,9 @@
 /* ============================================================
    AIVORYX · responsive — loaded last. Real structure, not a shrink.
-   1080 · 860 · 560, then reduced motion and print.
+   1080 · 860 · 560 · 380, then reduced motion and print.
+   Above 1340px nothing reflows: the page is zoomed as one piece
+   (see tokens.css and the script in index.html's <head>).
    ============================================================ */
-@media (min-width:1700px){
-  :root{--max:1480px}
-}
 
 @media (max-width:1080px){
   .hero{grid-template-columns:1fr}
@@ -12,18 +11,18 @@
   .proj.wide .story{grid-template-columns:1fr 1fr}
   .proj.wide .story > :first-child{grid-column:1/-1}
   .work-head{grid-template-columns:1fr}
-  .work-head .note{text-align:left}
+  .work-head .note{max-width:44ch}
   .std-row{grid-template-columns:1fr}
   .menu{display:none}
   .burger{display:inline-flex}
   .tools-head{grid-template-columns:1fr}
-  .tools-head .note{text-align:left}
+  .tools-head .note{max-width:44ch}
   .why{grid-template-columns:1fr}
   .why-q{border-right:0;border-bottom:1px solid var(--hair2);padding-right:var(--gut)}
   .why-list li:first-child{padding-left:var(--gut)}
   /* the close */
   .sec-head{grid-template-columns:1fr}
-  .sec-head .note{text-align:left}
+  .sec-head .note{justify-self:start;max-width:44ch}
   .fit{grid-template-columns:minmax(0,1fr) auto}
   .fit-a{grid-column:1;grid-row:2;border-left:0;padding-left:0}
   .fit .btn-ink{grid-column:2;grid-row:1 / span 2}
@@ -46,7 +45,7 @@
   .grid{grid-template-columns:1fr}
   .grid .proj.card:nth-child(odd){border-right:0}
   .grid .proj.card + .proj.card{border-top:1px solid var(--hair)}
-  .proj.wide .stage{--ar:4/3.1;--mw:84%;--my:10%;--dw:36%;--dy:6%;--gsize:clamp(70px,22vw,170px)}
+  .proj.wide .stage{--ar:4/3.1;--mw:84%;--my:10%;--dw:36%;--dy:6%;--gsize:clamp(70px,calc(22*var(--vw)),170px)}
   .proj.wide .stage .detail{top:auto;bottom:6%;transform:none}
   .proj.wide .stage:hover .detail{transform:translateY(-12px)}
   .proj.wide.flip .stage .main{right:8%}
@@ -125,7 +124,7 @@
   .stage .browser .url{font-size:9px}
   .proof div{padding-right:10px}
   .proof div + div{padding-left:12px}
-  .proof span{font-size:12.5px}
+  .proof div > span{font-size:12.5px}
   .proof b em{display:block;margin:6px 0 0}
   .logo{height:38px}
   .logo.word{height:24px}
@@ -133,7 +132,6 @@
   .proj-meta .x{display:none}
   .proj-meta > span:first-child{white-space:nowrap}
   .browser .bar{height:30px}
-  .work-foot{flex-direction:column}
   .tools-head{padding-top:56px;padding-bottom:30px}
   .tool,.tool:nth-child(-n+4),.tool:nth-child(n+5){padding-top:24px;padding-bottom:26px;gap:0 16px}
   .t-n{font-size:34px}
@@ -156,7 +154,7 @@
   .fit-q{font-size:28px}
   .fit .btn-ink{justify-self:stretch;justify-content:center}
   .talk-head{padding-top:56px;padding-bottom:32px}
-  .talk-head h2{font-size:clamp(38px,11vw,52px)}
+  .talk-head h2{font-size:clamp(38px,calc(11*var(--vw)),52px)}
   .line{column-gap:14px;padding:18px 0}
   .line-ico{width:40px;height:40px}
   .line-v{font-size:19px}
@@ -175,6 +173,18 @@
   .foot-studio{grid-column:1 / -1}
   .foot-col:last-child{grid-column:1 / -1}
   .foot-bar{flex-direction:column;align-items:flex-start;gap:8px}
+}
+
+/* the smallest phones (≈300–380px): two-up stat cells get ~150px each */
+@media (max-width:380px){
+  .rail,.free-rail{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .stat{padding-right:12px}
+  .stat .k{letter-spacing:.12em}
+  .stat .v{font-size:28px;flex-wrap:wrap;row-gap:4px}
+  .proj-meta{letter-spacing:.1em}
+  .proj.card .p-foot{flex-wrap:wrap}
+  .foot-mark{font-size:clamp(56px,calc(22*var(--vw)),76px)}
+  .foot-top{column-gap:16px}
 }
 
 @media (prefers-reduced-motion:reduce){

@@ -29,8 +29,19 @@
 <link rel="stylesheet" href="assets/css/components.css">
 <link rel="stylesheet" href="assets/css/home.css">
 <link rel="stylesheet" href="assets/css/close.css">
+<link rel="stylesheet" href="assets/css/popup.css">
 <link rel="stylesheet" href="assets/css/responsive.css">
-<script>document.documentElement.classList.add('js')</script>
+<script>
+document.documentElement.classList.add('js');
+/* Big screens: scale the whole page as one piece, so a 1920px or 4K desktop shows
+   the same full-width composition as a 1340px laptop — never a narrow column with
+   gaps. 1340 must match the 1341px breakpoint in tokens.css. */
+(function (r, W) {
+  function fit() { r.style.zoom = innerWidth > W ? innerWidth / W : ''; }
+  fit();
+  addEventListener('resize', fit);
+})(document.documentElement, 1340);
+</script>
 
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"ProfessionalService","name":"Aivoryx","url":"https://aivoryx.com/",
@@ -104,7 +115,7 @@
         <a class="tl" href="#work">See the work <span aria-hidden="true">→</span></a>
       </div>
       <div class="rail rise d3" aria-label="At a glance">
-        <div class="stat"><div class="k"><i></i>Delivery</div><div class="v">2–3<em>weeks</em></div><div class="d">Brief to launch</div></div>
+        <div class="stat"><div class="k"><i></i>Delivery</div><div class="v"><span data-count="2">2</span>–<span data-count="3">3</span><em>weeks</em></div><div class="d">Brief to launch</div></div>
         <div class="stat"><div class="k"><i></i>Ownership</div><div class="v"><span data-count="100">100</span><em>%</em></div><div class="d">Code, domain, passwords</div></div>
         <div class="stat"><div class="k"><i></i>Monthly fee</div><div class="v">₹0<em>/month</em></div><div class="d">No forced retainer</div></div>
         <div class="stat"><div class="k"><i></i>Free tools</div><div class="v hot"><span data-count="8" data-pad="2">08</span><em>live</em></div><div class="d">Go break one</div></div>
@@ -148,7 +159,7 @@
         <div class="lab">Selected work · 2024 – 2026</div>
         <h2 id="work-h">We don't sell pages.<br><em>We sell solved problems.</em></h2>
       </div>
-      <p class="note">Six builds, all live today. Open them — that matters more than anything written here.</p>
+      <p class="note"><b>Six builds, all live today.</b> Real businesses, running on code we wrote — open any of them.</p>
     </div>
 
     <!-- 01 · featured — full-width showcase -->
@@ -158,7 +169,7 @@
         <span class="ghost" aria-hidden="true">CLANS</span>
         <figure class="browser main">
           <div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">clansmachina.com</span></div>
-          <div class="view"><img src="assets/img/work/clans-800.webp" srcset="assets/img/work/clans-800.webp 800w, assets/img/work/clans-1440.webp 1440w" sizes="(max-width:860px) 90vw, 760px" width="1440" height="900" loading="lazy" decoding="async" alt="Clans Machina homepage: 'Cut your electricity bill to near zero — in 18 days'"></div>
+          <div class="view"><img src="assets/img/work/clans-800.webp" srcset="assets/img/work/clans-800.webp 800w, assets/img/work/clans-1440.webp 1440w" sizes="(max-width:860px) 90vw, (min-width:1341px) 57vw, 760px" width="1440" height="900" loading="lazy" decoding="async" alt="Clans Machina homepage: 'Cut your electricity bill to near zero — in 18 days'"></div>
         </figure>
         <figure class="detail">
           <img src="assets/img/work/detail/clans.webp" width="640" height="800" loading="lazy" decoding="async" alt="The live savings calculator: ₹10,80,000 saved over 25 years, a recommended 6 kW system, and the bill dropping from ₹3,500 to ₹0">
@@ -188,9 +199,9 @@
         </div>
       </div>
       <div class="proof">
-        <div><b>1<em>number in</em></b><span>Your monthly electricity bill</span></div>
-        <div><b>4<em>answers back</em></b><span>Before anyone asks for a phone number</span></div>
-        <div><b>25<em>years</em></b><span>Of savings modelled, subsidy included</span></div>
+        <div><b><span data-count="1">1</span><em>number in</em></b><span>Your monthly electricity bill</span></div>
+        <div><b><span data-count="4">4</span><em>answers back</em></b><span>Before anyone asks for a phone number</span></div>
+        <div><b><span data-count="25">25</span><em>years</em></b><span>Of savings modelled, subsidy included</span></div>
       </div>
     </article>
 
@@ -202,7 +213,7 @@
           <span class="ghost" aria-hidden="true">MARKETIQ</span>
           <figure class="browser main">
             <div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">dmarketiq.com</span></div>
-            <div class="view"><img src="assets/img/work/marketiq-800.webp" srcset="assets/img/work/marketiq-800.webp 800w, assets/img/work/marketiq-1440.webp 1440w" sizes="(max-width:860px) 90vw, 460px" width="1440" height="900" loading="lazy" decoding="async" alt="MarketIQ Infotech homepage: 'Best digital marketing agency in Bhubaneswar'"></div>
+            <div class="view"><img src="assets/img/work/marketiq-800.webp" srcset="assets/img/work/marketiq-800.webp 800w, assets/img/work/marketiq-1440.webp 1440w" sizes="(max-width:860px) 90vw, (min-width:1341px) 35vw, 460px" width="1440" height="900" loading="lazy" decoding="async" alt="MarketIQ Infotech homepage: 'Best digital marketing agency in Bhubaneswar'"></div>
           </figure>
           <figure class="detail">
             <img src="assets/img/work/detail/marketiq.webp" width="640" height="800" loading="lazy" decoding="async" alt="MarketIQ's enquiry form asking for service and monthly budget before submission">
@@ -225,7 +236,7 @@
           <span class="ghost" aria-hidden="true">WORKFORCE</span>
           <figure class="browser main">
             <div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">odishaworkforce.com</span></div>
-            <div class="view"><img src="assets/img/work/odisha-800.webp" srcset="assets/img/work/odisha-800.webp 800w, assets/img/work/odisha-1440.webp 1440w" sizes="(max-width:860px) 90vw, 460px" width="1440" height="900" loading="lazy" decoding="async" alt="Odisha Workforce homepage: 'Hire top talent. Build stronger workforces.'"></div>
+            <div class="view"><img src="assets/img/work/odisha-800.webp" srcset="assets/img/work/odisha-800.webp 800w, assets/img/work/odisha-1440.webp 1440w" sizes="(max-width:860px) 90vw, (min-width:1341px) 35vw, 460px" width="1440" height="900" loading="lazy" decoding="async" alt="Odisha Workforce homepage: 'Hire top talent. Build stronger workforces.'"></div>
           </figure>
           <figure class="detail">
             <img src="assets/img/work/detail/odisha.webp" width="640" height="800" loading="lazy" decoding="async" alt="Odisha Workforce on a phone: separate Find Opportunities and Hire Talent buttons">
@@ -248,7 +259,7 @@
           <span class="ghost" aria-hidden="true">KAMINI</span>
           <figure class="browser main">
             <div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">kaminilabs.in</span></div>
-            <div class="view"><img src="assets/img/work/kamini-800.webp" srcset="assets/img/work/kamini-800.webp 800w, assets/img/work/kamini-1440.webp 1440w" sizes="(max-width:860px) 90vw, 460px" width="1440" height="900" loading="lazy" decoding="async" alt="Kamini Clinic &amp; Labs homepage: 'Accurate diagnostics. Better decisions. Better health.' with a test search"></div>
+            <div class="view"><img src="assets/img/work/kamini-800.webp" srcset="assets/img/work/kamini-800.webp 800w, assets/img/work/kamini-1440.webp 1440w" sizes="(max-width:860px) 90vw, (min-width:1341px) 35vw, 460px" width="1440" height="900" loading="lazy" decoding="async" alt="Kamini Clinic &amp; Labs homepage: 'Accurate diagnostics. Better decisions. Better health.' with a test search"></div>
           </figure>
           <figure class="detail">
             <img src="assets/img/work/detail/kamini.webp" width="640" height="800" loading="lazy" decoding="async" alt="Kamini's public price list: each test shows its price next to the usual rate">
@@ -271,7 +282,7 @@
           <span class="ghost" aria-hidden="true">EXIMSS</span>
           <figure class="browser main">
             <div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">jjmeexporthouse.com</span></div>
-            <div class="view"><img src="assets/img/work/jjme-800.webp" srcset="assets/img/work/jjme-800.webp 800w, assets/img/work/jjme-1440.webp 1440w" sizes="(max-width:860px) 90vw, 460px" width="1440" height="900" loading="lazy" decoding="async" alt="Jay Jagannath Marine Eximss homepage: merchant exporter in Cuttack, Odisha"></div>
+            <div class="view"><img src="assets/img/work/jjme-800.webp" srcset="assets/img/work/jjme-800.webp 800w, assets/img/work/jjme-1440.webp 1440w" sizes="(max-width:860px) 90vw, (min-width:1341px) 35vw, 460px" width="1440" height="900" loading="lazy" decoding="async" alt="Jay Jagannath Marine Eximss homepage: merchant exporter in Cuttack, Odisha"></div>
           </figure>
           <figure class="detail">
             <img src="assets/img/work/detail/jjme.webp" width="640" height="800" loading="lazy" decoding="async" alt="The shipment calculator: 1,000 MT in 50 kg bags needs 20,000 bags and about 50 twenty-foot containers">
@@ -296,7 +307,7 @@
         <span class="ghost" aria-hidden="true">SAATHI</span>
         <figure class="browser main on-ink">
           <div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">saathi.clansmachina.com</span></div>
-          <div class="view"><img src="assets/img/work/saathi-800.webp" srcset="assets/img/work/saathi-800.webp 800w, assets/img/work/saathi-1440.webp 1440w" sizes="(max-width:860px) 90vw, 760px" width="1440" height="900" loading="lazy" decoding="async" alt="Solar Saathi: a friendly robot beside a solar-roofed house says Namaste and invites you to meet Solar Saathi"></div>
+          <div class="view"><img src="assets/img/work/saathi-800.webp" srcset="assets/img/work/saathi-800.webp 800w, assets/img/work/saathi-1440.webp 1440w" sizes="(max-width:860px) 90vw, (min-width:1341px) 57vw, 760px" width="1440" height="900" loading="lazy" decoding="async" alt="Solar Saathi: a friendly robot beside a solar-roofed house says Namaste and invites you to meet Solar Saathi"></div>
         </figure>
         <figure class="detail">
           <img src="assets/img/work/detail/saathi.webp" width="640" height="800" loading="lazy" decoding="async" alt="Saathi on a phone, step 1 of 5: the robot says let's get started and asks for your full name, typed or spoken">
@@ -326,8 +337,8 @@
         </div>
       </div>
       <div class="proof">
-        <div><b>3<em>languages</em></b><span>Odia, Hindi and English</span></div>
-        <div><b>1<em>question</em></b><span>At a time, spoken out loud</span></div>
+        <div><b><span data-count="3">3</span><em>languages</em></b><span>Odia, Hindi and English</span></div>
+        <div><b><span data-count="1">1</span><em>question</em></b><span>At a time, spoken out loud</span></div>
         <div><b>OTP<em>verified</em></b><span>A real number on every lead</span></div>
       </div>
     </article>
@@ -340,7 +351,7 @@
           <div class="lab">07 / Built by Aivoryx</div>
           <h2 id="tools-h">Useful things. <em>Free to use.</em></h2>
         </div>
-        <p class="note">Eight tools we built and keep running ourselves. No card, no trial, no catch — six of them don't even ask for an email.</p>
+        <p class="note"><b>Eight tools, ₹0, no card.</b> Built and kept running by us — six don't even ask for an email.</p>
       </div>
 
       <!-- the free part, said in numbers (facts from the tools page on the current site) -->
@@ -456,7 +467,6 @@
       </a>
     </div>
 
-    <div class="work-foot"><span>Every build here is hand-coded · zero page builders</span><span>Open them — judge us in the browser</span></div>
   </section>
 
   <!-- ============ STANDARD ============ -->
@@ -485,7 +495,7 @@
         <div class="lab">08 / Investment</div>
         <h2 id="price-h">Good work has a price. <em>No surprises.</em></h2>
       </div>
-      <p class="note">Every project is different. Here is where most projects begin. Tell us what you're building and we'll work out the right scope.</p>
+      <p class="note"><b>Fixed prices, agreed up front.</b> Here is where most projects begin — tell us what you're building and we'll scope it right.</p>
     </div>
 
     <div class="plans reveal">
@@ -806,9 +816,83 @@
   </div>
 </footer>
 
+<!-- ================= WELCOME POPUP =================
+     Homepage only. Opens 3s after every page load — every refresh, every tab,
+     every visit; nothing is stored, so it never "remembers" to stay away.
+     Closing it (×, Esc, or a click outside) always works.
+     popup.js drives it; any one of name / email / phone is enough. -->
+<div class="hello" id="hello" hidden>
+  <div class="hello-veil" data-close></div>
+  <div class="hello-card" role="dialog" aria-modal="true" aria-labelledby="hello-h" aria-describedby="hello-p" tabindex="-1">
+    <button class="hello-x" type="button" data-close aria-label="Close"><span></span><span></span></button>
+
+    <!-- the line, and the mark assembling itself piece by piece -->
+    <div class="hello-hero">
+      <div class="hello-copy">
+        <h2 id="hello-h"><span class="ln">You bring the idea.</span> <em class="ln">We&rsquo;ll build the rest.</em></h2>
+        <p class="hello-p" id="hello-p"><span class="hello-lead">Six businesses already run on websites and apps we designed, coded and shipped ourselves — all live, open any of them. </span><b>Tell us what you need, and we&rsquo;ll show you how we&rsquo;d build it.</b></p>
+      </div>
+      <!-- three pieces: the Λ (one stroke, so its peak is a clean point), the crossing stroke, the bar -->
+      <svg class="hello-mark" viewBox="5 -13 94 111" fill="none" aria-hidden="true">
+        <path class="s1" d="M12 90 L52 2 L92 90"/>
+        <path class="s3" d="M52 90 L92 2"/>
+        <path class="bar" d="M32 46 L72 46"/>
+      </svg>
+    </div>
+
+    <!-- live numbers about this window, measured in the visitor's own browser -->
+    <dl class="hello-stats">
+      <div><dt>Self-weight</dt><dd><b class="hot" data-kb>— KB</b><span>This window · measured live</span></dd></div>
+      <div><dt>Dependencies</dt><dd><b>0</b><span>No plugins · no builders</span></dd></div>
+      <div><dt>Time on page</dt><dd><b class="hot" data-clock>00:00</b><span>And counting</span></dd></div>
+    </dl>
+
+    <div class="hello-zone">
+      <form class="hello-form" id="helloForm" action="api/send.php" method="post" novalidate>
+        <div class="hello-fields">
+          <div class="f">
+            <label for="h-name">Your name</label>
+            <input id="h-name" name="name" type="text" autocomplete="name" maxlength="120" placeholder="Asha Mehta">
+          </div>
+          <div class="f">
+            <label for="h-reach">Email or phone</label>
+            <input id="h-reach" name="reach" type="text" autocomplete="email" maxlength="200" placeholder="you@company.com" aria-describedby="h-err">
+          </div>
+          <button class="btn hello-send" type="submit">
+            <span class="lbl">Send — we'll reach out</span>
+            <svg class="arr" width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.8"/></svg>
+            <span class="spin" aria-hidden="true"></span>
+          </button>
+        </div>
+        <div class="trap" aria-hidden="true"><label for="h-hp">Leave this empty</label><input class="hp" id="h-hp" name="ax_hp" type="text" tabindex="-1" autocomplete="off"></div>
+        <p class="hello-err" id="h-err" role="alert"></p>
+      </form>
+
+      <div class="hello-done" role="status" tabindex="-1" hidden>
+        <span class="done-mark"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+        <div class="hello-done-txt">
+          <p class="hello-done-h">Got it<span data-first></span>. <em>Talk soon.</em></p>
+          <p class="hello-done-p">We'll reach you <span data-via></span> the same working day.</p>
+        </div>
+        <button class="biglink" type="button" data-close>Back to the site <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.8"/></svg></button>
+      </div>
+    </div>
+
+    <!-- the promises, on a loop (copy is doubled so the loop is seamless) -->
+    <div class="hello-ticker" aria-hidden="true">
+      <div class="hello-track">
+        <span>Code, domain &amp; passwords are yours</span><span>2–3 week delivery</span><span>You talk to the builder</span><span>Hand-coded · zero page builders</span><span>₹0 monthly fee</span><span>Same-day replies</span>
+        <span>Code, domain &amp; passwords are yours</span><span>2–3 week delivery</span><span>You talk to the builder</span><span>Hand-coded · zero page builders</span><span>₹0 monthly fee</span><span>Same-day replies</span>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script src="assets/js/nav.js" defer></script>
 <script src="assets/js/reveal.js" defer></script>
 <script src="assets/js/solar.js" defer></script>
+<script src="assets/js/post.js" defer></script>
 <script src="assets/js/enquiry.js" defer></script>
+<script src="assets/js/popup.js" defer></script>
 </body>
 </html>

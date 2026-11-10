@@ -81,33 +81,8 @@
     alertBox.hidden = false;
   }
 
-  /* BigRock's bot filter answers a .php request without its "humans_NNNN"
-     cookie with a 409 page that sets the cookie and reloads. Static pages are
-     never challenged, so the first POST always meets it: read the cookie from
-     that page, set it, and retry once. (Same fix as assets/js/form.js.) */
-  function post(payload, canRetry) {
-    const ctrl = 'AbortController' in window ? new AbortController() : null;
-    const timer = ctrl && setTimeout(() => ctrl.abort(), TIMEOUT);
-    return fetch(ENDPOINT, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      credentials: 'same-origin',
-      body: JSON.stringify(payload),
-      signal: ctrl ? ctrl.signal : undefined
-    })
-      .then(res => res.text().then(body => {
-        if (timer) clearTimeout(timer);
-        const m = /document\.cookie\s*=\s*["']([^"';]+)/.exec(body);
-        if (canRetry && m && !res.ok) {
-          document.cookie = m[1] + '; path=/; SameSite=Lax';
-          return post(payload, false);
-        }
-        let data = null;
-        try { data = JSON.parse(body); } catch (e) { /* not our endpoint talking */ }
-        return { status: res.status, data };
-      }))
-      .catch(err => { if (timer) clearTimeout(timer); throw err; });
-  }
+  // the POST itself (with BigRock's cookie-challenge retry) lives in post.js
+  const post = payload => window.axPost(ENDPOINT, payload, TIMEOUT);
 
   function busy(on) {
     form.classList.toggle('is-sending', on);
@@ -160,7 +135,7 @@
     sending = true;
     busy(true);
 
-    post(payload, true)
+    post(payload)
       .then(({ status, data }) => {
         if (data && data.ok === true) return succeed(payload.email);
         let msg = data && data.message;

@@ -76,6 +76,9 @@ $budget  = ax_field($in, 'budget', 120);
 $message = ax_field($in, 'message', 4000);
 $trap    = ax_field($in, 'company', 200);
 $page    = ax_field($in, 'page', 200);
+/* "quick" = the homepage popup: any ONE of name / email / phone is enough.
+   Everything else (the full enquiry form) keeps the strict rules below. */
+$quick   = ax_field($in, 'kind', 20) === 'quick';
 
 
 /* ---------------- Honeypot ----------------
@@ -90,11 +93,19 @@ if ($trap !== '') {
 $digits = preg_replace('/\D/', '', $phone);
 $errors = array();
 
-if (ax_len($name) < 2)                                     $errors[] = 'name';
-if (strlen($digits) < 10 || strlen($digits) > 13)          $errors[] = 'phone';
-if (!filter_var($email, FILTER_VALIDATE_EMAIL))            $errors[] = 'email';
-if ($need === '')                                          $errors[] = 'need';
-if ($budget === '')                                        $errors[] = 'budget';
+if ($quick) {
+  // whatever was given must be valid, and at least one thing must be given
+  if ($name !== ''  && ax_len($name) < 2)                              $errors[] = 'name';
+  if ($phone !== '' && (strlen($digits) < 10 || strlen($digits) > 13)) $errors[] = 'phone';
+  if ($email !== '' && !filter_var($email, FILTER_VALIDATE_EMAIL))     $errors[] = 'email';
+  if ($name === '' && $phone === '' && $email === '')                  $errors[] = 'any';
+} else {
+  if (ax_len($name) < 2)                                     $errors[] = 'name';
+  if (strlen($digits) < 10 || strlen($digits) > 13)          $errors[] = 'phone';
+  if (!filter_var($email, FILTER_VALIDATE_EMAIL))            $errors[] = 'email';
+  if ($need === '')                                          $errors[] = 'need';
+  if ($budget === '')                                        $errors[] = 'budget';
+}
 
 if ($errors) {
   ax_out(false, 'Some details are missing or look wrong. Please check the form.', 422);
@@ -148,6 +159,46 @@ function ax_p($html, $extra = '') {
    has none, so add 91 rather than build a link that silently fails. */
 $waNum = strlen($digits) === 10 ? '91' . $digits : $digits;
 
+
+/* ----- Quick lead (homepage popup) — one short note to the owner ----- */
+if ($quick) {
+  $who  = $name !== '' ? $name : ($email !== '' ? $email : $phone);
+  $rows = array();
+  if ($name !== '')  $rows['Name']  = ax_e($name);
+  if ($phone !== '') $rows['Phone'] = '<a href="tel:+' . ax_e($waNum) . '" style="color:#222222">' . ax_e($phone) . '</a>';
+  if ($email !== '') $rows['Email'] = '<a href="mailto:' . ax_e($email) . '" style="color:#222222">' . ax_e($email) . '</a>';
+  $rowsHtml = '';
+  foreach ($rows as $k => $v) {
+    $rowsHtml .= '<tr><td style="padding:3px 16px 3px 0;color:#666666;vertical-align:top;white-space:nowrap">'
+      . $k . ':</td><td style="padding:3px 0;vertical-align:top">' . $v . '</td></tr>';
+  }
+  $howTo = $email !== '' ? 'Reply to this email to answer them directly.'
+         : ($phone !== '' ? 'Call or WhatsApp them on the number above.'
+         : 'Only a name was left — no way to reach them was given.');
+
+  $html = ax_letter(
+      ax_p('Someone left their details in the welcome popup on the homepage.')
+    . '<table cellpadding="0" cellspacing="0" border="0" style="margin:0 0 14px;font-size:15px;line-height:1.6;color:#222222">'
+    . $rowsHtml . '</table>'
+    . ax_p(ax_e($howTo))
+    . '<p style="margin:20px 0 0;font-size:13px;color:#888888">Sent from the popup on '
+    . ax_e($page !== '' ? $page : 'the website') . ' &middot; ' . ax_e($when) . '</p>'
+  );
+  $text = "Someone left their details in the welcome popup on the homepage.\n\n"
+    . ($name !== ''  ? "Name:  " . $name  . "\n" : '')
+    . ($phone !== '' ? "Phone: " . $phone . "\n" : '')
+    . ($email !== '' ? "Email: " . $email . "\n" : '')
+    . "\n" . $howTo . "\n\nSent from the popup on " . ($page !== '' ? $page : 'the website') . " - " . $when . "\n";
+
+  try {
+    ax_send($cfg, $cfg['to'], $cfg['to_name'], 'Quick lead from the website: ' . $who, $html, $text,
+      $email !== '' ? $email : null, $name);
+  } catch (Exception $e) {
+    error_log('[aivoryx] quick lead send failed: ' . $e->getMessage());
+    ax_out(false, "We couldn't send that just now. Please try WhatsApp, or call us.", 502);
+  }
+  ax_out(true, 'Got it. We\'ll be in touch the same working day.');
+}
 
 /* ----- 1. To the owner ----- */
 $rows = array(

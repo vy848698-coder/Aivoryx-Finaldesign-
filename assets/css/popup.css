@@ -1,0 +1,164 @@
+/* ============================================================
+   AIVORYX · welcome popup (homepage only) — see popup.js
+   One paper card, read top to bottom:
+     mono kicker row → two-voice line + the mark assembling itself →
+     an ink band of live numbers → an inline form → a ticker of promises.
+   Built from the homepage's own parts (mono labels, sans + serif-italic
+   headline, the ink savings panel, the stat ledger, .f fields, .btn).
+   Loaded before responsive.css.
+   ============================================================ */
+.hello{position:fixed;inset:0;z-index:120;display:flex;align-items:center;justify-content:center;padding:24px}
+.hello[hidden]{display:none}
+.hello-veil{position:absolute;inset:0;background:rgba(23,21,15,.5);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);opacity:0;transition:opacity .45s ease}
+.hello.on .hello-veil{opacity:1}
+
+.hello-card{position:relative;display:flex;flex-direction:column;width:100%;max-width:780px;max-height:100%;overflow:hidden auto;overscroll-behavior:contain;
+  background:var(--paper);border-radius:24px;box-shadow:0 60px 120px -40px rgba(23,21,15,.65),0 0 0 1px rgba(23,21,15,.1);
+  opacity:0;transform:translateY(28px) scale(.98);transition:opacity .45s ease,transform .65s var(--ease)}
+.hello.on .hello-card{opacity:1;transform:none}
+.hello-card:focus{outline:none}
+
+/* close — the burger's round button, crossed */
+.hello-x{position:absolute;top:16px;right:16px;z-index:3;width:42px;height:42px;border-radius:50%;border:1px solid var(--hair);background:var(--card);display:grid;place-items:center;transition:background .2s,border-color .2s,transform .3s var(--ease)}
+.hello-x span{grid-area:1/1;width:15px;height:1.8px;background:var(--ink);transform:rotate(45deg);transition:background .2s}
+.hello-x span + span{transform:rotate(-45deg)}
+.hello-x:hover{background:var(--ink);border-color:var(--ink);transform:rotate(90deg)}
+.hello-x:hover span{background:var(--paper)}
+
+/* entrance: everything inside rises in order after the card lands */
+.hello-copy > *,.hello-stats,.hello-zone,.hello-ticker{opacity:0;transform:translateY(12px)}
+.hello.on .hello-copy > *,.hello.on .hello-stats,.hello.on .hello-zone,.hello.on .hello-ticker{animation:rise .6s var(--ease) forwards}
+.hello.on .hello-copy > :nth-child(1){animation-delay:.2s}
+.hello.on .hello-copy > :nth-child(2){animation-delay:.3s}
+.hello.on .hello-stats{animation-delay:.42s}
+.hello.on .hello-zone{animation-delay:.52s}
+.hello.on .hello-ticker{animation-delay:.6s}
+
+
+/* ---------- the line + the mark ---------- */
+.hello-hero{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:20px 36px;padding:44px 40px 32px 34px}
+.hello-copy h2{font-size:46px;font-weight:700;letter-spacing:-.036em;line-height:1.02}
+.hello-copy h2 .ln{display:block}
+.hello-copy h2 em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.014em;color:var(--accent)}
+.hello-p{margin-top:18px;font-size:15.5px;line-height:1.62;color:var(--walnut);max-width:50ch;text-wrap:pretty}
+.hello-p b{color:var(--ink);font-weight:600}
+
+/* The mark is built in front of you: the Λ drops in, the crossing stroke
+   swings into place, then the accent bar slides through and it all locks. */
+.hello-mark{width:132px;height:156px;overflow:visible;flex:none}
+.hello-mark path{stroke:var(--ink);stroke-width:11.5;stroke-linecap:square;stroke-linejoin:miter;transform-box:fill-box;transform-origin:center;opacity:0}
+.hello-mark .bar{stroke:var(--accent)}
+.hello-mark .s1{--fx:-10px;--fy:-56px;--fr:-22deg}
+.hello-mark .s3{--fx:58px;--fy:34px;--fr:42deg}
+.hello.on .hello-mark path{animation:hello-piece .8s cubic-bezier(.2,1.35,.35,1) forwards}
+.hello.on .hello-mark .s1{animation-delay:.45s}
+.hello.on .hello-mark .s3{animation-delay:.72s}
+.hello.on .hello-mark .bar{animation:hello-bar .7s cubic-bezier(.2,1.5,.35,1) 1.05s forwards}
+.hello.on .hello-mark{animation:hello-lock .5s var(--ease) 1.5s}
+@keyframes hello-piece{
+  from{opacity:0;transform:translate(var(--fx),var(--fy)) rotate(var(--fr)) scale(.7)}
+  35%{opacity:1}
+  to{opacity:1;transform:none}
+}
+@keyframes hello-bar{
+  from{opacity:1;transform:translateX(-70px) scaleX(0)}
+  to{opacity:1;transform:none}
+}
+@keyframes hello-lock{50%{transform:scale(1.05)}}
+.hello-mark.again path{animation:none!important}
+
+/* ---------- the ink band: live numbers ---------- */
+.hello-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin:0;background:var(--ink);color:var(--paper)}
+.hello-stats > div{padding:18px 20px 20px;min-width:0}
+.hello-stats > div:first-child{padding-left:34px}
+.hello-stats > div + div{border-left:1px solid var(--on-ink-hair)}
+.hello-stats dt{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--on-ink-dim)}
+.hello-stats dd{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 10px;margin-top:10px}
+.hello-stats b{font-size:26px;font-weight:700;letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums;white-space:nowrap}
+.hello-stats b.hot{color:var(--accent-on-dark)}
+.hello-stats span{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--on-ink-dim)}
+
+/* ---------- the form ---------- */
+.hello-zone{background:var(--card);padding:24px 34px 28px}
+.hello-fields{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) auto;align-items:end;gap:12px}
+.hello-form .f label{font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--sand)}
+.hello-form .f input{background:var(--paper);padding:13px 15px}
+.hello-form.bad #h-reach,.hello-form.bad-name #h-name{border-color:var(--err);background:#FFF}
+.hello-send{font-size:15.5px;padding:15px 24px;white-space:nowrap}
+.hello-send svg{transition:transform .2s var(--ease)}
+.hello-send:hover svg{transform:translateX(3px)}
+.hello-send .spin{display:none;width:16px;height:16px;border:2px solid rgba(255,255,255,.35);border-top-color:#FFF;border-radius:50%;animation:spin .8s linear infinite}
+.hello-form.is-sending .hello-send{cursor:progress;background:var(--accent-press)}
+.hello-form.is-sending .hello-send .spin{display:block}
+.hello-form.is-sending .hello-send .arr{display:none}
+
+.hello-err{display:flex;align-items:center;flex-wrap:wrap;gap:7px;margin-top:10px;font-size:13px;font-weight:500;line-height:1.4;color:var(--err)}
+.hello-err:empty{display:none}
+.hello-err::before{content:"!";flex:none;width:15px;height:15px;border-radius:50%;background:var(--err);color:#FFF;font-size:10px;font-weight:700;display:grid;place-items:center;line-height:1}
+.hello-err a{font-weight:700;border-bottom:2px solid var(--accent)}
+
+
+/* success — replaces the form, everything above stays */
+.hello-form[hidden],.hello-done[hidden]{display:none}
+.hello-done{display:flex;align-items:center;gap:18px 22px;flex-wrap:wrap;padding:4px 0}
+.hello-done:focus{outline:none}
+.hello-done .done-mark{width:54px;height:54px;flex:none}
+.hello-done-txt{flex:1;min-width:220px}
+.hello-done-h{font-family:var(--serif);font-size:34px;line-height:1;letter-spacing:-.015em}
+.hello-done-h em{color:var(--accent)}
+.hello-done-p{margin-top:6px;font-size:14.5px;color:var(--walnut)}
+
+/* ---------- ticker of promises ---------- */
+.hello-ticker{overflow:hidden;background:var(--accent);color:#FFF;font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;white-space:nowrap}
+.hello-track{display:flex;width:max-content;animation:hello-roll 34s linear infinite}
+.hello-track span{display:inline-flex;align-items:center;padding:11px 0}
+.hello-track span::after{content:"✦";margin:0 22px;font-size:9px;opacity:.8}
+.hello-ticker:hover .hello-track{animation-play-state:paused}
+@keyframes hello-roll{to{transform:translateX(-50%)}}
+
+/* ---------- phones: bottom sheet ---------- */
+@media (max-width:700px){
+  .hello{align-items:flex-end;padding:20px 0 0}
+  .hello-card{max-width:none;border-radius:22px 22px 0 0;transform:translateY(60px)}
+  .hello-hero{grid-template-columns:minmax(0,1fr) auto;align-items:start;gap:0 14px;padding:26px 22px 22px}
+  .hello-copy{display:contents}            /* line + mark side by side, paragraph full width below */
+  .hello-copy h2{grid-column:1;grid-row:1;font-size:31px}
+  .hello-mark{grid-column:2;grid-row:1;width:58px;height:69px;margin-top:48px}
+  .hello-p{grid-column:1/-1;font-size:15px;margin-top:14px}
+  .hello-stats > div,.hello-stats > div:first-child{padding:14px 10px 15px 14px}
+  .hello-stats > div:first-child{padding-left:22px}
+  .hello-stats dt{font-size:9px;letter-spacing:.12em}
+  .hello-stats b{font-size:21px}
+  .hello-stats span{display:none}
+  .hello-zone{padding:20px 22px 18px}
+  .hello-fields{grid-template-columns:1fr}
+  .hello-send{justify-content:center;margin-top:4px}
+}
+@media (max-width:380px){
+  .hello-hero{padding-left:18px;padding-right:18px}
+  .hello-copy h2{font-size:27px}
+  .hello-mark{width:48px;height:57px}
+  .hello-stats > div:first-child{padding-left:18px}
+  .hello-stats b{font-size:19px}
+  .hello-zone{padding-left:18px;padding-right:18px}
+}
+/* short phones: keep Send and "Not now" on screen */
+@media (max-width:700px) and (max-height:760px){
+  .hello-hero{padding-top:22px;padding-bottom:18px}
+  .hello-lead{display:none}
+  .hello-p{margin-top:10px}
+  .hello-zone{padding-top:16px;padding-bottom:14px}
+  .hello-fields{gap:9px}
+  .hello-form .f{gap:5px}
+  .hello-form .f input{padding:11px 14px}
+  .hello-send{padding:13px 22px}
+  .hello-track span{padding:9px 0}
+}
+
+/* reduced motion: base.css stops the motion; show the finished state */
+@media (prefers-reduced-motion:reduce){
+  .hello-veil,.hello-card,.hello-copy > *,.hello-stats,.hello-zone,.hello-ticker,.hello-mark path{opacity:1;transform:none}
+  .hello:not(.on) .hello-card,.hello:not(.on) .hello-veil{opacity:0}
+  .hello-track{flex-wrap:wrap;width:auto;justify-content:center}
+  .hello-track span:nth-child(n+7){display:none}
+}

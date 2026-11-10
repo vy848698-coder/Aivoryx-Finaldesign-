@@ -13,13 +13,13 @@
    bold sans label, and the serif-italic accent (like "& Labs"). Hover and the
    section in view roll the label from sans into serif italic; both versions
    share one grid cell, so the width never changes and nothing shifts. */
-.menu{display:flex;align-items:center;gap:clamp(22px,2.3vw,42px);white-space:nowrap}
+.menu{display:flex;align-items:center;gap:clamp(22px,calc(2.3*var(--vw)),42px);white-space:nowrap}
 .menu a{display:inline-flex;align-items:flex-start;gap:7px;padding:10px 0;color:var(--ink)}
 .menu a i{font-style:normal;font-family:var(--mono);font-size:10px;letter-spacing:.08em;line-height:1;color:var(--sand);margin-top:2px;transition:color .25s}
 .menu .lbl{display:inline-grid;align-items:center;justify-items:start;line-height:1.1}
 .menu .lbl > *{grid-area:1/1;transition:opacity .3s var(--ease),transform .4s var(--ease)}
-.menu .lbl b{font-weight:600;font-size:clamp(15.5px,.35vw + 10.5px,17px);letter-spacing:-.015em}
-.menu .lbl em{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(18px,.45vw + 12px,20.5px);letter-spacing:-.005em;
+.menu .lbl b{font-weight:600;font-size:clamp(15.5px,calc(.35*var(--vw)) + 10.5px,17px);letter-spacing:-.015em}
+.menu .lbl em{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(18px,calc(.45*var(--vw)) + 12px,20.5px);letter-spacing:-.005em;
   opacity:0;transform:translateY(55%)}
 .menu a:hover .lbl b,.menu a[aria-current] .lbl b{opacity:0;transform:translateY(-55%)}
 .menu a:hover .lbl em,.menu a[aria-current] .lbl em{opacity:1;transform:none}
@@ -27,7 +27,7 @@
 .menu a[aria-current] i{color:var(--accent)}
 .menu a:focus-visible{outline:2px solid var(--accent);outline-offset:5px;border-radius:2px}
 .nav-right{justify-self:end;display:flex;align-items:center;gap:10px}
-.cta{display:inline-flex;align-items:center;gap:11px;background:var(--ink);color:var(--paper);font-weight:600;font-size:clamp(15px,.55vw + 8px,17px);padding:clamp(13px,.4vw + 8px,16px) clamp(24px,1.4vw + 6px,32px);border-radius:999px;transition:background .2s}
+.cta{display:inline-flex;align-items:center;gap:11px;background:var(--ink);color:var(--paper);font-weight:600;font-size:clamp(15px,calc(.55*var(--vw)) + 8px,17px);padding:clamp(13px,calc(.4*var(--vw)) + 8px,16px) clamp(24px,calc(1.4*var(--vw)) + 6px,32px);border-radius:999px;transition:background .2s}
 .cta:hover{background:var(--accent)}
 
 /* burger — shown at 1080px and below, where the links no longer fit */
@@ -40,7 +40,7 @@
 .sheet{position:fixed;inset:var(--nav-h) 0 0 0;z-index:89;background:var(--paper);padding:28px var(--gut) 40px;display:flex;flex-direction:column;
   opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity .25s,transform .25s var(--ease),visibility 0s .25s}
 .nav.open + .sheet{opacity:1;visibility:visible;transform:none;transition:opacity .25s,transform .25s var(--ease)}
-.sheet a.big{font-size:clamp(34px,9vw,44px);font-weight:700;letter-spacing:-.03em;padding:14px 0;border-bottom:1px solid var(--hair);display:flex;justify-content:space-between;align-items:center}
+.sheet a.big{font-size:clamp(34px,calc(9*var(--vw)),44px);font-weight:700;letter-spacing:-.03em;padding:14px 0;border-bottom:1px solid var(--hair);display:flex;justify-content:space-between;align-items:center}
 .sheet a.big span{font-family:var(--mono);font-size:12px;letter-spacing:.2em;color:var(--sand);font-weight:400}
 .sheet .btn{margin-top:auto;justify-content:center}
 body.locked{overflow:hidden}

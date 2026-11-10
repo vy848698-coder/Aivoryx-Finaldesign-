@@ -29,11 +29,21 @@
   --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
 
   /* layout */
-  --max:1340px;
+  /* The page always spans the full screen — no capped column, no side gaps.
+     Up to --design (1340px) it is fluid; above that, a script in <head>
+     zooms the whole page by screenWidth / 1340, so every desktop shows the
+     exact 1340px composition, just bigger. --vw stands in for `vw` everywhere:
+     it is 1vw while fluid and freezes at 1340px's value once zoom takes over
+     (a real vw would be scaled twice). Keep 1340 in sync with that script. */
+  --max:none;
+  --vw:1vw;
   --nav-h:84px;
-  --gut:clamp(20px,3.6vw,58px);   /* outer section padding */
-  --gut-sm:clamp(20px,3.2vw,52px);
+  --gut:clamp(20px,calc(3.6*var(--vw)),58px);   /* outer section padding */
+  --gut-sm:clamp(20px,calc(3.2*var(--vw)),52px);
 
   /* motion */
   --ease:cubic-bezier(.2,.6,.2,1);
+}
+@media (min-width:1341px){
+  :root{--vw:13.4px}
 }
