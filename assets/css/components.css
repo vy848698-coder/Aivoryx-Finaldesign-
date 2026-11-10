@@ -9,17 +9,23 @@
 .brand{justify-self:start;display:flex;align-items:center;gap:13px;font-weight:700;font-size:24px;letter-spacing:-.025em}
 .brand svg{width:36px;height:42px;flex:none}
 .brand em{font-style:normal;color:var(--accent)}
-/* menu — a single hairline capsule that holds the centre of the bar (five stops).
-   Sizes scale with the viewport so it never reads small on a big screen. */
-.menu{display:flex;align-items:center;gap:2px;padding:5px;border:1px solid var(--hair);border-radius:999px;background:rgba(253,252,249,.55);
-  font-size:clamp(15px,.55vw + 8px,17.5px);font-weight:600;color:var(--walnut);white-space:nowrap}
-.menu a{--px:clamp(16px,1.1vw + 2px,24px);position:relative;display:inline-flex;align-items:center;padding:clamp(9px,.4vw + 3px,12px) var(--px);border-radius:999px;transition:color .2s,background .25s,box-shadow .25s}
-/* the dot sits in the left padding and scales in place, so text never shifts */
-.menu a::before{content:"";position:absolute;left:calc(var(--px) / 2 - 3px);top:50%;width:6px;height:6px;margin-top:-3px;border-radius:50%;background:var(--accent);transform:scale(0);opacity:0;transition:transform .25s var(--ease),opacity .2s}
-.menu a:hover{color:var(--ink);background:rgba(23,21,15,.05)}
-.menu a[aria-current]{color:var(--ink);background:var(--card);box-shadow:0 0 0 1px var(--hair2),0 6px 16px -10px rgba(23,21,15,.35)}
-.menu a[aria-current]::before{transform:none;opacity:1}
-.nav.scrolled .menu{background:rgba(253,252,249,.8)}
+/* menu — speaks the homepage's three voices: mono index (like "01 / Solar"),
+   bold sans label, and the serif-italic accent (like "& Labs"). Hover and the
+   section in view roll the label from sans into serif italic; both versions
+   share one grid cell, so the width never changes and nothing shifts. */
+.menu{display:flex;align-items:center;gap:clamp(22px,2.3vw,42px);white-space:nowrap}
+.menu a{display:inline-flex;align-items:flex-start;gap:7px;padding:10px 0;color:var(--ink)}
+.menu a i{font-style:normal;font-family:var(--mono);font-size:10px;letter-spacing:.08em;line-height:1;color:var(--sand);margin-top:2px;transition:color .25s}
+.menu .lbl{display:inline-grid;align-items:center;justify-items:start;line-height:1.1}
+.menu .lbl > *{grid-area:1/1;transition:opacity .3s var(--ease),transform .4s var(--ease)}
+.menu .lbl b{font-weight:600;font-size:clamp(15.5px,.35vw + 10.5px,17px);letter-spacing:-.015em}
+.menu .lbl em{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(18px,.45vw + 12px,20.5px);letter-spacing:-.005em;
+  opacity:0;transform:translateY(55%)}
+.menu a:hover .lbl b,.menu a[aria-current] .lbl b{opacity:0;transform:translateY(-55%)}
+.menu a:hover .lbl em,.menu a[aria-current] .lbl em{opacity:1;transform:none}
+.menu a:hover i{color:var(--walnut)}
+.menu a[aria-current] i{color:var(--accent)}
+.menu a:focus-visible{outline:2px solid var(--accent);outline-offset:5px;border-radius:2px}
 .nav-right{justify-self:end;display:flex;align-items:center;gap:10px}
 .cta{display:inline-flex;align-items:center;gap:11px;background:var(--ink);color:var(--paper);font-weight:600;font-size:clamp(15px,.55vw + 8px,17px);padding:clamp(13px,.4vw + 8px,16px) clamp(24px,1.4vw + 6px,32px);border-radius:999px;transition:background .2s}
 .cta:hover{background:var(--accent)}
