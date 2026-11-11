@@ -64,6 +64,23 @@ the owner and never echoed in the auto-reply). Same rule as the homepage form:
 success only on `{"ok":true}`, so on Vercel or without `api/config.php` the form
 shows its error state with WhatsApp as the fallback.
 
+## Contact page (`contact.html`)
+
+The nav's "Contact us" and the footer's "Contact" link on every page go here
+(the homepage keeps its own section-09 form for its in-page CTAs). Files:
+
+    assets/css/contact.css   page styles (loaded after responsive.css)
+    assets/js/contact.js     process line, FAQ accordion, copy-email, the 4-step enquiry
+
+The enquiry posts to `api/send.php` with `kind: "contact"`: name, email,
+optional phone, `need`, `message` (the idea, 10+ characters), optional
+`details`, and `start`. `need` and `start` are whitelisted in that branch and
+must match the radio values in `contact.html` exactly (note the en dash in
+"In 2–3 months"). No budget is asked. The auto-reply repeats only those fixed
+choices, never the visitor's own text. Same rule as the other forms: success
+only on `{"ok":true}`; any failure keeps every answer and offers WhatsApp.
+Without JavaScript all four steps show at once and the form still posts.
+
 ## Adding a project screenshot
 
 1. Capture the live site at 1440×900 with no browser chrome and no popups open.

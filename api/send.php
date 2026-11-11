@@ -101,6 +101,12 @@ $budgetMode = ax_field($in, 'budget_mode', 120);
 $budgetNote = ax_field($in, 'budget_note', 200);
 $priority   = ax_field($in, 'priority', 120);
 $direction  = ax_field($in, 'direction', 40);
+/* "contact" = the Contact page (contact.html): a four-step enquiry. Name,
+   email, a need, the idea in their words and when they plan to start.
+   Phone and extra details are optional; budget is never asked. */
+$contact = ax_field($in, 'kind', 20) === 'contact';
+$details = ax_field($in, 'details', 2000);
+$start   = ax_field($in, 'start', 60);
 
 
 /* ---------------- Honeypot ----------------
@@ -137,6 +143,17 @@ if ($quick) {
   if (!in_array($budgetMode, $modes, true))                            $errors[] = 'budget_mode';
   if (!in_array($priority, $priorities, true))                         $errors[] = 'priority';
   if (!in_array($direction, $directions, true))                        $errors[] = 'direction';
+} elseif ($contact) {
+  if (ax_len($name) < 2)                                               $errors[] = 'name';
+  if (!filter_var($email, FILTER_VALIDATE_EMAIL))                      $errors[] = 'email';
+  if ($phone !== '' && (strlen($digits) < 10 || strlen($digits) > 13)) $errors[] = 'phone';
+  if (ax_len($message) < 10)                                           $errors[] = 'message';
+  /* Must match the radio values in contact.html exactly. */
+  $cNeeds  = array('Business website', 'Web application', 'Mobile application', 'E-commerce store',
+                   'AI assistant / automation', 'Something else');
+  $cStarts = array('Immediately', 'Within a month', 'In 2–3 months', 'Just exploring');
+  if (!in_array($need, $cNeeds, true))                                 $errors[] = 'need';
+  if (!in_array($start, $cStarts, true))                               $errors[] = 'start';
 } else {
   if (ax_len($name) < 2)                                     $errors[] = 'name';
   if (strlen($digits) < 10 || strlen($digits) > 13)          $errors[] = 'phone';
@@ -314,6 +331,77 @@ if ($pricing) {
     }
   }
   ax_out(true, 'Sent. We\'ll reply to ' . $email . ' the same day.');
+}
+
+/* ----- Contact page enquiry — owner note + a confirmation that repeats
+   only fixed choices (never the idea or details, which a stranger typed). ----- */
+if ($contact) {
+  $rows = array('Name' => ax_e($name),
+    'Email' => '<a href="mailto:' . ax_e($email) . '" style="color:#222222">' . ax_e($email) . '</a>');
+  if ($phone !== '') $rows['Phone'] = '<a href="tel:+' . ax_e($waNum) . '" style="color:#222222">' . ax_e($phone) . '</a>';
+  $rows['Needs']        = ax_e($need);
+  $rows['Plans to start'] = ax_e($start);
+
+  $rowsHtml = '';
+  foreach ($rows as $k => $v) {
+    $rowsHtml .= '<tr><td style="padding:3px 16px 3px 0;color:#666666;vertical-align:top;white-space:nowrap">'
+      . $k . ':</td><td style="padding:3px 0;vertical-align:top">' . $v . '</td></tr>';
+  }
+  $ownerHtml = ax_letter(
+      ax_p('A new enquiry has come in through the Contact page.')
+    . '<table cellpadding="0" cellspacing="0" border="0" style="margin:0 0 14px;font-size:15px;line-height:1.6;color:#222222">'
+    . $rowsHtml . '</table>'
+    . ax_p('<span style="color:#666666">The idea:</span><br>' . nl2br(ax_e($message)))
+    . ($details !== '' ? ax_p('<span style="color:#666666">Additional details:</span><br>' . nl2br(ax_e($details))) : '')
+    . ax_p('Reply to this email to answer ' . ax_e($name) . ' directly.')
+    . '<p style="margin:20px 0 0;font-size:13px;color:#888888">Sent from the form on '
+    . ax_e($page !== '' ? $page : 'the website') . ' &middot; ' . ax_e($when) . '</p>'
+  );
+  $ownerText = "A new enquiry has come in through the Contact page.\n\n";
+  foreach ($rows as $k => $v) $ownerText .= str_pad($k . ':', 16) . html_entity_decode(strip_tags($v), ENT_QUOTES, 'UTF-8') . "\n";
+  $ownerText .= "\nThe idea:\n" . $message . "\n"
+    . ($details !== '' ? "\nAdditional details:\n" . $details . "\n" : '')
+    . "\nReply to this email to answer " . $name . " directly.\n\n"
+    . "Sent from the form on " . ($page !== '' ? $page : 'the website') . " - " . $when . "\n";
+
+  try {
+    ax_send($cfg, $cfg['to'], $cfg['to_name'], 'Website enquiry from ' . $name . ' (Contact)',
+      $ownerHtml, $ownerText, $email, $name);
+  } catch (Exception $e) {
+    error_log('[aivoryx] contact enquiry send failed: ' . $e->getMessage());
+    ax_out(false, "We couldn't send that just now. Please try WhatsApp, or call us.", 502);
+  }
+
+  if (!empty($cfg['autoreply'])) {
+    $first = preg_split('/\s+/', $name);
+    $first = ax_cut($first[0], 30);
+    if (!preg_match('/^[\p{L}\p{M}\'’-]+$/u', $first)) $first = 'there';
+    $replyHtml = ax_letter(
+        ax_p('Dear ' . ax_e($first) . ',')
+      . ax_p('Thank you for telling us about your idea. Your enquiry has been received, and the people '
+          . 'who would build it will read it and get back to you the same working day.')
+      . ax_p('For your reference, you told us:')
+      . '<p style="margin:0 0 14px;padding-left:14px;border-left:2px solid #dddddd;color:#555555">'
+      . ax_e($need) . '<br>Planning to start: ' . ax_e($start) . '<br><br>Plus the description you wrote — we have it.</p>'
+      . ax_p('Nothing is agreed or payable until you have a written proposal in front of you and are happy with it.')
+      . ax_p('If you need to reach us sooner, you can call or WhatsApp us on +91 93995 93499.')
+      . ax_p('Kind regards,<br>Aivoryx'
+          . ($site ? '<br><a href="' . ax_e($site) . '" style="color:#222222">' . ax_e($siteHost) . '</a>' : ''),
+          ';margin-top:20px')
+    );
+    $replyText = "Dear " . $first . ",\n\n"
+      . "Thank you for telling us about your idea. Your enquiry has been received, and the people who would build it will read it and get back to you the same working day.\n\n"
+      . "For your reference, you told us:\n\n  " . $need . "\n  Planning to start: " . $start . "\n\n  Plus the description you wrote - we have it.\n\n"
+      . "Nothing is agreed or payable until you have a written proposal in front of you and are happy with it.\n\n"
+      . "If you need to reach us sooner, you can call or WhatsApp us on +91 93995 93499.\n\n"
+      . "Kind regards,\nAivoryx\n" . ($site ? $siteHost . "\n" : '');
+    try {
+      ax_send($cfg, $email, $name, 'Thank you for telling us about your idea', $replyHtml, $replyText, $cfg['to'], $cfg['to_name'], true);
+    } catch (Exception $e) {
+      error_log('[aivoryx] contact auto-reply failed: ' . $e->getMessage());
+    }
+  }
+  ax_out(true, 'Sent. We\'ll reply to ' . $email . ' the same working day.');
 }
 
 /* ----- 1. To the owner ----- */
