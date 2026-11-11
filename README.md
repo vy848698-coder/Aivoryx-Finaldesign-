@@ -81,6 +81,27 @@ choices, never the visitor's own text. Same rule as the other forms: success
 only on `{"ok":true}`; any failure keeps every answer and offers WhatsApp.
 Without JavaScript all four steps show at once and the form still posts.
 
+## Input rules (every form)
+
+All four forms (homepage enquiry, homepage popup, How we price, Contact)
+use one rule set, written twice so they always agree:
+
+    assets/js/validate.js   in the browser: instant, friendly messages
+    api/validate.php        on the server: the same rules, run again
+
+Change a rule or a message in both files. Highlights: names (letters only,
+no emails/links/digits/"test"), email (typo domains like gmial.com and
+.con, throwaway inboxes, our own address; the server also checks the
+domain exists), phone (Indian mobiles by default, any country with a
+country code, no 0000000000 or our own number), free text (no HTML, at
+most three links, no keyboard mash). Values are tidied (invisible
+characters, stray spaces) before checking and before they're emailed.
+
+The server also drops bots silently (honeypot `company`/`ax_hp`, or a
+submit under 3 s after page load, sent as `t`), skips duplicates sent
+within 15 minutes, and returns `fields: {name: message}` on a 422 so
+each form can show a server-only problem next to its field.
+
 ## Adding a project screenshot
 
 1. Capture the live site at 1440×900 with no browser chrome and no popups open.

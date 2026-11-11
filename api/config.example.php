@@ -49,6 +49,12 @@ return array(
   /* Most submissions accepted from one IP per hour. */
   'rate_limit' => 10,
 
+  /* Look up the domain of every email address typed into a form, and
+     refuse ones that can't receive mail (e.g. "asha@gmial.co.inn").
+     Never blocks anyone when the server's own DNS is down. Set false
+     only if lookups are slow on your host. */
+  'check_email_domain' => true,
+
   /* Used for the link in the signature. */
   'site' => 'https://aivoryx.com',
 );

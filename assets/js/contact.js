@@ -7,6 +7,7 @@
    Success is shown ONLY when the server answers { ok:true }. Every other
    outcome keeps the answers in place and offers WhatsApp instead. */
 (function () {
+  'use strict';
   const $ = (s, r) => (r || document).querySelector(s);
   const $$ = (s, r) => [...(r || document).querySelectorAll(s)];
   const reduce = matchMedia('(prefers-reduced-motion: reduce)');
@@ -25,7 +26,7 @@
     const DUR = { 1: 3400, 2: 4200, 3: 4000, 4: 5200 };
     let s = 4, t = 0, last = 0, raf = 0, seen = true, hover = false;
 
-    function show(n) {
+    function showStage(n) {
       s = n; t = 0;
       ia.dataset.s = n;
       nowLbl.textContent = '0' + n;
@@ -41,21 +42,21 @@
       t += Math.min(64, now - (last || now));
       last = now;
       tabs[s - 1].style.setProperty('--t', Math.min(1, t / DUR[s]).toFixed(4));
-      if (t >= DUR[s]) show(s % 4 + 1);
+      if (t >= DUR[s]) showStage(s % 4 + 1);
       raf = requestAnimationFrame(tick);
     }
     const running = () => !reduce.matches && seen && !hover && !document.hidden;
     function kick() { if (running() && !raf) { last = 0; raf = requestAnimationFrame(tick); } }
 
-    tabs.forEach(b => b.addEventListener('click', () => { show(+b.dataset.ia); kick(); }));
+    tabs.forEach(b => b.addEventListener('click', () => { showStage(+b.dataset.ia); kick(); }));
     ia.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') hover = true; });
     ia.addEventListener('pointerleave', () => { hover = false; kick(); });
     document.addEventListener('visibilitychange', kick);
     if ('IntersectionObserver' in window) {
       new IntersectionObserver(es => { seen = es[0].isIntersecting; kick(); }).observe(ia);
     }
-    if (reduce.matches) show(4);
-    else { show(1); kick(); }
+    if (reduce.matches) showStage(4);
+    else { showStage(1); kick(); }
   }
 
   /* ---------- what happens next: scroll-linked line ---------- */
@@ -153,24 +154,29 @@
   const alertText = $('.msg', alertBox);
   const trap = $('input.hp', form);
 
-  // Same rules as the "contact" branch of send.php, so the browser never
-  // accepts what the server would reject.
+  // The shared rules (validate.js); the "contact" branch of send.php runs
+  // the same ones again.
+  const V = window.axV;
   const RULES = {
-    name:    v => v.length >= 2 || 'Please tell us your name.',
-    email:   v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v) || "That email doesn't look quite right.",
-    phone:   v => { if (!v) return true; const d = v.replace(/\D/g, '').length; return (d >= 10 && d <= 13) || 'A 10-digit mobile number, or leave it blank.'; },
-    need:    v => v !== '' || 'Pick the closest one. “Something else” is a perfectly good answer.',
-    message: v => v.length >= 10 || (v ? 'A little more, please: a sentence or two is plenty.' : 'Tell us a little about the idea, even a sentence.'),
-    start:   v => v !== '' || 'Pick one. “Just exploring” is a fine answer.'
+    name:    v => V.name(v),
+    email:   v => V.email(v),
+    phone:   v => V.phone(v, false),
+    need:    v => v ? '' : 'Pick the closest one. “Something else” is a perfectly good answer.',
+    message: v => V.text(v, 10, 4000),
+    details: v => V.text(v, 0, 2000),
+    start:   v => v ? '' : 'Pick one. “Just exploring” is a fine answer.'
   };
-  const STEP_FIELDS = { 1: ['name', 'email', 'phone'], 2: ['need'], 3: ['message'], 4: ['start'] };
+  const STEP_FIELDS = { 1: ['name', 'email', 'phone'], 2: ['need'], 3: ['message', 'details'], 4: ['start'] };
+  const CLEAN = { email: V.clean.email, message: V.clean.text, details: V.clean.text };
 
+  // every value is read cleaned: invisible characters and stray spaces never count
   const val = name => {
     const el = form.elements[name];
-    return el ? String(el.value || '').trim() : '';
+    if (!el) return '';
+    return el.tagName ? (CLEAN[name] || V.clean.line)(el.value) : String(el.value || '');
   };
   const box = name => $('[data-field="' + name + '"]', form);
-  const check = name => { const r = RULES[name](val(name)); return r === true ? '' : r; };
+  const check = name => RULES[name](val(name)) || '';
 
   function show(name, msg) {
     const b = box(name);
@@ -236,9 +242,13 @@
   }
 
   // live re-checks once a field has been flagged (or has content and loses focus)
-  ['name', 'email', 'phone', 'message'].forEach(name => {
+  ['name', 'email', 'phone', 'message', 'details'].forEach(name => {
     const el = form.elements[name];
-    el.addEventListener('blur', () => { if (el.value.trim() && name !== 'message') show(name, check(name)); });
+    el.addEventListener('blur', () => V.later(() => {
+      if (!el.value.trim()) return;
+      el.value = val(name); // show the tidied value
+      show(name, check(name));
+    }));
     el.addEventListener('input', () => { if (box(name).classList.contains('bad')) show(name, check(name)); });
   });
   ['need', 'start'].forEach(name => {
@@ -295,6 +305,7 @@
       details: val('details'),
       start: val('start'),
       company: trap ? trap.value : '',
+      t: V.since(),
       page: 'Contact'
     };
 
@@ -304,6 +315,7 @@
     window.axPost(ENDPOINT, payload, TIMEOUT)
       .then(({ status, data }) => {
         if (data && data.ok === true) return succeed(payload.email);
+        if (data && data.fields) return serverSays(data.fields);
         let msg = data && data.message;
         if (!msg) msg = status === 404 || status === 405 || status === 501
           ? "The form can't reach our inbox from here."
@@ -315,6 +327,19 @@
         : "No connection, so your enquiry wasn't sent."))
       .then(() => { sending = false; busy(false); });
   });
+
+  // A rule only the server can apply (e.g. the email's domain doesn't exist):
+  // go back to the step that holds the first such field and mark it there.
+  function serverSays(fields) {
+    const keys = Object.keys(fields).filter(box);
+    if (!keys.length) return fail('Some details need another look.');
+    const n = +Object.keys(STEP_FIELDS).find(s => STEP_FIELDS[s].includes(keys[0]));
+    go(n, { focus: false });
+    keys.forEach(k => show(k, fields[k]));
+    setAlert(keys.length === 1 ? 'One answer needs another look.' : keys.length + ' answers need another look.');
+    const b = box(keys[0]);
+    ($('input:not([type=radio]),textarea', b) || $('input', b)).focus();
+  }
 
   function fail(msg) {
     setAlert(msg + ' Everything you wrote is still here. Try again, or send it on WhatsApp.');

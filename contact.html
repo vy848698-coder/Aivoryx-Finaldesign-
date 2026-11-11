@@ -312,17 +312,17 @@ document.documentElement.classList.add('js');
               <div class="f-row">
                 <div class="f f-full" data-field="name">
                   <label for="cf-name">Full name</label>
-                  <input id="cf-name" name="name" type="text" autocomplete="name" maxlength="120" required aria-describedby="cf-name-err">
+                  <input id="cf-name" name="name" type="text" autocomplete="name" autocapitalize="words" spellcheck="false" maxlength="80" required aria-describedby="cf-name-err">
                   <span class="f-err" id="cf-name-err" aria-live="polite"></span>
                 </div>
                 <div class="f" data-field="email">
                   <label for="cf-email">Work email</label>
-                  <input id="cf-email" name="email" type="email" inputmode="email" autocomplete="email" maxlength="200" placeholder="you@company.com" required aria-describedby="cf-email-err">
+                  <input id="cf-email" name="email" type="email" inputmode="email" autocomplete="email" autocapitalize="off" spellcheck="false" maxlength="254" placeholder="you@company.com" required aria-describedby="cf-email-err">
                   <span class="f-err" id="cf-email-err" aria-live="polite"></span>
                 </div>
                 <div class="f" data-field="phone">
                   <label for="cf-phone">Phone / WhatsApp <span class="opt-in">Optional</span></label>
-                  <input id="cf-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="40" placeholder="+91 98765 43210" aria-describedby="cf-phone-err">
+                  <input id="cf-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="24" placeholder="+91 98765 43210" aria-describedby="cf-phone-err">
                   <span class="f-err" id="cf-phone-err" aria-live="polite"></span>
                 </div>
               </div>
@@ -353,7 +353,8 @@ document.documentElement.classList.add('js');
               </div>
               <div class="f cf-more" data-field="details">
                 <label for="cf-details">Additional details <span class="opt-in">Optional</span></label>
-                <textarea id="cf-details" name="details" rows="3" maxlength="2000" placeholder="Links to sites you like, must-have features, an existing system, anything else."></textarea>
+                <textarea id="cf-details" name="details" rows="3" maxlength="2000" placeholder="Links to sites you like, must-have features, an existing system, anything else." aria-describedby="cf-details-err"></textarea>
+                <span class="f-err" id="cf-details-err" aria-live="polite"></span>
               </div>
             </fieldset>
 
@@ -620,6 +621,7 @@ document.documentElement.classList.add('js');
 <script src="assets/js/nav.js" defer></script>
 <script src="assets/js/reveal.js" defer></script>
 <script src="assets/js/post.js" defer></script>
+<script src="assets/js/validate.js" defer></script>
 <script src="assets/js/contact.js" defer></script>
 </body>
 </html>

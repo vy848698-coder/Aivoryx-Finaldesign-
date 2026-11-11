@@ -27,9 +27,6 @@
 .wt-lab.on-dark{color:var(--on-ink-dim)}
 .wt-lab.on-dark::after{background:var(--on-ink-hair)}
 
-/* reading progress — a hairline of accent under the nav */
-.t-progress{position:absolute;left:0;right:0;bottom:-1px;height:2px;pointer-events:none}
-.t-progress i{display:block;height:100%;background:var(--accent);transform:scaleX(0);transform-origin:0 50%;will-change:transform}
 
 /* ---------- HERO ---------- */
 .th{border-bottom:1px solid var(--hair)}
@@ -764,8 +761,7 @@ li[aria-expanded="true"] > .jt-t i{transform:rotate(90deg)}
   .ws.switching .ws-stage{transform:none}
   .tc-tape span{animation:none}
   .ws-item::before{transition:none}
-  .t-progress{display:none}
 }
 @media print{
-  .ws,.mini,.tc-tape,.t-progress{display:none}
+  .ws,.mini,.tc-tape{display:none}
 }

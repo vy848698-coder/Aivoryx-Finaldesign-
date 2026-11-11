@@ -1,5 +1,4 @@
 /* AIVORYX · How we price (pricing.html)
-   - scroll progress rule
    - project directions (ARIA tabs) + "Explore this direction" → form
    - process timeline: scroll-linked line, steps light up as it passes
    - value strata: the layer for the item in view / hovered lights up
@@ -16,8 +15,7 @@
   const yr = $('[data-year]');
   if (yr) yr.textContent = new Date().getFullYear();
 
-  /* ---------- scroll-linked: progress rule + process line ---------- */
-  const bar = $('.pr-progress');
+  /* ---------- scroll-linked: process line ---------- */
   const track = $('.proc-track');
   const steps = track ? $$('.ps', track) : [];
   const wide = matchMedia('(min-width: 1081px)');
@@ -25,10 +23,6 @@
 
   function frame() {
     ticking = false;
-    const root = document.documentElement;
-    const max = root.scrollHeight - innerHeight;
-    if (bar) bar.style.setProperty('--sp', max > 0 ? clamp(scrollY / max).toFixed(4) : 0);
-
     if (!track) return;
     const vh = innerHeight;
     const r = track.getBoundingClientRect();
@@ -136,16 +130,20 @@
   const dirInput = form.elements.direction;
   const dirChip = $('.pq-dir', form);
 
-  // Same rules as the pricing branch of send.php, so the browser never accepts what the server rejects.
+  // The shared rules (validate.js); the pricing branch of send.php runs the same ones again.
+  const V = window.axV;
   const RULES = {
-    build:       v => v !== '' || 'Pick the closest one. “Not sure yet” is a perfectly good answer.',
-    budget_mode: v => v !== '' || 'Choose whichever feels right. None of them asks you for a number.',
-    priority:    v => v !== '' || 'Pick one. “A balanced approach” is a good answer too.',
-    name:        v => v.length >= 2 || 'Please tell us your name.',
-    email:       v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v) || "That email doesn't look quite right.",
-    phone:       v => { if (!v) return true; const d = v.replace(/\D/g, '').length; return (d >= 10 && d <= 13) || 'A 10-digit mobile number, or leave it blank.'; }
+    build:       v => v ? '' : 'Pick the closest one. “Not sure yet” is a perfectly good answer.',
+    budget_mode: v => v ? '' : 'Choose whichever feels right. None of them asks you for a number.',
+    priority:    v => v ? '' : 'Pick one. “A balanced approach” is a good answer too.',
+    budget_note: v => V.text(v, 0, 200),
+    message:     v => V.text(v, 0, 4000),
+    name:        v => V.name(v),
+    email:       v => V.email(v),
+    phone:       v => V.phone(v, false)
   };
-  const ORDER = ['build', 'budget_mode', 'priority', 'name', 'email', 'phone'];
+  const ORDER = ['build', 'budget_mode', 'budget_note', 'priority', 'message', 'name', 'email', 'phone'];
+  const CLEAN = { email: V.clean.email, message: V.clean.text };
 
   // What each budget answer opens up. Copy only; nothing here is a figure.
   const MODES = {
@@ -155,12 +153,14 @@
     "I want to share my budget privately": { more: true, label: 'Your budget, privately', hint: 'Seen only by the two founders. Leave it blank if you’d rather say it on a call.' }
   };
 
+  // every value is read cleaned: invisible characters and stray spaces never count
   const val = name => {
     const el = form.elements[name];
-    return el ? String(el.value || '').trim() : '';
+    if (!el) return '';
+    return el.length !== undefined && !el.tagName ? String(el.value || '') : (CLEAN[name] || V.clean.line)(el.value);
   };
   const box = name => $('[data-field="' + name + '"]', form);
-  const check = name => { const r = RULES[name](val(name)); return r === true ? '' : r; };
+  const check = name => (name === 'budget_note' && more.hidden) ? '' : (RULES[name](val(name)) || '');
 
   function show(name, msg) {
     const b = box(name);
@@ -188,9 +188,13 @@
   }
 
   let tried = false;
-  ['name', 'email', 'phone'].forEach(name => {
+  ['name', 'email', 'phone', 'message', 'budget_note'].forEach(name => {
     const el = form.elements[name];
-    el.addEventListener('blur', () => { if (tried || el.value.trim()) show(name, check(name)); progress(); });
+    el.addEventListener('blur', () => V.later(() => {
+      if (el.value.trim()) el.value = val(name); // show the tidied value
+      if (tried || el.value) show(name, check(name));
+      progress();
+    }));
     el.addEventListener('input', () => { if (box(name).classList.contains('bad')) show(name, check(name)); progress(); });
   });
   ['build', 'budget_mode', 'priority'].forEach(name => {
@@ -246,7 +250,7 @@
       const n = $$('.bad', form).length;
       setAlert(n === 1 ? 'One answer needs another look.' : n + ' answers need another look.');
       const b = box(first);
-      ($('input:not([type=radio])', b) || $('input', b)).focus();
+      ($('input:not([type=radio]),textarea', b) || $('input', b)).focus();
       return;
     }
 
@@ -266,6 +270,7 @@
       direction: val('direction'),
       message: val('message'),
       company: trap ? trap.value : '',
+      t: V.since(),
       page: 'How we price'
     };
 
@@ -274,6 +279,7 @@
     window.axPost(ENDPOINT, payload, TIMEOUT)
       .then(({ status, data }) => {
         if (data && data.ok === true) return succeed(payload.email);
+        if (data && data.fields) return serverSays(data.fields);
         let msg = data && data.message;
         if (!msg) msg = status === 404 || status === 405 || status === 501
           ? "The form can't reach our inbox from here."
@@ -285,6 +291,18 @@
         : "No connection, so your answers weren't sent."))
       .then(() => { sending = false; busy(false); });
   });
+
+  // A rule only the server can apply (e.g. the email's domain doesn't exist)
+  // lands on its field, like any other error.
+  function serverSays(fields) {
+    let first = null;
+    Object.keys(fields).forEach(k => { if (box(k)) { show(k, fields[k]); if (!first) first = k; } });
+    const n = Object.keys(fields).length;
+    setAlert(n === 1 ? 'One answer needs another look.' : n + ' answers need another look.');
+    const b = first && box(first);
+    const el = b && ($('input:not([type=radio]),textarea', b) || $('input', b));
+    if (el) el.focus(); else alertBox.focus();
+  }
 
   function fail(msg) {
     setAlert(msg + ' Your answers are still here. Try again, or send them on WhatsApp.');

@@ -640,17 +640,17 @@ document.documentElement.classList.add('js');
             <div class="f-row">
               <div class="f f-full" data-field="name">
                 <label for="e-name">Full name</label>
-                <input id="e-name" name="name" type="text" autocomplete="name" maxlength="120" required aria-describedby="e-name-err">
+                <input id="e-name" name="name" type="text" autocomplete="name" autocapitalize="words" spellcheck="false" maxlength="80" required aria-describedby="e-name-err">
                 <span class="f-err" id="e-name-err" aria-live="polite"></span>
               </div>
               <div class="f" data-field="email">
                 <label for="e-email">Email address</label>
-                <input id="e-email" name="email" type="email" inputmode="email" autocomplete="email" maxlength="200" placeholder="you@company.com" required aria-describedby="e-email-err">
+                <input id="e-email" name="email" type="email" inputmode="email" autocomplete="email" autocapitalize="off" spellcheck="false" maxlength="254" placeholder="you@company.com" required aria-describedby="e-email-err">
                 <span class="f-err" id="e-email-err" aria-live="polite"></span>
               </div>
               <div class="f" data-field="phone">
                 <label for="e-phone">Phone number</label>
-                <input id="e-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="40" placeholder="+91 98765 43210" required aria-describedby="e-phone-err">
+                <input id="e-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="24" placeholder="+91 98765 43210" required aria-describedby="e-phone-err">
                 <span class="f-err" id="e-phone-err" aria-live="polite"></span>
               </div>
             </div>
@@ -684,7 +684,8 @@ document.documentElement.classList.add('js');
           <div class="step">
             <div class="f" data-field="message">
               <label class="step-h" for="e-msg"><span class="sn">04</span>Project description <span class="opt">Optional</span></label>
-              <textarea id="e-msg" name="message" rows="4" maxlength="4000" placeholder="A line or two about your business and what it needs to do."></textarea>
+              <textarea id="e-msg" name="message" rows="4" maxlength="4000" placeholder="A line or two about your business and what it needs to do." aria-describedby="e-msg-err"></textarea>
+              <span class="f-err" id="e-msg-err" aria-live="polite"></span>
             </div>
           </div>
 
@@ -820,7 +821,8 @@ document.documentElement.classList.add('js');
      Homepage only. Opens 3s after every page load — every refresh, every tab,
      every visit; nothing is stored, so it never "remembers" to stay away.
      Closing it (×, Esc, or a click outside) always works.
-     popup.js drives it; any one of name / email / phone is enough. -->
+     popup.js drives it; an email or a phone number is required (so we can
+     reply), the name is optional. -->
 <div class="hello" id="hello" hidden>
   <div class="hello-veil" data-close></div>
   <div class="hello-card" role="dialog" aria-modal="true" aria-labelledby="hello-h" aria-describedby="hello-p" tabindex="-1">
@@ -852,11 +854,11 @@ document.documentElement.classList.add('js');
         <div class="hello-fields">
           <div class="f">
             <label for="h-name">Your name</label>
-            <input id="h-name" name="name" type="text" autocomplete="name" maxlength="120" placeholder="Asha Mehta">
+            <input id="h-name" name="name" type="text" autocomplete="name" autocapitalize="words" spellcheck="false" maxlength="80" placeholder="Asha Mehta">
           </div>
           <div class="f">
             <label for="h-reach">Email or phone</label>
-            <input id="h-reach" name="reach" type="text" autocomplete="email" maxlength="200" placeholder="you@company.com" aria-describedby="h-err">
+            <input id="h-reach" name="reach" type="text" autocomplete="email" autocapitalize="off" spellcheck="false" maxlength="254" placeholder="you@company.com" aria-describedby="h-err">
           </div>
           <button class="btn hello-send" type="submit">
             <span class="lbl">Send — we'll reach out</span>
@@ -892,6 +894,7 @@ document.documentElement.classList.add('js');
 <script src="assets/js/reveal.js" defer></script>
 <script src="assets/js/solar.js" defer></script>
 <script src="assets/js/post.js" defer></script>
+<script src="assets/js/validate.js" defer></script>
 <script src="assets/js/enquiry.js" defer></script>
 <script src="assets/js/popup.js" defer></script>
 </body>

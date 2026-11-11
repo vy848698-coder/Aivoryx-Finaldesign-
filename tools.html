@@ -85,7 +85,6 @@ document.documentElement.classList.add('js');
       <button class="burger" id="burger" type="button" aria-controls="sheet" aria-expanded="false" aria-label="Open menu"><span></span><span></span></button>
     </div>
   </div>
-  <div class="t-progress" aria-hidden="true"><i id="t-progress"></i></div>
 </nav>
 <div class="sheet" id="sheet">
   <a class="big" href="index.html">Home <span>01</span></a>
@@ -441,14 +440,8 @@ document.documentElement.classList.add('js');
 </footer>
 
 <script>
-/* the year, and the thin reading-progress line under the nav */
+/* the year in the footer */
 document.querySelectorAll('[data-year]').forEach(function (e) { e.textContent = new Date().getFullYear(); });
-(function () {
-  var bar = document.getElementById('t-progress'), t = false;
-  function upd() { t = false; var d = document.documentElement, m = d.scrollHeight - innerHeight; bar.style.transform = 'scaleX(' + (m > 0 ? Math.min(1, scrollY / m) : 0) + ')'; }
-  addEventListener('scroll', function () { if (!t) { t = true; requestAnimationFrame(upd); } }, { passive: true });
-  addEventListener('resize', upd); upd();
-})();
 </script>
 <script src="assets/js/nav.js" defer></script>
 <script src="assets/js/reveal.js" defer></script>

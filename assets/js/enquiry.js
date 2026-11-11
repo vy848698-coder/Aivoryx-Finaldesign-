@@ -20,26 +20,27 @@
   const alertText = alertBox.querySelector('.msg');
   const trap = form.querySelector('input.hp');
 
-  // Same rules as send.php, so the browser never accepts what the server rejects.
+  // The shared rules (validate.js); send.php runs the same ones again.
+  const V = window.axV;
   const RULES = {
-    name:   v => v.length >= 2 || 'Please tell us your name.',
-    email:  v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v) || "That email doesn't look quite right.",
-    phone:  v => { const d = v.replace(/\D/g, '').length; return (d >= 10 && d <= 13) || 'A 10-digit mobile number, please.'; },
-    need:   v => v !== '' || 'Pick whichever is closest.',
-    budget: v => v !== '' || "Pick a range — or “Tell me what's realistic”."
+    name:    v => V.name(v),
+    email:   v => V.email(v),
+    phone:   v => V.phone(v, true),
+    need:    v => v ? '' : 'Pick whichever is closest.',
+    budget:  v => v ? '' : "Pick a range — or “Tell me what's realistic”.",
+    message: v => V.text(v, 0, 4000)
   };
-  const ORDER = ['name', 'email', 'phone', 'need', 'budget'];
+  const ORDER = ['name', 'email', 'phone', 'need', 'budget', 'message'];
+  const CLEAN = { email: V.clean.email, message: V.clean.text };
 
+  // every value is read cleaned: invisible characters and stray spaces never count
   const val = name => {
     const el = form.elements[name];
-    return el ? String(el.value || '').trim() : '';
+    return el ? (CLEAN[name] || V.clean.line)(el.value) : '';
   };
   const box = name => form.querySelector('[data-field="' + name + '"]');
 
-  function check(name) {
-    const r = RULES[name](val(name));
-    return r === true ? '' : r;
-  }
+  const check = name => RULES[name](val(name)) || '';
 
   // One place that marks a field, so class, message and aria state never drift apart.
   function show(name, msg) {
@@ -62,9 +63,13 @@
   }
 
   let tried = false; // after the first submit, errors update live
-  ['name', 'email', 'phone'].forEach(name => {
+  ['name', 'email', 'phone', 'message'].forEach(name => {
     const el = form.elements[name];
-    el.addEventListener('blur', () => { if (tried || el.value.trim()) show(name, check(name)); progress(); });
+    el.addEventListener('blur', () => V.later(() => {
+      if (el.value.trim()) el.value = val(name); // show the tidied value
+      if (tried || el.value) show(name, check(name));
+      progress();
+    }));
     el.addEventListener('input', () => {
       if (box(name).classList.contains('bad')) show(name, check(name));
       progress();
@@ -73,7 +78,6 @@
   ['need', 'budget'].forEach(name => {
     box(name).addEventListener('change', () => { show(name, ''); progress(); });
   });
-  form.elements.message.addEventListener('input', progress);
 
   function setAlert(msg) {
     if (!msg) { alertBox.hidden = true; return; }
@@ -113,7 +117,7 @@
       const n = form.querySelectorAll('.bad').length;
       setAlert(n === 1 ? 'One answer needs another look.' : n + ' answers need another look.');
       const b = box(first);
-      (b.querySelector('input:not([type=radio])') || b.querySelector('input')).focus();
+      (b.querySelector('input:not([type=radio]),textarea') || b.querySelector('input')).focus();
       return;
     }
 
@@ -129,6 +133,7 @@
       budget: val('budget'),
       message: val('message'),
       company: trap ? trap.value : '',
+      t: V.since(),
       page: document.title + ' — homepage enquiry'
     };
 
@@ -138,6 +143,7 @@
     post(payload)
       .then(({ status, data }) => {
         if (data && data.ok === true) return succeed(payload.email);
+        if (data && data.fields) return serverSays(data.fields);
         let msg = data && data.message;
         if (!msg) msg = status === 404 || status === 405 || status === 501
           ? "The form can't reach our inbox from here."
@@ -149,6 +155,18 @@
         : 'No connection — your enquiry wasn\'t sent.'))
       .then(() => { sending = false; busy(false); });
   });
+
+  // A rule only the server can apply (e.g. the email's domain doesn't exist)
+  // lands on its field, like any other error.
+  function serverSays(fields) {
+    let first = null;
+    Object.keys(fields).forEach(k => { if (box(k)) { show(k, fields[k]); if (!first) first = k; } });
+    const n = Object.keys(fields).length;
+    setAlert(n === 1 ? 'One answer needs another look.' : n + ' answers need another look.');
+    const b = first && box(first);
+    const el = b && (b.querySelector('input:not([type=radio]),textarea') || b.querySelector('input'));
+    if (el) el.focus(); else alertBox.focus();
+  }
 
   function fail(msg) {
     setAlert(msg + ' Your answers are still here — try again, or send them on WhatsApp.');

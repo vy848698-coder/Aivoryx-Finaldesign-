@@ -18,9 +18,6 @@
 .pr-calm{display:flex;align-items:center;gap:12px;font-family:var(--serif);font-style:italic;font-size:clamp(17px,calc(.4*var(--vw)) + 12px,20px);line-height:1.35;color:var(--walnut)}
 .pr-calm i{width:7px;height:7px;border-radius:50%;background:var(--accent);flex:none;animation:pulse 2.2s infinite}
 
-/* scroll progress — a 2px accent rule along the top edge */
-.pr-progress{position:fixed;top:0;left:0;right:0;height:2px;z-index:95;pointer-events:none}
-.pr-progress i{display:block;height:100%;background:var(--accent);transform:scaleX(var(--sp,0));transform-origin:left;will-change:transform}
 
 /* section shell + head (same anatomy as the homepage's .sec-head) */
 .pr-sec{border-top:1px solid var(--hair)}
@@ -567,7 +564,7 @@ html:not(.js) .qa-a{grid-template-rows:1fr;visibility:visible}
 }
 
 @media print{
-  .pr-progress,.pr-hero-r,.end-lines{display:none}
+  .pr-hero-r,.end-lines{display:none}
   .trust{background:none;color:var(--ink)}
   .qa-a{grid-template-rows:1fr;visibility:visible}
 }

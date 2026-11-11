@@ -9,7 +9,8 @@
    Never forced: ×, Esc and a click outside all close it, and it
           waits rather than interrupt someone typing in a form or using the
           mobile menu. Once closed, it stays closed until the next load.
-   Sends: any ONE of name / email / phone to api/send.php as kind:"quick". */
+   Sends: an email OR a phone number (required, so we can reply) and an
+          optional name to api/send.php as kind:"quick". */
 (function () {
   const root = document.getElementById('hello');
   if (!root) return;
@@ -151,15 +152,19 @@
     else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
   });
 
-  /* ---------- the form: any one of the three ---------- */
-  const isEmail = v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
-  const digits = v => v.replace(/\D/g, '').length;
+  /* ---------- the form: a way to reply (required) + a name (optional) ---------- */
+  const V = window.axV;
+  // the second box takes either; anything made only of digits and phone
+  // punctuation is treated as a phone number, everything else as an email
+  const phoneish = v => v !== '' && /^[+\d\s().\-/]+$/.test(v);
+  const reachVal = () => {
+    const raw = V.clean.line(reachIn.value);
+    return phoneish(raw) ? raw : V.clean.email(raw);
+  };
 
   // the second field takes either; switch the keyboard hint once it's clear which
   reachIn.addEventListener('input', () => {
-    const v = reachIn.value.trim();
-    const phoneish = v !== '' && /^[+\d\s()-]+$/.test(v);
-    reachIn.setAttribute('inputmode', phoneish ? 'tel' : 'email');
+    reachIn.setAttribute('inputmode', phoneish(reachIn.value.trim()) ? 'tel' : 'email');
     if (form.classList.contains('bad') || form.classList.contains('bad-name')) say('');
   });
   nameIn.addEventListener('input', () => { if (form.classList.contains('bad-name')) say(''); });
@@ -176,17 +181,16 @@
   }
 
   function check() {
-    const name = nameIn.value.trim(), reach = reachIn.value.trim();
-    if (!name && !reach) return ['Leave any one — your name, email or phone.', 'reach'];
-    if (name && name.length < 2) return ['Your name needs at least two letters.', 'name'];
-    if (reach && !isEmail(reach)) {
-      const d = digits(reach);
-      const phoneish = /^[+\d\s()-]+$/.test(reach);
-      if (!phoneish) return ["That email doesn't look quite right.", 'reach'];
-      if (d < 10 || d > 13) return ['A 10-digit mobile number, please.', 'reach'];
-    }
-    return null;
+    const name = V.clean.line(nameIn.value), reach = reachVal();
+    const nErr = V.name(name, false);
+    if (nErr) return [nErr, 'name'];
+    if (!reach) return ['Leave an email or a phone number so we can reply.', 'reach'];
+    const rErr = phoneish(reach) ? V.phone(reach, true) : V.email(reach);
+    return rErr ? [rErr, 'reach'] : null;
   }
+  [nameIn, reachIn].forEach(el => el.addEventListener('blur', () => {
+    if (el.value.trim()) el.value = el === nameIn ? V.clean.line(el.value) : reachVal();
+  }));
 
   let sending = false;
   form.addEventListener('submit', e => {
@@ -197,10 +201,10 @@
     say('');
     if (trap && trap.value) return; // automated: nothing sent, nothing claimed
 
-    const name = nameIn.value.trim(), reach = reachIn.value.trim();
-    const email = isEmail(reach) ? reach : '';
-    const phone = reach && !email ? reach : '';
-    const payload = { kind: 'quick', name, email, phone, company: trap ? trap.value : '', page: document.title + ' — welcome popup' };
+    const name = V.clean.line(nameIn.value), reach = reachVal();
+    const phone = phoneish(reach) ? reach : '';
+    const email = phone ? '' : reach;
+    const payload = { kind: 'quick', name, email, phone, company: trap ? trap.value : '', t: V.since(), page: document.title + ' — welcome popup' };
 
     sending = true;
     form.classList.add('is-sending');
@@ -210,6 +214,10 @@
     window.axPost(ENDPOINT, payload)
       .then(({ status, data }) => {
         if (data && data.ok === true) return succeed(name, email, phone);
+        if (data && data.fields) {
+          const k = data.fields.name ? 'name' : 'reach';
+          say(data.fields[k], k); (k === 'name' ? nameIn : reachIn).focus(); return;
+        }
         let msg = data && data.message;
         if (!msg) msg = status === 404 || status === 405 || status === 501
           ? "This can't reach our inbox from here."
