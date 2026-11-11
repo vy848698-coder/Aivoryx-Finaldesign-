@@ -635,7 +635,8 @@ li[aria-expanded="true"] > .jt-t i{transform:rotate(90deg)}
 .js .wy-list li.reveal:nth-child(2){transition-delay:.06s}.js .wy-list li.reveal:nth-child(3){transition-delay:.12s}.js .wy-list li.reveal:nth-child(4){transition-delay:.18s}.js .wy-list li.reveal:nth-child(5){transition-delay:.24s}
 
 /* ---------- CLOSE ---------- */
-.tc{background:var(--ink);color:var(--paper);overflow:hidden;position:relative}
+/* covers the frame's 1px side hairlines, so no pale strip shows at the edges */
+.tc{background:var(--ink);color:var(--paper);overflow:hidden;position:relative;margin:0 -1px}
 .tc-in{padding:clamp(72px,calc(8*var(--vw)),124px) var(--gut) clamp(56px,calc(6*var(--vw)),88px);max-width:1100px}
 .tc h2{margin-top:24px;font-size:clamp(42px,calc(6*var(--vw)),92px);font-weight:700;letter-spacing:-.045em;line-height:.95;text-wrap:balance}
 .tc h2 .ln{display:block}

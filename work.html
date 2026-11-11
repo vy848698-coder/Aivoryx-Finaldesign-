@@ -72,7 +72,7 @@ document.documentElement.classList.add('js');
       <a href="index.html"><i aria-hidden="true">01</i><span class="lbl"><b>Home</b><em aria-hidden="true">Home</em></span></a>
       <a href="work.html" aria-current="page"><i aria-hidden="true">02</i><span class="lbl"><b>Work</b><em aria-hidden="true">Work</em></span></a>
       <a href="tools.html"><i aria-hidden="true">03</i><span class="lbl"><b>Free tools</b><em aria-hidden="true">Free tools</em></span></a>
-      <a href="index.html#pricing"><i aria-hidden="true">04</i><span class="lbl"><b>How we price</b><em aria-hidden="true">How we price</em></span></a>
+      <a href="pricing.html"><i aria-hidden="true">04</i><span class="lbl"><b>How we price</b><em aria-hidden="true">How we price</em></span></a>
       <a href="index.html#contact"><i aria-hidden="true">05</i><span class="lbl"><b>Contact us</b><em aria-hidden="true">Contact us</em></span></a>
     </div>
     <div class="nav-right">
@@ -85,7 +85,7 @@ document.documentElement.classList.add('js');
   <a class="big" href="index.html">Home <span>01</span></a>
   <a class="big" href="work.html" aria-current="page">Work <span>02</span></a>
   <a class="big" href="tools.html">Free tools <span>03</span></a>
-  <a class="big" href="index.html#pricing">How we price <span>04</span></a>
+  <a class="big" href="pricing.html">How we price <span>04</span></a>
   <a class="big" href="index.html#contact">Contact us <span>05</span></a>
   <a class="btn" href="index.html#enquiry">Start a project
     <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.8"/></svg>
@@ -100,8 +100,70 @@ document.documentElement.classList.add('js');
     <div class="wt-hero-in">
       <div class="wt-hero-l">
         <div class="wt-lab rise"><i></i>Work · the parts list · 2024 – 2026</div>
-        <h1 class="rise d1" id="hero-h"><span class="ln">Not the homepage.</span> <em class="ln">The parts that sell.</em></h1>
+        <h1 class="rise d1" id="hero-h"><span class="ln">Not the homepage.</span> <em class="ln"><span class="wt-vh">The parts that sell.</span><span aria-hidden="true">The parts that <span class="rot"><span class="on">sell.</span><span>calculate.</span><span>book.</span><span>qualify.</span><span>speak Odia.</span></span></span></em></h1>
         <p class="wt-sub rise d2">You've seen our six sites from the outside. Here they're opened up: <b>23 working parts</b>, cut out of the live sites and marked up with what each one does and why it's there.</p>
+        <!-- the display: each case file acted out in type and line — no screenshots.
+             In sync with the rows below; cycles on its own, a hovered row takes over. -->
+        <a class="peek rise d2" href="#c1" aria-hidden="true" tabindex="-1">
+          <span class="peek-view">
+            <!-- 01 Kamini — the live OPD board -->
+            <span class="sc s-opd on">
+              <span class="sc-t"><span class="sc-k"><b>01.4</b>Live OPD board</span><b>Who&rsquo;s in,</b><em>right now.</em></span>
+              <svg viewBox="0 0 170 110">
+                <g class="r r1"><circle cx="10" cy="22" r="4"/><path d="M24 22h74"/><rect x="118" y="13" width="44" height="18" rx="9"/><text x="140" y="26" text-anchor="middle">IN</text></g>
+                <g class="r r2"><circle cx="10" cy="55" r="4"/><path d="M24 55h58"/><rect x="118" y="46" width="44" height="18" rx="9"/><text x="140" y="59" text-anchor="middle">IN</text></g>
+                <g class="r r3"><circle cx="10" cy="88" r="4"/><path d="M24 88h66"/><rect x="118" y="79" width="44" height="18" rx="9"/><text x="140" y="92" text-anchor="middle">IN</text></g>
+              </svg>
+            </span>
+            <!-- 02 Jay Jagannath — tonnes into containers -->
+            <span class="sc s-box">
+              <span class="sc-t"><span class="sc-k"><b>02.1</b>Shipment calculator</span><b>1,000 MT</b><em>&asymp; 50 containers.</em></span>
+              <svg viewBox="0 0 170 110">
+                <rect x="6" y="20" width="28" height="20" rx="2"/><rect x="38" y="20" width="28" height="20" rx="2"/><rect x="70" y="20" width="28" height="20" rx="2"/><rect x="102" y="20" width="28" height="20" rx="2"/><rect x="134" y="20" width="28" height="20" rx="2"/>
+                <rect x="6" y="46" width="28" height="20" rx="2"/><rect x="38" y="46" width="28" height="20" rx="2"/><rect x="70" y="46" width="28" height="20" rx="2"/><rect x="102" y="46" width="28" height="20" rx="2"/><rect x="134" y="46" width="28" height="20" rx="2"/>
+                <path class="ax" d="M6 84h156"/><text x="6" y="100">20&rsquo; × 50</text><text x="162" y="100" text-anchor="end">1,000 MT</text>
+              </svg>
+            </span>
+            <!-- 03 Saathi — one assistant, three languages -->
+            <span class="sc s-voice">
+              <span class="sc-t"><span class="sc-k"><b>03</b>Talks in three languages</span><b class="greet"><span lang="or">ନମସ୍କାର</span><span lang="hi">नमस्ते</span><span lang="en">Hello.</span></b><em>Odia · Hindi · English</em></span>
+              <svg viewBox="0 0 170 110">
+                <path class="ax" d="M4 55h162"/>
+                <g class="wave"><rect x="10" y="40" width="5" height="30" rx="2.5"/><rect x="22" y="30" width="5" height="50" rx="2.5"/><rect x="34" y="45" width="5" height="20" rx="2.5"/><rect x="46" y="22" width="5" height="66" rx="2.5"/><rect x="58" y="35" width="5" height="40" rx="2.5"/><rect x="70" y="28" width="5" height="54" rx="2.5"/><rect x="82" y="42" width="5" height="26" rx="2.5"/><rect x="94" y="18" width="5" height="74" rx="2.5"/><rect x="106" y="34" width="5" height="42" rx="2.5"/><rect x="118" y="44" width="5" height="22" rx="2.5"/><rect x="130" y="30" width="5" height="50" rx="2.5"/><rect x="142" y="40" width="5" height="30" rx="2.5"/><rect x="154" y="47" width="5" height="16" rx="2.5"/></g>
+              </svg>
+            </span>
+            <!-- 04 Clans — bill in, savings out -->
+            <span class="sc s-sun">
+              <span class="sc-t"><span class="sc-k"><b>04.1</b>Bill in, savings out</span><b>&#8377;4,500</b><em>saved every month.</em></span>
+              <svg viewBox="0 0 170 110">
+                <path class="arc" d="M96 30a22 22 0 0 1 44 0"/><path class="ray" d="M118 2v6M96 10l4 4M140 10l-4 4"/>
+                <rect class="before" x="22" y="18" width="34" height="74" rx="3"/><rect class="after" x="104" y="70" width="34" height="22" rx="3"/>
+                <path class="ar" d="M64 60h30M88 54l6 6-6 6"/>
+                <path class="ax" d="M6 92h158"/><text x="39" y="106" text-anchor="middle">BEFORE</text><text x="121" y="106" text-anchor="middle">AFTER</text>
+              </svg>
+            </span>
+            <!-- 05 MarketIQ — the free-audit funnel -->
+            <span class="sc s-fun">
+              <span class="sc-t"><span class="sc-k"><b>05.3</b>The free audit</span><b>Audit first.</b><em>Pitch later.</em></span>
+              <svg viewBox="0 0 170 110">
+                <rect class="f1" x="10" y="10" width="150" height="14" rx="3"/><rect class="f2" x="30" y="32" width="110" height="14" rx="3"/>
+                <rect class="f3" x="50" y="54" width="70" height="14" rx="3"/><rect class="f4" x="70" y="76" width="30" height="14" rx="3"/>
+                <circle class="lead" cx="85" cy="102" r="4"/>
+              </svg>
+            </span>
+            <!-- 06 Odisha Workforce — one screen, two front doors -->
+            <span class="sc s-door">
+              <span class="sc-t"><span class="sc-k"><b>06.1</b>Splits on screen one</span><b>Two front</b><em>doors.</em></span>
+              <svg viewBox="0 0 170 110">
+                <circle class="you" cx="12" cy="55" r="5"/>
+                <path class="path" pathLength="100" d="M18 55h40c22 0 26-30 50-30h18M58 55c22 0 26 30 50 30h18"/>
+                <rect class="d1" x="128" y="8" width="34" height="34" rx="3"/><rect class="d2" x="128" y="68" width="34" height="34" rx="3"/>
+                <text x="145" y="29" text-anchor="middle">SEEK</text><text x="145" y="89" text-anchor="middle">HIRE</text>
+              </svg>
+            </span>
+          </span>
+          <span class="peek-bar"><i></i></span>
+        </a>
         <div class="wt-act rise d3">
           <a class="btn-ink" href="#c1">Open the first file
             <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2v11M3.5 9 8 13.5 12.5 9" stroke="currentColor" stroke-width="1.8"/></svg>
@@ -113,12 +175,12 @@ document.documentElement.classList.add('js');
       <aside class="wt-hero-r rise d2" aria-label="Contents">
         <div class="toc-k"><span>Contents · six case files</span><span>Parts</span></div>
         <ol class="toc">
-          <li><a href="#c1"><i>01</i><b>Kamini Clinic <em>&amp; Labs</em></b><span>Diagnostics</span><u>05</u></a></li>
-          <li><a href="#c2"><i>02</i><b>Jay Jagannath Marine</b><span>Export</span><u>04</u></a></li>
-          <li><a href="#saathi"><i>03</i><b>Solar <em>Saathi</em></b><span>AI assistant</span><u>02</u></a></li>
-          <li><a href="#c4"><i>04</i><b>Clans Machina</b><span>Solar</span><u>03</u></a></li>
-          <li><a href="#c5"><i>05</i><b>MarketIQ Infotech</b><span>Marketing</span><u>04</u></a></li>
-          <li><a href="#c6"><i>06</i><b>Odisha Workforce</b><span>Recruitment</span><u>02</u></a></li>
+          <li><a href="#c1" data-peek="01.4|In clinic today"><i>01</i><b>Kamini Clinic <em>&amp; Labs</em></b><span>Diagnostics</span><u>05</u></a></li>
+          <li><a href="#c2" data-peek="02.1|Shipment calculator"><i>02</i><b>Jay Jagannath Marine</b><span>Export</span><u>04</u></a></li>
+          <li><a href="#saathi" data-peek="03|Saathi, in Odia"><i>03</i><b>Solar <em>Saathi</em></b><span>AI assistant</span><u>02</u></a></li>
+          <li><a href="#c4" data-peek="04.1|Savings calculator"><i>04</i><b>Clans Machina</b><span>Solar</span><u>03</u></a></li>
+          <li><a href="#c5" data-peek="05.3|The free audit"><i>05</i><b>MarketIQ Infotech</b><span>Marketing</span><u>04</u></a></li>
+          <li><a href="#c6" data-peek="06.1|Two front doors"><i>06</i><b>Odisha Workforce</b><span>Recruitment</span><u>02</u></a></li>
         </ol>
         <ul class="hs" aria-label="At a glance">
           <li><b>06</b><em>sites, all live</em></li>
@@ -924,7 +986,7 @@ document.documentElement.classList.add('js');
         <li><a href="index.html">Home</a></li>
         <li><a href="work.html">Work</a></li>
         <li><a href="tools.html">Free tools</a></li>
-        <li><a href="index.html#pricing">How we price</a></li>
+        <li><a href="pricing.html">How we price</a></li>
         <li><a href="index.html#contact">Contact</a></li>
       </ul>
     </nav>

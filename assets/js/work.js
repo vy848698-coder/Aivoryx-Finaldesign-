@@ -3,6 +3,75 @@
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 
+  /* ---------- hero: the verb rolls through what the parts do ---------- */
+  const rot = document.querySelector('.wt-hero .rot');
+  if (rot && !reduce) {
+    const words = $$(':scope > span', rot);
+    let i = 0, seen = true;
+    if ('IntersectionObserver' in window) new IntersectionObserver(([e]) => { seen = e.isIntersecting; }).observe(rot);
+    setInterval(() => {
+      if (!seen || document.hidden) return;
+      const cur = words[i];
+      i = (i + 1) % words.length;
+      cur.className = 'out';
+      words[i].className = 'on';
+      setTimeout(() => { if (cur.className === 'out') cur.className = ''; }, 650);
+    }, 2400);
+  }
+
+  /* ---------- hero display: cycles through the case files. Each change is a wipe —
+     the new scene sweeps up over the old one ('was' keeps the old one painted
+     underneath until it's covered). Hovering a contents row shows that case;
+     the rows themselves never change or move. ---------- */
+  const peek = document.querySelector('.peek');
+  if (peek) {
+    const view = peek.querySelector('.peek-view');
+    const shots = $$('.sc', view);
+    const rows = $$('.toc a[data-peek]');
+    const n = peek.querySelector('[data-peek-n]'), t = peek.querySelector('[data-peek-t]');
+    // fast enough that a visitor sees several cases before scrolling past:
+    // the first scene gets ~1.2s on screen after the hero's entrance, then a change every 2.2s
+    const STEP = 2200, FIRST = 2000;
+    let cur = 0, timer = 0, wasT = 0, held = false, seen = true, first = true;
+    const show = i => {
+      if (i !== cur || first) {
+        const prev = shots[cur];
+        shots.forEach(s => s.classList.toggle('was', !first && s === prev && i !== cur));
+        shots.forEach((s, k) => s.classList.toggle('on', k === i));
+        if (!first && !reduce) { view.classList.toggle('wipe', false); void view.offsetWidth; view.classList.add('wipe'); }
+        clearTimeout(wasT);
+        wasT = setTimeout(() => shots.forEach(s => s.classList.toggle('was', false)), 440);
+        cur = i; first = false;
+        const [num, txt] = rows[i].dataset.peek.split('|');
+        if (n) n.textContent = num;
+        if (t) t.textContent = txt;
+        peek.href = rows[i].getAttribute('href');
+      }
+      // restart the progress rule
+      peek.classList.toggle('run', false); void peek.offsetWidth;
+      if (!held && !reduce) peek.classList.add('run');
+    };
+    const tick = (wait = STEP) => {
+      clearTimeout(timer);
+      if (reduce) return;
+      peek.style.setProperty('--peek-t', wait + 'ms');
+      timer = setTimeout(() => {
+        if (!held && seen && !document.hidden) show((cur + 1) % rows.length);
+        tick();
+      }, wait);
+    };
+    rows.forEach((r, i) => {
+      const hold = () => { held = true; show(i); };
+      const free = () => { held = false; show(cur); tick(); };
+      r.addEventListener('mouseenter', hold); r.addEventListener('focus', hold);
+      r.addEventListener('mouseleave', free); r.addEventListener('blur', free);
+    });
+    peek.addEventListener('mouseenter', () => { held = true; peek.classList.toggle('run', false); });
+    peek.addEventListener('mouseleave', () => { held = false; show(cur); tick(); });
+    if ('IntersectionObserver' in window) new IntersectionObserver(([e]) => { seen = e.isIntersecting; }).observe(peek);
+    tick(FIRST); show(0);
+  }
+
   /* ---------- parts tray: clone each row once so the drift loops seamlessly ---------- */
   if (!reduce) {
     $$('.tray-track').forEach(t => {
