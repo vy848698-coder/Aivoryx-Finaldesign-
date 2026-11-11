@@ -92,6 +92,15 @@ $page    = ax_field($in, 'page', 200);
 /* "quick" = the homepage popup: any ONE of name / email / phone is enough.
    Everything else (the full enquiry form) keeps the strict rules below. */
 $quick   = ax_field($in, 'kind', 20) === 'quick';
+/* "pricing" = the How-we-price page (pricing.html). Its own fixed choices,
+   no rupee ranges: the visitor may share a budget in their own words
+   (budget_note, optional) or not at all. Phone is optional there. */
+$pricing = ax_field($in, 'kind', 20) === 'pricing';
+$build      = ax_field($in, 'build', 120);
+$budgetMode = ax_field($in, 'budget_mode', 120);
+$budgetNote = ax_field($in, 'budget_note', 200);
+$priority   = ax_field($in, 'priority', 120);
+$direction  = ax_field($in, 'direction', 40);
 
 
 /* ---------------- Honeypot ----------------
@@ -112,6 +121,22 @@ if ($quick) {
   if ($phone !== '' && (strlen($digits) < 10 || strlen($digits) > 13)) $errors[] = 'phone';
   if ($email !== '' && !filter_var($email, FILTER_VALIDATE_EMAIL))     $errors[] = 'email';
   if ($name === '' && $phone === '' && $email === '')                  $errors[] = 'any';
+} elseif ($pricing) {
+  if (ax_len($name) < 2)                                               $errors[] = 'name';
+  if (!filter_var($email, FILTER_VALIDATE_EMAIL))                      $errors[] = 'email';
+  if ($phone !== '' && (strlen($digits) < 10 || strlen($digits) > 13)) $errors[] = 'phone';
+  /* Must match the radio values in pricing.html exactly. */
+  $builds     = array('Business website', 'E-commerce website', 'Web application', 'SaaS product',
+                      'AI-powered solution', 'Mobile application', 'Custom digital solution', 'Not sure yet');
+  $modes      = array('I have a budget in mind', "I'd like help deciding",
+                      "I'd prefer to discuss this personally", 'I want to share my budget privately');
+  $priorities = array('Premium design and experience', 'Features and functionality',
+                      'Getting started within my budget', 'Scalability and long-term growth', 'A balanced approach');
+  $directions = array('', 'Get started', 'Grow further', 'Think bigger');
+  if (!in_array($build, $builds, true))                                $errors[] = 'build';
+  if (!in_array($budgetMode, $modes, true))                            $errors[] = 'budget_mode';
+  if (!in_array($priority, $priorities, true))                         $errors[] = 'priority';
+  if (!in_array($direction, $directions, true))                        $errors[] = 'direction';
 } else {
   if (ax_len($name) < 2)                                     $errors[] = 'name';
   if (strlen($digits) < 10 || strlen($digits) > 13)          $errors[] = 'phone';
@@ -216,6 +241,79 @@ if ($quick) {
     ax_out(false, "We couldn't send that just now. Please try WhatsApp, or call us.", 502);
   }
   ax_out(true, 'Got it. We\'ll be in touch the same working day.');
+}
+
+/* ----- How-we-price enquiry — owner note + a confirmation that repeats
+   only fixed choices (never budget_note or the message, which a stranger
+   typed). ----- */
+if ($pricing) {
+  $rows = array('Name' => ax_e($name),
+    'Email' => '<a href="mailto:' . ax_e($email) . '" style="color:#222222">' . ax_e($email) . '</a>');
+  if ($phone !== '') $rows['Phone'] = '<a href="tel:+' . ax_e($waNum) . '" style="color:#222222">' . ax_e($phone) . '</a>';
+  $rows['Wants to build'] = ax_e($build);
+  $rows['Budget']         = ax_e($budgetMode);
+  if ($budgetNote !== '') $rows['Their words'] = ax_e($budgetNote);
+  $rows['Matters most']   = ax_e($priority);
+  if ($direction !== '')  $rows['Starting point'] = ax_e($direction);
+
+  $rowsHtml = '';
+  foreach ($rows as $k => $v) {
+    $rowsHtml .= '<tr><td style="padding:3px 16px 3px 0;color:#666666;vertical-align:top;white-space:nowrap">'
+      . $k . ':</td><td style="padding:3px 0;vertical-align:top">' . $v . '</td></tr>';
+  }
+  $ownerHtml = ax_letter(
+      ax_p('A new enquiry has come in through the How we price page.')
+    . '<table cellpadding="0" cellspacing="0" border="0" style="margin:0 0 14px;font-size:15px;line-height:1.6;color:#222222">'
+    . $rowsHtml . '</table>'
+    . ($message !== '' ? ax_p('<span style="color:#666666">Project information:</span><br>' . nl2br(ax_e($message))) : '')
+    . ax_p('Reply to this email to answer ' . ax_e($name) . ' directly.')
+    . '<p style="margin:20px 0 0;font-size:13px;color:#888888">Sent from the form on '
+    . ax_e($page !== '' ? $page : 'the website') . ' &middot; ' . ax_e($when) . '</p>'
+  );
+  $ownerText = "A new enquiry has come in through the How we price page.\n\n";
+  foreach ($rows as $k => $v) $ownerText .= str_pad($k . ':', 16) . html_entity_decode(strip_tags($v), ENT_QUOTES, 'UTF-8') . "\n";
+  $ownerText .= ($message !== '' ? "\nProject information:\n" . $message . "\n" : '')
+    . "\nReply to this email to answer " . $name . " directly.\n\n"
+    . "Sent from the form on " . ($page !== '' ? $page : 'the website') . " - " . $when . "\n";
+
+  try {
+    ax_send($cfg, $cfg['to'], $cfg['to_name'], 'Website enquiry from ' . $name . ' (How we price)',
+      $ownerHtml, $ownerText, $email, $name);
+  } catch (Exception $e) {
+    error_log('[aivoryx] pricing enquiry send failed: ' . $e->getMessage());
+    ax_out(false, "We couldn't send that just now. Please try WhatsApp, or call us.", 502);
+  }
+
+  if (!empty($cfg['autoreply'])) {
+    $first = preg_split('/\s+/', $name);
+    $first = ax_cut($first[0], 30);
+    if (!preg_match('/^[\p{L}\p{M}\'’-]+$/u', $first)) $first = 'there';
+    $replyHtml = ax_letter(
+        ax_p('Dear ' . ax_e($first) . ',')
+      . ax_p('Thank you for telling us about your project. We have your answers and '
+          . 'will get back to you the same working day.')
+      . ax_p('For your reference, you told us:')
+      . '<p style="margin:0 0 14px;padding-left:14px;border-left:2px solid #dddddd;color:#555555">'
+      . ax_e($build) . '<br>' . ax_e($budgetMode) . '<br>Matters most: ' . ax_e($priority) . '</p>'
+      . ax_p('Nothing is agreed or payable until you have a written proposal in front of you and are happy with it.')
+      . ax_p('If you need to reach us sooner, you can call or WhatsApp us on +91 93995 93499.')
+      . ax_p('Kind regards,<br>Aivoryx'
+          . ($site ? '<br><a href="' . ax_e($site) . '" style="color:#222222">' . ax_e($siteHost) . '</a>' : ''),
+          ';margin-top:20px')
+    );
+    $replyText = "Dear " . $first . ",\n\n"
+      . "Thank you for telling us about your project. We have your answers and will get back to you the same working day.\n\n"
+      . "For your reference, you told us:\n\n  " . $build . "\n  " . $budgetMode . "\n  Matters most: " . $priority . "\n\n"
+      . "Nothing is agreed or payable until you have a written proposal in front of you and are happy with it.\n\n"
+      . "If you need to reach us sooner, you can call or WhatsApp us on +91 93995 93499.\n\n"
+      . "Kind regards,\nAivoryx\n" . ($site ? $siteHost . "\n" : '');
+    try {
+      ax_send($cfg, $email, $name, 'Thank you for telling us about your project', $replyHtml, $replyText, $cfg['to'], $cfg['to_name'], true);
+    } catch (Exception $e) {
+      error_log('[aivoryx] pricing auto-reply failed: ' . $e->getMessage());
+    }
+  }
+  ax_out(true, 'Sent. We\'ll reply to ' . $email . ' the same day.');
 }
 
 /* ----- 1. To the owner ----- */

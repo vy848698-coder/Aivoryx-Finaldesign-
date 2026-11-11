@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How We Price — Aivoryx | Custom proposals, honest budgets, no hidden charges</title>
+<meta name="description" content="How Aivoryx prices websites, web apps, SaaS, AI and mobile projects: no fixed packages, no hidden charges. We understand what you need and what you're comfortable investing, then write a clear proposal around it.">
+<meta name="theme-color" content="#F6F2EA">
+<link rel="canonical" href="https://aivoryx.com/pricing.html">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Aivoryx">
+<meta property="og:title" content="How Aivoryx prices — good work without a confusing price tag">
+<meta property="og:description" content="No fixed packages. A clear proposal built around what you need and what feels comfortable: scope, timeline, investment and milestones agreed before work begins.">
+<meta property="og:url" content="https://aivoryx.com/pricing.html">
+<meta property="og:image" content="https://aivoryx.com/assets/img/work/clans-1440.webp">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="assets/img/brand/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="site.webmanifest">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<!-- order matters: tokens first, responsive then pricing last -->
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/close.css">
+<link rel="stylesheet" href="assets/css/responsive.css">
+<link rel="stylesheet" href="assets/css/pricing.css">
+<script>
+document.documentElement.classList.add('js');
+/* Big screens: scale the whole page as one piece (same as the homepage).
+   1340 must match the 1341px breakpoint in tokens.css. */
+(function (r, W) {
+  function fit() { r.style.zoom = innerWidth > W ? innerWidth / W : ''; }
+  fit();
+  addEventListener('resize', fit);
+})(document.documentElement, 1340);
+</script>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+ {"@type":"WebPage","name":"How We Price — Aivoryx","url":"https://aivoryx.com/pricing.html",
+  "description":"How Aivoryx approaches project investment: custom proposals, budget flexibility, agreed milestones and no unapproved charges.",
+  "isPartOf":{"@type":"WebSite","name":"Aivoryx","url":"https://aivoryx.com/"}},
+ {"@type":"FAQPage","mainEntity":[
+  {"@type":"Question","name":"Why don't you display fixed prices?","acceptedAnswer":{"@type":"Answer","text":"Because we build custom digital solutions. The work required for two projects can be very different, even when their initial descriptions sound similar. We prefer to understand your requirements before proposing an investment."}},
+  {"@type":"Question","name":"Can you work within my budget?","acceptedAnswer":{"@type":"Answer","text":"We'll always consider your comfortable investment range and explore realistic options. If the complete scope isn't practical, we can discuss priorities or a phased approach."}},
+  {"@type":"Question","name":"What if I don't know what my project should cost?","acceptedAnswer":{"@type":"Answer","text":"That's completely fine. Tell us what you're trying to achieve. We'll help you understand the requirements and discuss a suitable approach."}},
+  {"@type":"Question","name":"Do you require an advance payment?","acceptedAnswer":{"@type":"Answer","text":"Payment arrangements depend on the project and are explained in the proposal before work begins."}},
+  {"@type":"Question","name":"Are there hidden charges?","acceptedAnswer":{"@type":"Answer","text":"No unapproved additional charges. The agreed proposal defines the scope and investment. Any additional requirements are discussed and approved before they become part of the project."}},
+  {"@type":"Question","name":"Can we change requirements after development begins?","acceptedAnswer":{"@type":"Answer","text":"Yes, requirements can evolve. We review the requested changes, explain their impact on scope, timeline and investment, and agree on the next steps."}},
+  {"@type":"Question","name":"Can my project be built in phases?","acceptedAnswer":{"@type":"Answer","text":"Where the project allows it, yes. We can identify the most important features for the first phase and plan future improvements."}},
+  {"@type":"Question","name":"Do you provide maintenance after delivery?","acceptedAnswer":{"@type":"Answer","text":"We can discuss ongoing maintenance and support according to your requirements. The agreed arrangement will be included in your proposal."}},
+  {"@type":"Question","name":"How do I get a project proposal?","acceptedAnswer":{"@type":"Answer","text":"Start a conversation with us. Share your idea, goals and any requirements you already know. We'll review them and explain the next steps."}}]}]}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="pr-progress" aria-hidden="true"><i></i></div>
+
+<!-- ================= NAV — same five, How we price is current ================= -->
+<nav class="nav" id="nav" aria-label="Main">
+  <div class="in">
+    <a class="brand" href="index.html" aria-label="Aivoryx — home">
+      <svg viewBox="7 -6 90 104" fill="none" aria-hidden="true">
+        <path d="M12 90 L52 2" stroke="#17150F" stroke-width="11.5" stroke-linecap="square"/>
+        <path d="M52 2 L92 90" stroke="#17150F" stroke-width="11.5" stroke-linecap="square"/>
+        <path d="M52 90 L92 2" stroke="#17150F" stroke-width="11.5" stroke-linecap="square"/>
+        <path d="M32 46 L72 46" stroke="#E8431C" stroke-width="11.5" stroke-linecap="square"/>
+      </svg>
+      <span>Aivory<em>x</em></span>
+    </a>
+    <div class="menu">
+      <a href="index.html"><i aria-hidden="true">01</i><span class="lbl"><b>Home</b><em aria-hidden="true">Home</em></span></a>
+      <a href="work.html"><i aria-hidden="true">02</i><span class="lbl"><b>Work</b><em aria-hidden="true">Work</em></span></a>
+      <a href="tools.html"><i aria-hidden="true">03</i><span class="lbl"><b>Free tools</b><em aria-hidden="true">Free tools</em></span></a>
+      <a href="pricing.html" aria-current="page"><i aria-hidden="true">04</i><span class="lbl"><b>How we price</b><em aria-hidden="true">How we price</em></span></a>
+      <a href="index.html#contact"><i aria-hidden="true">05</i><span class="lbl"><b>Contact us</b><em aria-hidden="true">Contact us</em></span></a>
+    </div>
+    <div class="nav-right">
+      <a class="cta" href="#enquire">Start a project</a>
+      <button class="burger" id="burger" type="button" aria-controls="sheet" aria-expanded="false" aria-label="Open menu"><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="sheet" id="sheet">
+  <a class="big" href="index.html">Home <span>01</span></a>
+  <a class="big" href="work.html">Work <span>02</span></a>
+  <a class="big" href="tools.html">Free tools <span>03</span></a>
+  <a class="big" href="pricing.html" aria-current="page">How we price <span>04</span></a>
+  <a class="big" href="index.html#contact">Contact us <span>05</span></a>
+  <a class="btn" href="#enquire">Start a project
+    <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.8"/></svg>
+  </a>
+</div>
+
+<main class="frame" id="top">
+<span id="main"></span>
+
+  <!-- ============ 01 · HERO — many kinds of project, one proposal ============ -->
+  <section class="pr-hero" aria-labelledby="hero-h">
+    <div class="pr-hero-l">
+      <div class="pr-lab rise"><i></i>Aivoryx / Our approach to investment</div>
+      <h1 class="rise d1" id="hero-h"><span class="ln">Good work shouldn’t</span> <span class="ln">come with a</span> <em class="ln">confusing price tag.</em></h1>
+      <p class="pr-sub rise d2">Every business is different. Every project has its own challenges, ambitions and possibilities. That’s why we don’t force you into predefined pricing packages. <b>We understand what you need, what you’re comfortable investing and build a proposal around it.</b></p>
+      <div class="pr-act rise d3">
+        <a class="btn" href="#enquire">Let’s talk about your project
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.8"/></svg>
+        </a>
+        <a class="tl" href="#process">Understand our process <span aria-hidden="true">↓</span></a>
+      </div>
+      <p class="pr-calm rise d3"><i aria-hidden="true"></i>No pressure. No fixed packages. Just an honest conversation.</p>
+    </div>
+
+    <!-- five different projects, one proposal written for each.
+         Pure SVG + CSS; the final frame is the static state under reduced motion. -->
+    <figure class="pr-hero-r rise d2" aria-label="Five different kinds of project flowing into one custom proposal">
+      <svg class="conv" viewBox="0 0 640 600" role="img" aria-labelledby="conv-t">
+        <title id="conv-t">A website, a web app, a SaaS platform, an AI assistant and a mobile app each feed into one proposal: scope, included, not included, timeline, investment agreed together, and payment milestones.</title>
+        <!-- connectors -->
+        <g class="cv-wires" fill="none">
+          <path class="w w1" pathLength="100" d="M176 74 C 270 74, 270 286, 352 296"/>
+          <path class="w w2" pathLength="100" d="M176 186 C 262 186, 280 292, 352 298"/>
+          <path class="w w3" pathLength="100" d="M176 300 C 250 300, 300 300, 352 300"/>
+          <path class="w w4" pathLength="100" d="M176 412 C 262 412, 280 308, 352 302"/>
+          <path class="w w5" pathLength="100" d="M88 524 C 250 524, 270 314, 352 304"/>
+          <path class="f f1" pathLength="100" d="M176 74 C 270 74, 270 286, 352 296"/>
+          <path class="f f2" pathLength="100" d="M176 186 C 262 186, 280 292, 352 298"/>
+          <path class="f f3" pathLength="100" d="M176 300 C 250 300, 300 300, 352 300"/>
+          <path class="f f4" pathLength="100" d="M176 412 C 262 412, 280 308, 352 302"/>
+          <path class="f f5" pathLength="100" d="M88 524 C 250 524, 270 314, 352 304"/>
+        </g>
+
+        <!-- the five starting points -->
+        <g class="cv-src s1">
+          <rect x="40" y="40" width="136" height="68" rx="6"/>
+          <path d="M40 54h136"/><circle cx="49" cy="47" r="2"/><circle cx="57" cy="47" r="2"/>
+          <path class="ln2" d="M52 70h60M52 80h88M52 90h40"/>
+          <text x="40" y="128">01 · Website</text>
+        </g>
+        <g class="cv-src s2">
+          <rect x="40" y="152" width="136" height="68" rx="6"/>
+          <path d="M72 152v68"/>
+          <path class="ln2" d="M48 166h16M48 176h16M48 186h16"/>
+          <path class="bars" d="M88 206v-14M102 206v-26M116 206v-18M130 206v-32M144 206v-22M158 206v-10"/>
+          <text x="40" y="240">02 · Web app</text>
+        </g>
+        <g class="cv-src s3">
+          <rect x="52" y="268" width="112" height="40" rx="5"/>
+          <rect x="46" y="276" width="124" height="40" rx="5"/>
+          <rect x="40" y="284" width="136" height="40" rx="5"/>
+          <path class="ln2" d="M52 298h50M52 308h30"/><circle cx="160" cy="304" r="5"/>
+          <text x="40" y="344">03 · SaaS platform</text>
+        </g>
+        <g class="cv-src s4">
+          <path d="M48 380h120a8 8 0 0 1 8 8v34a8 8 0 0 1-8 8H82l-14 12v-12H48a8 8 0 0 1-8-8v-34a8 8 0 0 1 8-8z"/>
+          <path class="ln2" d="M54 398h76M54 410h52"/>
+          <path class="spark" d="M154 396v12M148 402h12"/>
+          <text x="40" y="460">04 · AI solution</text>
+        </g>
+        <g class="cv-src s5">
+          <rect x="40" y="482" width="48" height="84" rx="8"/>
+          <path d="M56 490h16"/>
+          <path class="ln2" d="M48 506h32M48 516h24M48 526h28"/>
+          <text x="40" y="588">05 · Mobile app</text>
+        </g>
+
+        <!-- the proposal -->
+        <g class="cv-doc">
+          <rect class="sheet2" x="368" y="52" width="244" height="504" rx="10"/>
+          <rect class="sheet1" x="358" y="42" width="244" height="504" rx="10"/>
+          <circle class="port" cx="358" cy="300" r="5"/>
+          <text class="k" x="380" y="76">PROPOSAL</text>
+          <text class="k dim" x="580" y="76" text-anchor="end">FOR YOU</text>
+          <path class="rule" d="M380 90h200"/>
+          <text class="title" x="380" y="124">Built around</text>
+          <text class="title em" x="380" y="152">your project.</text>
+
+          <g class="row r1"><text class="k" x="380" y="196">01 SCOPE</text><path class="bar" pathLength="100" d="M380 210h188"/></g>
+          <g class="row r2"><text class="k" x="380" y="240">02 INCLUDED</text><path class="bar" pathLength="100" d="M380 254h150"/></g>
+          <g class="row r3"><text class="k" x="380" y="284">03 NOT INCLUDED</text><path class="bar" pathLength="100" d="M380 298h120"/></g>
+          <g class="row r4"><text class="k" x="380" y="328">04 TIMELINE</text>
+            <path class="bar" pathLength="100" d="M380 342h56"/><path class="bar b2" pathLength="100" d="M442 342h62"/><path class="bar b3" pathLength="100" d="M510 342h58"/></g>
+          <g class="row r5"><text class="k" x="380" y="372">05 INVESTMENT</text><text class="agreed" x="380" y="398">Agreed together</text></g>
+          <g class="row r6"><text class="k" x="380" y="432">06 MILESTONES</text>
+            <circle cx="384" cy="448" r="4"/><circle cx="446" cy="448" r="4"/><circle cx="508" cy="448" r="4"/><circle cx="568" cy="448" r="4"/>
+            <path class="bar" pathLength="100" d="M388 448h176"/></g>
+
+          <path class="rule" d="M380 482h200"/>
+          <path class="sig" pathLength="100" d="M384 520c10-18 18-20 20-8s-6 16 4 4 14-22 18-10-2 16 8 8 10-14 16-6 6 8 14 2"/>
+          <text class="k dim" x="580" y="522" text-anchor="end">APPROVED ✓</text>
+        </g>
+      </svg>
+      <figcaption class="conv-cap"><span>Five starting points</span><span>One proposal, written for yours</span></figcaption>
+    </figure>
+  </section>
+
+  <!-- the belief, set as the page's opening statement -->
+  <section class="pr-belief" aria-label="What we believe">
+    <p class="reveal"><span class="q" aria-hidden="true">“</span>We don’t believe in forcing different businesses into <em>the same price.</em> We believe in understanding what you need and finding <em class="hot">the right way to build it.</em></p>
+  </section>
+
+  <!-- ============ 02 · DIRECTIONS — three ways in, not three packages ============ -->
+  <section class="pr-sec dirs" id="directions" aria-labelledby="dir-h">
+    <header class="pr-head reveal">
+      <div>
+        <div class="pr-lab"><i></i>02 / Every business starts somewhere different</div>
+        <h2 id="dir-h">Different ambitions. <em>Different ways to build.</em></h2>
+      </div>
+      <p class="pr-note">Your project should determine the approach, <b>not a predefined package.</b></p>
+    </header>
+
+    <div class="dir reveal">
+      <div class="dir-tabs" role="tablist" aria-label="Project directions" aria-orientation="vertical">
+        <button class="dir-tab" id="dt-1" role="tab" type="button" aria-selected="true" aria-controls="dp-1">
+          <i>01</i><span class="dir-name">Get started</span><em>Start with something meaningful.</em>
+        </button>
+        <button class="dir-tab" id="dt-2" role="tab" type="button" aria-selected="false" aria-controls="dp-2" tabindex="-1">
+          <i>02</i><span class="dir-name">Grow further</span><em>Make what you have work harder.</em>
+        </button>
+        <button class="dir-tab" id="dt-3" role="tab" type="button" aria-selected="false" aria-controls="dp-3" tabindex="-1">
+          <i>03</i><span class="dir-name">Think bigger</span><em>Build beyond the ordinary.</em>
+        </button>
+      </div>
+
+      <div class="dir-panels">
+        <article class="dir-panel on" id="dp-1" role="tabpanel" aria-labelledby="dt-1" tabindex="0">
+          <div class="dp-txt">
+            <span class="dp-k">Direction 01 · Get started</span>
+            <h3>Start with something <em>meaningful.</em></h3>
+            <p>For businesses and individuals ready to establish a stronger digital presence or turn an early idea into something real.</p>
+            <div class="dp-ex">
+              <span class="dp-ex-k">Often looks like</span>
+              <ul><li>Professional business websites</li><li>Landing pages</li><li>Brand-focused digital experiences</li><li>Initial digital products</li></ul>
+            </div>
+            <a class="biglink" href="#enquire" data-direction="Get started">Explore this direction <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.8"/></svg></a>
+          </div>
+          <svg class="dp-art a1" viewBox="0 0 280 280" aria-hidden="true">
+            <circle class="ring" cx="140" cy="140" r="104"/>
+            <circle class="ring r2" cx="140" cy="140" r="66"/>
+            <rect class="core" x="112" y="112" width="56" height="56" rx="6"/>
+            <path class="grow" d="M140 112V58M140 58l-10 10M140 58l10 10"/>
+            <text x="140" y="272" text-anchor="middle">a first, solid step</text>
+          </svg>
+        </article>
+
+        <article class="dir-panel" id="dp-2" role="tabpanel" aria-labelledby="dt-2" tabindex="0">
+          <div class="dp-txt">
+            <span class="dp-k">Direction 02 · Grow further</span>
+            <h3>Make what you have <em>work harder.</em></h3>
+            <p>For growing businesses that want better functionality, improved experiences and smarter digital systems.</p>
+            <div class="dp-ex">
+              <span class="dp-ex-k">Often looks like</span>
+              <ul><li>Website redesigns</li><li>Custom business platforms</li><li>Workflow automation</li><li>Integrations</li><li>Existing product improvements</li></ul>
+            </div>
+            <a class="biglink" href="#enquire" data-direction="Grow further">Explore this direction <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.8"/></svg></a>
+          </div>
+          <svg class="dp-art a2" viewBox="0 0 280 280" aria-hidden="true">
+            <rect class="core" x="100" y="100" width="80" height="80" rx="6"/>
+            <path class="link" d="M180 140h40M140 100V60M100 140H60M140 180v40"/>
+            <rect class="mod" x="220" y="122" width="36" height="36" rx="5"/>
+            <rect class="mod" x="122" y="24" width="36" height="36" rx="5"/>
+            <rect class="mod" x="24" y="122" width="36" height="36" rx="5"/>
+            <rect class="mod dash" x="122" y="220" width="36" height="36" rx="5"/>
+            <text x="140" y="146" text-anchor="middle">yours</text>
+          </svg>
+        </article>
+
+        <article class="dir-panel" id="dp-3" role="tabpanel" aria-labelledby="dt-3" tabindex="0">
+          <div class="dp-txt">
+            <span class="dp-k">Direction 03 · Think bigger</span>
+            <h3>Build beyond <em>the ordinary.</em></h3>
+            <p>For ambitious ideas that require deeper thinking, custom engineering and more advanced digital experiences.</p>
+            <div class="dp-ex">
+              <span class="dp-ex-k">Often looks like</span>
+              <ul><li>SaaS platforms</li><li>Complex web applications</li><li>AI-powered solutions</li><li>Custom software</li><li>Scalable digital ecosystems</li></ul>
+            </div>
+            <a class="biglink" href="#enquire" data-direction="Think bigger">Explore this direction <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.8"/></svg></a>
+          </div>
+          <svg class="dp-art a3" viewBox="0 0 280 280" aria-hidden="true">
+            <path class="link" d="M140 140 62 70M140 140l84-56M140 140l88 70M140 140 50 196M140 140v104M62 70l162 14M224 84l4 126M228 210l-178-14M50 196 62 70"/>
+            <circle class="node big" cx="140" cy="140" r="22"/>
+            <circle class="node" cx="62" cy="70" r="11"/><circle class="node" cx="224" cy="84" r="13"/>
+            <circle class="node" cx="228" cy="210" r="10"/><circle class="node" cx="50" cy="196" r="12"/>
+            <circle class="node" cx="140" cy="244" r="9"/>
+          </svg>
+        </article>
+      </div>
+    </div>
+
+    <p class="dir-foot reveal"><span><b>These aren’t packages.</b> No feature caps, no price brackets, no “upgrade to unlock”. They’re three honest places to start a conversation, and most projects borrow from more than one.</span></p>
+  </section>
+
+  <!-- ============ 03 · FACTORS — what shapes the investment ============ -->
+  <section class="pr-sec facs" id="factors" aria-labelledby="fac-h">
+    <header class="pr-head reveal">
+      <div>
+        <div class="pr-lab"><i></i>03 / What shapes your investment</div>
+        <h2 id="fac-h">Your investment should make sense <em>for what you’re building.</em></h2>
+      </div>
+      <p class="pr-note">We look beyond the initial request to understand <b>what your project actually requires.</b></p>
+    </header>
+
+    <ol class="fac-grid reveal">
+      <li class="fac" style="--d:0s">
+        <div class="fac-top"><span class="fac-n">01</span><span class="fac-tags">Pages · features · deliverables</span></div>
+        <svg class="fac-art f-scope" viewBox="0 0 160 96" aria-hidden="true">
+          <rect class="p p3" x="56" y="10" width="52" height="68" rx="4"/>
+          <rect class="p p2" x="56" y="10" width="52" height="68" rx="4"/>
+          <rect class="p p1" x="56" y="10" width="52" height="68" rx="4"/>
+          <path class="t" d="M64 24h28M64 32h36M64 40h20"/>
+        </svg>
+        <h3>Project scope</h3>
+        <p class="fac-q">What needs to be designed, developed and delivered?</p>
+      </li>
+      <li class="fac" style="--d:.06s">
+        <div class="fac-top"><span class="fac-n">02</span><span class="fac-tags">Research · UX · custom design</span></div>
+        <svg class="fac-art f-design" viewBox="0 0 160 96" aria-hidden="true">
+          <rect class="fr" x="28" y="10" width="104" height="72" rx="4"/>
+          <path class="g" d="M28 26h104M62 26v56"/>
+          <path class="dt" d="M70 38h52M70 46h40M70 60h22v14H70zM98 60h24v14H98zM36 36h18M36 44h14M36 52h18"/>
+          <circle class="dt dot" cx="122" cy="18" r="3"/>
+        </svg>
+        <h3>Design complexity</h3>
+        <p class="fac-q">How much research, custom design and user experience work does it require?</p>
+      </li>
+      <li class="fac" style="--d:.12s">
+        <div class="fac-top"><span class="fac-n">03</span><span class="fac-tags">Features · workflows · logic</span></div>
+        <svg class="fac-art f-func" viewBox="0 0 160 96" aria-hidden="true">
+          <path class="flow" pathLength="100" d="M30 48h30M88 48h20l10-18h12M108 48l10 18h12"/>
+          <circle class="nd" cx="24" cy="48" r="7"/>
+          <rect class="sw" x="60" y="38" width="28" height="20" rx="10"/><circle class="knob" cx="70" cy="48" r="6"/>
+          <circle class="nd" cx="136" cy="30" r="6"/><circle class="nd" cx="136" cy="66" r="6"/>
+        </svg>
+        <h3>Functionality</h3>
+        <p class="fac-q">What features, workflows and interactions must be built?</p>
+      </li>
+      <li class="fac" style="--d:.18s">
+        <div class="fac-top"><span class="fac-n">04</span><span class="fac-tags">APIs · systems · infrastructure</span></div>
+        <svg class="fac-art f-tech" viewBox="0 0 160 96" aria-hidden="true">
+          <path class="sp s1" d="M80 48 32 18"/><path class="sp s2" d="M80 48l48-30"/><path class="sp s3" d="M80 48l48 30"/><path class="sp s4" d="M80 48 32 78"/>
+          <rect class="hub" x="66" y="34" width="28" height="28" rx="4"/>
+          <rect class="api" x="16" y="8" width="28" height="18" rx="3"/><rect class="api" x="116" y="8" width="28" height="18" rx="3"/>
+          <rect class="api" x="116" y="70" width="28" height="18" rx="3"/><rect class="api" x="16" y="70" width="28" height="18" rx="3"/>
+          <text x="80" y="52" text-anchor="middle">{ }</text>
+        </svg>
+        <h3>Technology &amp; integrations</h3>
+        <p class="fac-q">What APIs, external systems, infrastructure or custom engineering are involved?</p>
+      </li>
+      <li class="fac" style="--d:.24s">
+        <div class="fac-top"><span class="fac-n">05</span><span class="fac-tags">Copy · imagery · brand</span></div>
+        <svg class="fac-art f-content" viewBox="0 0 160 96" aria-hidden="true">
+          <rect class="img" x="20" y="14" width="58" height="46" rx="4"/>
+          <path class="img" d="M24 56l16-18 12 12 8-8 14 14"/><circle class="img" cx="64" cy="26" r="5"/>
+          <path class="tx" d="M90 18h50M90 28h42M90 38h48M90 48h30"/>
+          <rect class="sw1" x="20" y="70" width="14" height="14" rx="3"/><rect class="sw2" x="40" y="70" width="14" height="14" rx="3"/><rect class="sw3" x="60" y="70" width="14" height="14" rx="3"/>
+        </svg>
+        <h3>Content &amp; assets</h3>
+        <p class="fac-q">What content, imagery, branding and supporting materials need to be created?</p>
+      </li>
+      <li class="fac" style="--d:.3s">
+        <div class="fac-top"><span class="fac-n">06</span><span class="fac-tags">Schedule · phases · milestones</span></div>
+        <svg class="fac-art f-time" viewBox="0 0 160 96" aria-hidden="true">
+          <path class="ax" d="M16 84h128M16 80v8M56 80v8M96 80v8M136 80v8"/>
+          <rect class="gb b1" x="16" y="16" width="44" height="12" rx="3"/>
+          <rect class="gb b2" x="48" y="36" width="56" height="12" rx="3"/>
+          <rect class="gb b3" x="92" y="56" width="44" height="12" rx="3"/>
+          <path class="now" d="M40 8v76"/>
+        </svg>
+        <h3>Timeline &amp; delivery</h3>
+        <p class="fac-q">What is the expected schedule and what delivery phases are required?</p>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ============ 04 · YOUR BUDGET — the enquiry ============
+       Posts to api/send.php with kind:"pricing" (see the pricing branch there).
+       Nothing is estimated or calculated on this page. -->
+  <section class="pr-sec budget" id="budget" aria-labelledby="bud-h">
+    <div class="bud">
+      <div class="bud-l">
+        <div class="bud-l-in reveal">
+          <div class="pr-lab"><i></i>04 / Your budget. Our starting point.</div>
+          <h2 id="bud-h">Tell us what feels comfortable. <em>We’ll help you figure out what’s possible.</em></h2>
+          <p class="bud-lede">You don’t need to know exactly what your project should cost before speaking with us. Share what you’re planning and, if you have one, your comfortable investment range. <b>We’ll help identify the right priorities and a realistic way forward.</b></p>
+
+          <blockquote class="bud-ok">
+            <p>If your budget is limited, that’s okay. We’ll discuss what can realistically be achieved, what should come first and whether a phased approach makes sense.</p>
+          </blockquote>
+
+          <ul class="bud-facts">
+            <li><span>No instant quote</span>A real person reads your answers. We don’t guess a number from a form.</li>
+            <li><span>Budget is optional</span>Share a range, keep it for a call, or ask us to help you decide.</li>
+            <li><span>Private by default</span>Read only by the two people who would build it. Never shared, never added to a mailing list.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bud-r" id="enquire">
+        <form class="enq pq" id="pq" action="api/send.php" method="post" novalidate aria-labelledby="pq-title">
+          <div class="enq-head">
+            <span class="enq-tag" id="pq-title"><i aria-hidden="true"></i>Project conversation</span>
+            <span class="enq-time">Five short steps · about 2 minutes</span>
+          </div>
+
+          <!-- set by the "Explore this direction" links; removable -->
+          <input type="hidden" name="direction" value="">
+          <p class="pq-dir" hidden>
+            <span>Starting point: <b data-dir-name></b></span>
+            <button type="button" class="pq-dir-x" aria-label="Remove starting point">Remove ×</button>
+          </p>
+
+          <fieldset class="step" data-field="build" data-needs="build">
+            <legend class="step-h"><span class="sn">01</span>What are you looking to build?</legend>
+            <div class="pills" role="radiogroup" aria-describedby="pq-build-err" aria-required="true">
+              <label class="pill"><input type="radio" name="build" value="Business website" required><span>Business website</span></label>
+              <label class="pill"><input type="radio" name="build" value="E-commerce website"><span>E-commerce website</span></label>
+              <label class="pill"><input type="radio" name="build" value="Web application"><span>Web application</span></label>
+              <label class="pill"><input type="radio" name="build" value="SaaS product"><span>SaaS product</span></label>
+              <label class="pill"><input type="radio" name="build" value="AI-powered solution"><span>AI-powered solution</span></label>
+              <label class="pill"><input type="radio" name="build" value="Mobile application"><span>Mobile application</span></label>
+              <label class="pill"><input type="radio" name="build" value="Custom digital solution"><span>Custom digital solution</span></label>
+              <label class="pill"><input type="radio" name="build" value="Not sure yet"><span>Not sure yet</span></label>
+            </div>
+            <span class="f-err" id="pq-build-err" aria-live="polite"></span>
+          </fieldset>
+
+          <fieldset class="step" data-field="budget_mode" data-needs="budget_mode">
+            <legend class="step-h"><span class="sn">02</span>Do you already have a budget in mind?</legend>
+            <div class="tiles" role="radiogroup" aria-describedby="pq-bm-err pq-bm-hint" aria-required="true">
+              <label class="tile"><input type="radio" name="budget_mode" value="I have a budget in mind" required><span><b>I have a budget in mind</b><em>You can note a range below, in your own words.</em></span></label>
+              <label class="tile"><input type="radio" name="budget_mode" value="I'd like help deciding"><span><b>I’d like help deciding</b><em>We’ll explain what drives it and suggest a starting scope.</em></span></label>
+              <label class="tile"><input type="radio" name="budget_mode" value="I'd prefer to discuss this personally"><span><b>I’d prefer to discuss this personally</b><em>Leave it off the form. We’ll talk it through.</em></span></label>
+              <label class="tile"><input type="radio" name="budget_mode" value="I want to share my budget privately"><span><b>I want to share my budget privately</b><em>Only the two founders will see what you write.</em></span></label>
+            </div>
+            <span class="f-err" id="pq-bm-err" aria-live="polite"></span>
+            <p class="pq-hint" id="pq-bm-hint" aria-live="polite"></p>
+            <div class="pq-more" data-more hidden>
+              <div class="f" data-field="budget_note">
+                <label for="pq-note" data-note-label>Your comfortable range <span class="opt-in">Optional</span></label>
+                <input id="pq-note" name="budget_note" type="text" maxlength="200" autocomplete="off" placeholder="A range, a ceiling, or “flexible”" aria-describedby="pq-note-help">
+                <span class="pq-help" id="pq-note-help">It helps us suggest what to prioritise. It doesn’t set the price.</span>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="step" data-field="priority" data-needs="priority">
+            <legend class="step-h"><span class="sn">03</span>What matters most?</legend>
+            <div class="pills" role="radiogroup" aria-describedby="pq-pri-err" aria-required="true">
+              <label class="pill"><input type="radio" name="priority" value="Premium design and experience" required><span>Premium design and experience</span></label>
+              <label class="pill"><input type="radio" name="priority" value="Features and functionality"><span>Features and functionality</span></label>
+              <label class="pill"><input type="radio" name="priority" value="Getting started within my budget"><span>Getting started within my budget</span></label>
+              <label class="pill"><input type="radio" name="priority" value="Scalability and long-term growth"><span>Scalability and long-term growth</span></label>
+              <label class="pill"><input type="radio" name="priority" value="A balanced approach"><span>A balanced approach</span></label>
+            </div>
+            <span class="f-err" id="pq-pri-err" aria-live="polite"></span>
+          </fieldset>
+
+          <div class="step">
+            <div class="f" data-field="message">
+              <label class="step-h" for="pq-msg"><span class="sn">04</span>Additional project information <span class="opt">Optional</span></label>
+              <textarea id="pq-msg" name="message" rows="4" maxlength="4000" placeholder="Your business, the idea, anything you already know you need, or a link to something you like."></textarea>
+            </div>
+          </div>
+
+          <fieldset class="step" data-needs="name email phone">
+            <legend class="step-h"><span class="sn">05</span>Where should we reply?</legend>
+            <div class="f-row">
+              <div class="f f-full" data-field="name">
+                <label for="pq-name">Full name</label>
+                <input id="pq-name" name="name" type="text" autocomplete="name" maxlength="120" required aria-describedby="pq-name-err">
+                <span class="f-err" id="pq-name-err" aria-live="polite"></span>
+              </div>
+              <div class="f" data-field="email">
+                <label for="pq-email">Email address</label>
+                <input id="pq-email" name="email" type="email" inputmode="email" autocomplete="email" maxlength="200" placeholder="you@company.com" required aria-describedby="pq-email-err">
+                <span class="f-err" id="pq-email-err" aria-live="polite"></span>
+              </div>
+              <div class="f" data-field="phone">
+                <label for="pq-phone">Phone <span class="opt-in">Optional</span></label>
+                <input id="pq-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="40" placeholder="+91 98765 43210" aria-describedby="pq-phone-err">
+                <span class="f-err" id="pq-phone-err" aria-live="polite"></span>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- Honeypot: off-screen, never seen by a person. -->
+          <div class="trap" aria-hidden="true">
+            <label for="pq-hp">Leave this empty</label>
+            <input class="hp" id="pq-hp" name="ax_hp" type="text" tabindex="-1" autocomplete="off">
+          </div>
+
+          <div class="enq-alert" role="alert" tabindex="-1" hidden>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v5.5M12 16.4v.1"/></svg>
+            <p><span class="msg"></span> <a href="https://wa.me/919399593499?text=Hi%20Aivoryx%2C%20I%27d%20like%20to%20talk%20about%20a%20project" target="_blank" rel="noopener">WhatsApp ↗</a></p>
+          </div>
+
+          <div class="enq-foot">
+            <button class="btn enq-send" type="submit">
+              <span class="lbl">Start the conversation</span>
+              <svg class="arr" width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 12 12 4M5.5 4H12v6.5" stroke="currentColor" stroke-width="1.8"/></svg>
+              <span class="spin" aria-hidden="true"></span>
+            </button>
+            <p class="pq-privacy"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></svg>Used only to reply to you. No newsletters, no sharing.</p>
+          </div>
+        </form>
+
+        <div class="enq-done" id="pqDone" tabindex="-1" role="status" hidden>
+          <span class="done-mark"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+          <h3>It’s with us. <em>Thank you.</em></h3>
+          <p class="done-p">Your answers are in our inbox. We’ll reply to <b data-email></b> the same working day.</p>
+          <ol class="next">
+            <li><span class="sn">01</span><span><b>We read it</b>, the two people who would build it.</span></li>
+            <li><span class="sn">02</span><span><b>We reply</b> with questions, or a suggested way to approach it.</span></li>
+            <li><span class="sn">03</span><span><b>If it’s a fit</b>, you get a written proposal before anything is agreed or paid.</span></li>
+          </ol>
+          <button class="biglink done-again" type="button">Send another <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.8"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 05 · PROCESS — scroll-linked timeline ============ -->
+  <section class="pr-sec proc" id="process" aria-labelledby="proc-h">
+    <header class="pr-head reveal">
+      <div>
+        <div class="pr-lab"><i></i>05 / How we arrive at the right investment</div>
+        <h2 id="proc-h">No guesswork. No surprises. <em>Just a clear process.</em></h2>
+      </div>
+      <p class="pr-note">Six steps, in this order, every time. <b>The investment is agreed at step five, never assumed at step one.</b></p>
+    </header>
+
+    <div class="proc-track" style="--p:0">
+      <div class="proc-line" aria-hidden="true"><i></i></div>
+      <ol class="proc-steps">
+        <li class="ps"><span class="ps-n">01</span><span class="ps-v"><b>Understand</b><em aria-hidden="true">Understand</em></span><p>We listen to your idea, your business goals and what you want to achieve.</p></li>
+        <li class="ps"><span class="ps-n">02</span><span class="ps-v"><b>Discover</b><em aria-hidden="true">Discover</em></span><p>We explore the requirements, functionality, complexity and opportunities.</p></li>
+        <li class="ps"><span class="ps-n">03</span><span class="ps-v"><b>Define</b><em aria-hidden="true">Define</em></span><p>We establish the project scope, priorities and realistic delivery approach.</p></li>
+        <li class="ps key"><span class="ps-n">04</span><span class="ps-v"><b>Propose</b><em aria-hidden="true">Propose</em></span><p>You receive a clear, written proposal. <a class="ul" href="#proposal">What’s in it ↓</a></p></li>
+        <li class="ps"><span class="ps-n">05</span><span class="ps-v"><b>Approve</b><em aria-hidden="true">Approve</em></span><p>We discuss the proposal, answer your questions and make any agreed adjustments before beginning.</p></li>
+        <li class="ps"><span class="ps-n">06</span><span class="ps-v"><b>Build &amp; deliver</b><em aria-hidden="true">Build &amp; deliver</em></span><p>Once everything is agreed, we move into execution with clear communication and defined milestones.</p></li>
+      </ol>
+    </div>
+
+    <!-- step 04, opened up -->
+    <div class="prop reveal" id="proposal">
+      <div class="prop-l">
+        <span class="pr-k">Step 04, opened up</span>
+        <h3>The proposal you receive explains, <em>in writing:</em></h3>
+        <p>Before anything is built or paid for, you’ll see exactly what you’d be agreeing to, including what isn’t part of it.</p>
+      </div>
+      <dl class="prop-doc">
+        <div><dt><i>a</i>What will be built</dt><dd>The product in plain language: pages, features and workflows.</dd></div>
+        <div><dt><i>b</i>What is included</dt><dd>Every deliverable we commit to, listed one by one.</dd></div>
+        <div><dt><i>c</i>What is not included</dt><dd>Written down too, so nothing is left to assumption.</dd></div>
+        <div><dt><i>d</i>Project timeline</dt><dd>Phases and target dates you can plan around.</dd></div>
+        <div class="hot"><dt><i>e</i>Investment</dt><dd>One clear figure for the agreed scope. <em>Agreed with you, not assumed.</em></dd></div>
+        <div><dt><i>f</i>Payment milestones</dt><dd>Tied to stages of the work and set out before we begin.</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ============ 06 · VALUE — what sits below the surface ============ -->
+  <section class="pr-sec val" id="value" aria-labelledby="val-h">
+    <div class="val-in">
+      <div class="val-l">
+        <div class="val-l-in reveal">
+          <div class="pr-lab"><i></i>06 / What you are investing in</div>
+          <h2 id="val-h">You’re not just paying for something <em>that looks good.</em></h2>
+          <p class="val-lede">You’re investing in the thinking, design, engineering and attention that make your digital product work.</p>
+
+          <svg class="strata" viewBox="0 0 420 430" role="img" aria-labelledby="strata-t">
+            <title id="strata-t">Design is the part people see. Development, testing, delivery, support and the strategy underneath it all sit below the surface.</title>
+            <text class="side" x="0" y="64">WHAT PEOPLE SEE</text>
+            <g class="band" data-layer="2"><path d="M150 40h120l20 56H130z"/><text x="210" y="74" text-anchor="middle">02 Design</text></g>
+            <path class="water" d="M0 112h420"/>
+            <text class="side" x="0" y="136">WHAT MAKES IT WORK</text>
+            <g class="band" data-layer="3"><path d="M118 150h184l16 64H102z"/><text x="210" y="188" text-anchor="middle">03 Development</text></g>
+            <g class="band" data-layer="4"><path d="M100 222h220l12 46H88z"/><text x="210" y="250" text-anchor="middle">04 Testing</text></g>
+            <g class="band" data-layer="5"><path d="M86 276h248l10 42H76z"/><text x="210" y="302" text-anchor="middle">05 Delivery</text></g>
+            <g class="band" data-layer="6"><path d="M74 326h272l8 40H66z"/><text x="210" y="351" text-anchor="middle">06 Ongoing support</text></g>
+            <g class="band base" data-layer="1"><path d="M30 374h360v44H30z"/><text x="210" y="401" text-anchor="middle">01 Strategy, under everything</text></g>
+          </svg>
+        </div>
+      </div>
+
+      <ol class="val-list">
+        <li class="vl reveal" data-layer="1"><span class="vl-n">01</span><div><h3>Strategy</h3><p>Understanding your business, audience and goals.</p><span class="vl-m">So every later decision has a reason behind it.</span></div></li>
+        <li class="vl reveal" data-layer="2"><span class="vl-n">02</span><div><h3>Design</h3><p>Creating a distinctive, user-focused experience.</p><span class="vl-m">The visible part, shaped by everything below it.</span></div></li>
+        <li class="vl reveal" data-layer="3"><span class="vl-n">03</span><div><h3>Development</h3><p>Building reliable functionality and the technology behind it.</p><span class="vl-m">Usually the largest share of the work, and the least visible.</span></div></li>
+        <li class="vl reveal" data-layer="4"><span class="vl-n">04</span><div><h3>Testing</h3><p>Checking performance, usability, responsiveness and quality.</p><span class="vl-m">On real phones and screens, before you see a launch date.</span></div></li>
+        <li class="vl reveal" data-layer="5"><span class="vl-n">05</span><div><h3>Delivery</h3><p>Deployment, handover and agreed documentation.</p><span class="vl-m">What “handed over” means is written into your proposal.</span></div></li>
+        <li class="vl reveal" data-layer="6"><span class="vl-n">06</span><div><h3>Ongoing support</h3><p>Maintenance and further improvements according to the agreed support arrangement.</p><span class="vl-m">Scoped like everything else: clear, not open-ended.</span></div></li>
+      </ol>
+    </div>
+    <p class="val-foot reveal"><b>We don’t promise “unlimited” anything.</b> Deliverables, revision rounds and support are agreed in your proposal, so you know exactly what you’re getting and we can deliver exactly that.</p>
+  </section>
+
+  <!-- ============ 07 · FLEXIBILITY — three honest ways to fit a budget ============ -->
+  <section class="pr-sec flex" id="flexibility" aria-labelledby="flex-h">
+    <header class="pr-head reveal">
+      <div>
+        <div class="pr-lab"><i></i>07 / Flexibility without compromising honesty</div>
+        <h2 id="flex-h">Good solutions don’t always have to be <em>built all at once.</em></h2>
+      </div>
+      <p class="pr-note">Budgets differ. <b>The honest answer is usually a better order, not a cheaper version.</b></p>
+    </header>
+
+    <div class="scn-list">
+      <article class="scn reveal" aria-labelledby="scn-a">
+        <span class="scn-l" aria-hidden="true">A</span>
+        <div class="scn-t">
+          <span class="pr-k">Scenario A</span>
+          <h3 id="scn-a">Start with the essentials</h3>
+          <p>For clients who want to launch with the most important features first. A focused first scope avoids complexity you don’t need yet. You launch sooner, learn from real users, and decide what comes next with evidence rather than guesses.</p>
+        </div>
+        <svg class="scn-art s-a" viewBox="0 0 300 120" aria-hidden="true">
+          <rect class="on" x="10" y="30" width="40" height="40" rx="4"/><rect class="on" x="56" y="30" width="40" height="40" rx="4"/><rect class="on" x="102" y="30" width="40" height="40" rx="4"/>
+          <rect class="off" x="158" y="30" width="40" height="40" rx="4"/><rect class="off" x="204" y="30" width="40" height="40" rx="4"/><rect class="off" x="250" y="30" width="40" height="40" rx="4"/>
+          <path class="br" d="M10 84v8h132v-8M158 84v8h132v-8"/>
+          <text x="76" y="112" text-anchor="middle">launch with</text><text x="224" y="112" text-anchor="middle" class="dim">when it’s needed</text>
+        </svg>
+      </article>
+
+      <article class="scn reveal" aria-labelledby="scn-b">
+        <span class="scn-l" aria-hidden="true">B</span>
+        <div class="scn-t">
+          <span class="pr-k">Scenario B</span>
+          <h3 id="scn-b">Build in phases</h3>
+          <p>For larger ideas that can be developed through planned stages. We prioritise features together and add them over time, each phase with its own scope, timeline and investment, agreed before it starts. You’re never committed to phase three on day one.</p>
+        </div>
+        <svg class="scn-art s-b" viewBox="0 0 300 120" aria-hidden="true">
+          <path class="ax" d="M10 90h280M10 86v8M106 86v8M202 86v8M290 86v8"/>
+          <rect class="ph p1" x="14" y="56" width="88" height="24" rx="4"/>
+          <rect class="ph p2" x="110" y="40" width="88" height="40" rx="4"/>
+          <rect class="ph p3" x="206" y="20" width="80" height="60" rx="4"/>
+          <text x="58" y="112" text-anchor="middle">phase 1</text><text x="154" y="112" text-anchor="middle">phase 2</text><text x="246" y="112" text-anchor="middle">phase 3</text>
+        </svg>
+      </article>
+
+      <article class="scn reveal" aria-labelledby="scn-c">
+        <span class="scn-l" aria-hidden="true">C</span>
+        <div class="scn-t">
+          <span class="pr-k">Scenario C</span>
+          <h3 id="scn-c">Plan for the bigger picture</h3>
+          <p>For clients who want a scalable, long-term solution. Architecture, integrations and future expansion are considered from the beginning, so later growth builds on the foundation instead of working around it.</p>
+        </div>
+        <svg class="scn-art s-c" viewBox="0 0 300 120" aria-hidden="true">
+          <rect class="base" x="10" y="80" width="280" height="18" rx="3"/>
+          <rect class="on" x="22" y="40" width="54" height="34" rx="4"/><rect class="on" x="84" y="22" width="54" height="52" rx="4"/>
+          <rect class="off" x="146" y="34" width="54" height="40" rx="4"/><rect class="off" x="208" y="14" width="70" height="60" rx="4"/>
+          <path class="cn" d="M49 74v6M111 74v6M173 74v6M243 74v6"/>
+          <text x="150" y="116" text-anchor="middle">one foundation, room to grow</text>
+        </svg>
+      </article>
+    </div>
+
+    <div class="flex-say reveal">
+      <p class="flex-q">We’ll never recommend adding complexity just to increase a project’s cost. <em>We’ll help you understand what is necessary now and what can wait.</em></p>
+      <p class="flex-real"><b>And when a scope doesn’t fit a budget,</b> we’ll say so plainly, and show you the options, rather than promise something we can’t deliver well.</p>
+    </div>
+  </section>
+
+  <!-- ============ 08 · PROMISE — on the ink band ============ -->
+  <section class="pr-sec trust" id="promise" aria-labelledby="trust-h">
+    <div class="trust-in">
+      <div class="trust-l reveal">
+        <div class="pr-lab on-dark"><i></i>08 / The transparency promise</div>
+        <h2 id="trust-h">Trust shouldn’t be an <em>extra feature.</em></h2>
+        <p class="trust-say">If something changes, we discuss it first. <b>You will always know what you’re agreeing to before additional work begins.</b></p>
+        <p class="trust-sig"><span>Written into every proposal</span><svg viewBox="0 0 160 40" aria-hidden="true"><path d="M6 30c12-22 22-26 24-12s-8 20 6 4 18-28 24-12-4 20 10 10 14-18 22-8 8 10 18 2 16-10 22-4 10 6 22 0"/></svg></p>
+      </div>
+      <ol class="clauses">
+        <li class="cl reveal"><span class="cl-n">§ 01</span><div><b>Clear scope before development.</b><span>Nothing is built until we both agree on what’s being built.</span></div></li>
+        <li class="cl reveal"><span class="cl-n">§ 02</span><div><b>Transparent project investment.</b><span>One clear figure in your proposal, with what it covers set out beside it.</span></div></li>
+        <li class="cl reveal"><span class="cl-n">§ 03</span><div><b>Agreed payment milestones.</b><span>Payments follow stages of the work, decided before we begin.</span></div></li>
+        <li class="cl reveal"><span class="cl-n">§ 04</span><div><b>No unapproved additional charges.</b><span>If you haven’t approved it, it isn’t on your bill.</span></div></li>
+        <li class="cl reveal"><span class="cl-n">§ 05</span><div><b>Honest conversations when requirements change.</b><span>We explain the effect on scope, time and investment, and wait for your yes.</span></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ 09 · FAQ ============ -->
+  <section class="pr-sec faq" id="faq" aria-labelledby="faq-h">
+    <div class="faq-in">
+      <div class="faq-l">
+        <div class="faq-l-in reveal">
+          <div class="pr-lab"><i></i>09 / Questions, answered plainly</div>
+          <h2 id="faq-h">The things people <em>usually ask.</em></h2>
+          <p class="faq-more">Something not here? <a class="ul" href="https://wa.me/919399593499?text=Hi%20Aivoryx%2C%20I%20have%20a%20question%20about%20how%20you%20price" target="_blank" rel="noopener">Ask us on WhatsApp ↗</a></p>
+        </div>
+      </div>
+      <div class="acc reveal" data-acc>
+        <div class="qa">
+          <h3><button type="button" id="q1" aria-expanded="false" aria-controls="a1"><i>01</i><span>Why don’t you display fixed prices?</span><u aria-hidden="true"></u></button></h3>
+          <div class="qa-a" id="a1" role="region" aria-labelledby="q1"><div><p>Because we build custom digital solutions. The work required for two projects can be very different, even when their initial descriptions sound similar. We prefer to understand your requirements before proposing an investment.</p></div></div>
+        </div>
+        <div class="qa">
+          <h3><button type="button" id="q2" aria-expanded="false" aria-controls="a2"><i>02</i><span>Can you work within my budget?</span><u aria-hidden="true"></u></button></h3>
+          <div class="qa-a" id="a2" role="region" aria-labelledby="q2"><div><p>We’ll always consider your comfortable investment range and explore realistic options. If the complete scope isn’t practical, we can discuss priorities or a phased approach.</p></div></div>
+        </div>
+        <div class="qa">
+          <h3><button type="button" id="q3" aria-expanded="false" aria-controls="a3"><i>03</i><span>What if I don’t know what my project should cost?</span><u aria-hidden="true"></u></button></h3>
+          <div class="qa-a" id="a3" role="region" aria-labelledby="q3"><div><p>That’s completely fine. Tell us what you’re trying to achieve. We’ll help you understand the requirements and discuss a suitable approach.</p></div></div>
+        </div>
+        <div class="qa">
+          <h3><button type="button" id="q4" aria-expanded="false" aria-controls="a4"><i>04</i><span>Do you require an advance payment?</span><u aria-hidden="true"></u></button></h3>
+          <div class="qa-a" id="a4" role="region" aria-labelledby="q4"><div><p>Payment arrangements depend on the project and are explained in the proposal before work begins.</p></div></div>
+        </div>
+        <div class="qa">
+          <h3><button type="button" id="q5" aria-expanded="false" aria-controls="a5"><i>05</i><span>Are there hidden charges?</span><u aria-hidden="true"></u></button></h3>
+          <div class="qa-a" id="a5" role="region" aria-labelledby="q5"><div><p>No unapproved additional charges. The agreed proposal defines the scope and investment. Any additional requirements are discussed and approved before they become part of the project.</p></div></div>
+        </div>
+        <div class="qa">
+          <h3><button type="button" id="q6" aria-expanded="false" aria-controls="a6"><i>06</i><span>Can we change requirements after development begins?</span><u aria-hidden="true"></u></button></h3>
+          <div class="qa-a" id="a6" role="region" aria-labelledby="q6"><div><p>Yes, requirements can evolve. We review the requested changes, explain their impact on scope, timeline and investment, and agree on the next steps.</p></div></div>
+        </div>
+        <div class="qa">
+          <h3><button type="button" id="q7" aria-expanded="false" aria-controls="a7"><i>07</i><span>Can my project be built in phases?</span><u aria-hidden="true"></u></button></h3>
+          <div class="qa-a" id="a7" role="region" aria-labelledby="q7"><div><p>Where the project allows it, yes. We can identify the most important features for the first phase and plan future improvements.</p></div></div>
+        </div>
+        <div class="qa">
+          <h3><button type="button" id="q8" aria-expanded="false" aria-controls="a8"><i>08</i><span>Do you provide maintenance after delivery?</span><u aria-hidden="true"></u></button></h3>
+          <div class="qa-a" id="a8" role="region" aria-labelledby="q8"><div><p>We can discuss ongoing maintenance and support according to your requirements. The agreed arrangement will be included in your proposal.</p></div></div>
+        </div>
+        <div class="qa">
+          <h3><button type="button" id="q9" aria-expanded="false" aria-controls="a9"><i>09</i><span>How do I get a project proposal?</span><u aria-hidden="true"></u></button></h3>
+          <div class="qa-a" id="a9" role="region" aria-labelledby="q9"><div><p>Start a conversation with us. Share your idea, goals and any requirements you already know. We’ll review them and explain the next steps. <a class="ul" href="#enquire">Start here ↑</a></p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 10 · THE CLOSE ============ -->
+  <section class="pr-end" aria-labelledby="end-h">
+    <svg class="end-lines" viewBox="0 0 1340 520" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 40 C 420 40, 640 260, 1340 260"/>
+      <path d="M0 150 C 420 150, 700 260, 1340 260"/>
+      <path d="M0 370 C 420 370, 700 260, 1340 260"/>
+      <path d="M0 480 C 420 480, 640 260, 1340 260"/>
+    </svg>
+    <div class="end-in reveal">
+      <div class="pr-lab"><i></i>10 / Where it starts</div>
+      <h2 id="end-h"><span class="ln">Your business has a vision.</span> <span class="ln">Let’s find the <em>right way</em> to build it.</span></h2>
+      <div class="end-row">
+        <p class="end-p">You bring the idea. We’ll bring the thinking, creativity and technology to make it happen. <b>Let’s start with a conversation about what you need and what makes sense for you.</b></p>
+        <div class="end-act">
+          <a class="btn" href="#enquire">Tell us about your project
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.8"/></svg>
+          </a>
+          <a class="tl" href="work.html">Explore our work <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+      <p class="pr-calm"><i aria-hidden="true"></i>No commitment. No pressure. Just a good place to start.</p>
+    </div>
+  </section>
+
+</main>
+
+<!-- ================= FOOTER — the shared one, minus its CTA block ================= -->
+<footer class="foot frame" aria-label="Site">
+  <div class="foot-top">
+    <div class="foot-studio">
+      <a class="brand" href="index.html" aria-label="Aivoryx — home">
+        <svg viewBox="7 -6 90 104" fill="none" aria-hidden="true">
+          <path d="M12 90 L52 2" stroke="currentColor" stroke-width="11.5" stroke-linecap="square"/>
+          <path d="M52 2 L92 90" stroke="currentColor" stroke-width="11.5" stroke-linecap="square"/>
+          <path d="M52 90 L92 2" stroke="currentColor" stroke-width="11.5" stroke-linecap="square"/>
+          <path d="M32 46 L72 46" stroke="#E8431C" stroke-width="11.5" stroke-linecap="square"/>
+        </svg>
+        <span>Aivory<em>x</em></span>
+      </a>
+      <p class="foot-about">An independent studio of <b>two builders</b>. Custom websites, web apps and mobile apps for businesses and startups — designed, coded and shipped in-house, and <b>owned by you</b> at handover.</p>
+    </div>
+
+    <nav class="foot-col" aria-labelledby="fc-nav">
+      <h3 id="fc-nav">Navigate</h3>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="work.html">Work</a></li>
+        <li><a href="tools.html">Free tools</a></li>
+        <li><a href="pricing.html" aria-current="page">How we price</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <nav class="foot-col" aria-labelledby="fc-svc">
+      <h3 id="fc-svc">Services</h3>
+      <ul>
+        <li><a href="index.html#pricing">Business websites</a></li>
+        <li><a href="index.html#pricing">Web applications</a></li>
+        <li><a href="index.html#pricing">Mobile apps</a></li>
+        <li><a href="index.html#pricing">Online stores</a></li>
+        <li><a href="index.html#pricing">AI chat &amp; automation</a></li>
+      </ul>
+    </nav>
+
+    <nav class="foot-col" aria-labelledby="fc-tools">
+      <h3 id="fc-tools">Free tools</h3>
+      <ul>
+        <li><a href="https://fileshare.aivoryx.com/" target="_blank" rel="noopener">File sharing <span class="ext" aria-hidden="true">↗</span></a></li>
+        <li><a href="https://secret.aivoryx.com/" target="_blank" rel="noopener">One-time secrets <span class="ext" aria-hidden="true">↗</span></a></li>
+        <li><a href="https://pdf-tools.aivoryx.com/" target="_blank" rel="noopener">PDF tools <span class="ext" aria-hidden="true">↗</span></a></li>
+        <li><a href="https://gstreply.aivoryx.com/" target="_blank" rel="noopener">GST notice reply <span class="ext" aria-hidden="true">↗</span></a></li>
+        <li><a href="tools.html">All eight tools</a></li>
+      </ul>
+    </nav>
+
+    <div class="foot-col">
+      <h3>Talk to us</h3>
+      <ul>
+        <li><a href="https://wa.me/919399593499?text=Hi%20Aivoryx%2C%20I%27d%20like%20to%20discuss%20a%20project" target="_blank" rel="noopener">WhatsApp <span class="ext" aria-hidden="true">↗</span></a></li>
+        <li><a href="tel:+919399593499">+91 93995 93499</a></li>
+        <li><a href="mailto:admin@aivoryx.com">admin@aivoryx.com</a></li>
+      </ul>
+      <span class="addr">Dwarka Mor, New Delhi 110059</span>
+    </div>
+  </div>
+
+  <a class="foot-mark" href="#top" aria-label="Back to top">
+    <svg viewBox="7 -6 90 104" fill="none" aria-hidden="true">
+      <path d="M12 90 L52 2" stroke="currentColor" stroke-width="11.5" stroke-linecap="square"/>
+      <path d="M52 2 L92 90" stroke="currentColor" stroke-width="11.5" stroke-linecap="square"/>
+      <path d="M52 90 L92 2" stroke="currentColor" stroke-width="11.5" stroke-linecap="square"/>
+      <path d="M32 46 L72 46" stroke="#E8431C" stroke-width="11.5" stroke-linecap="square"/>
+    </svg>
+    <span aria-hidden="true">Aivory<em>x</em></span>
+  </a>
+
+  <div class="foot-bar">
+    <span>© <span data-year>2026</span> Aivoryx · All rights reserved</span>
+    <span>Hand-coded · zero page builders</span>
+    <a href="#top">Back to top ↑</a>
+  </div>
+</footer>
+
+<script src="assets/js/nav.js" defer></script>
+<script src="assets/js/reveal.js" defer></script>
+<script src="assets/js/post.js" defer></script>
+<script src="assets/js/pricing.js" defer></script>
+</body>
+</html>

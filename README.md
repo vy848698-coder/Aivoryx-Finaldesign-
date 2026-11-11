@@ -47,6 +47,23 @@ vault and GST run in clearly labelled sample mode — nothing is uploaded.
 The hero's "at a glance" numbers are plain markup in `tools.html`; tool access
 facts live in the `TOOLS` array in `app.js`. ES modules need a server, not file://.
 
+## How we price (`pricing.html`)
+
+The nav's "How we price" link on every page goes here. Business rule: **no prices
+on this page** — no figures, ranges, starting prices or packages. Files:
+
+    assets/css/pricing.css   page styles (loaded after responsive.css)
+    assets/js/pricing.js     progress rule, direction tabs, scroll-linked process,
+                             value strata, FAQ accordion, the enquiry form
+
+The enquiry posts to `api/send.php` with `kind: "pricing"`. That branch has its
+own whitelists (build / budget_mode / priority / direction), which must match the
+radio values in `pricing.html` exactly. Phone is optional there; the budget is
+never required as a number (`budget_note` is optional free text, shown only to
+the owner and never echoed in the auto-reply). Same rule as the homepage form:
+success only on `{"ok":true}`, so on Vercel or without `api/config.php` the form
+shows its error state with WhatsApp as the fallback.
+
 ## Adding a project screenshot
 
 1. Capture the live site at 1440×900 with no browser chrome and no popups open.
