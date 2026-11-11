@@ -54,6 +54,15 @@ if (!is_file($cfgFile)) {
   ax_out(false, "The form isn't connected yet. Please use WhatsApp for now.", 500);
 }
 $cfg = require $cfgFile;
+foreach (array('to', 'from') as $k) {
+  if (empty($cfg[$k]) || stripos($cfg[$k], 'CHANGE-ME') !== false) $cfgBad = $k;
+}
+if (!empty($cfg['smtp']['enabled'])
+    && (empty($cfg['smtp']['pass']) || stripos($cfg['smtp']['pass'], 'CHANGE-ME') !== false)) $cfgBad = 'smtp pass';
+if (!empty($cfgBad)) {
+  error_log('[aivoryx] api/config.php is not filled in yet (' . $cfgBad . ')');
+  ax_out(false, "The form isn't connected yet. Please use WhatsApp for now.", 500);
+}
 
 require __DIR__ . '/mailer.php';
 
