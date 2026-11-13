@@ -19,3 +19,6 @@ node_modules/
 
 # Mail credentials — create on the server from api/config.example.php. Never commit.
 /api/config.php
+
+# Upload zips contain api/config.php (the mailbox password). Never commit.
+*.zip

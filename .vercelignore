@@ -3,3 +3,6 @@
 # exposing the PHP source as downloads). Upload api/ only to PHP hosting.
 api/
 README.md
+
+# Upload zips hold the mail password: never deploy them.
+*.zip
