@@ -3,12 +3,14 @@
 The rebuild of aivoryx.com, from the approved design lab.
 Plain HTML, CSS and JavaScript. No build step, no framework.
 
-Status: **homepage only** (nav, hero + live solar demo, work, standard, pricing, contact, footer). Other pages come next.
+Status: **live-ready**. Five pages (home, work, tools, how we price, contact), a 404 page, sitemap.xml, and the PHP enquiry endpoint.
 
 ```
 Final-Aivoryx-design/
 ├── index.html
-├── api/                 Enquiry endpoint (PHP) — send.php, mailer.php, config.example.php
+├── 404.html             Shown for any missing URL (.htaccess ErrorDocument)
+├── sitemap.xml          Listed in robots.txt
+├── api/                 Enquiry endpoint (PHP) — send.php, validate.php, emails.php, mailer.php, config.example.php
 ├── site.webmanifest
 ├── robots.txt
 └── assets/
@@ -112,6 +114,21 @@ each form can show a server-only problem next to its field.
 ## Run locally
 
     python -m http.server 8000     # then open http://localhost:8000
+
+## The emails (`api/emails.php`)
+
+Every form sends the same two emails, from one template file:
+
+- **To our inbox** (`to` in config.php): subject `New enquiry: <name> (<need>, <page>)`,
+  a one-tap Reply / Call / WhatsApp line, the answers, their message, and a
+  reference like `AX-261113-4F2A`. Reply-To is the enquirer.
+- **Auto-reply** (only when they gave an email): a short letter, a recap of their
+  *fixed* choices, what happens next, and our phone, WhatsApp, email, site and
+  address. Same reference. It never repeats text the visitor typed (only a
+  first name that looks like a name), so the form can't be used to send spam.
+
+Plain black on white, Arial, no images. Our phone/email/address can be
+overridden in config.php with `phone`, `whatsapp`, `public_email`, `address`.
 
 ## The enquiry form
 

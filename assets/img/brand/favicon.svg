@@ -3,8 +3,7 @@
   <rect width="64" height="64" rx="14" fill="#181818"/>
   <!-- reduced mark: the A with its answering bar (legible at 16px) -->
   <g fill="none" stroke-linecap="square">
-    <path d="M20 48 L32 14" stroke="#F4F0E9" stroke-width="6.5"/>
-    <path d="M32 14 L44 48" stroke="#F4F0E9" stroke-width="6.5"/>
+    <path d="M20 48 L32 14 L44 48" stroke="#F4F0E9" stroke-width="6.5"/>
   </g>
   <path d="M25.5 32 L38.5 32" stroke="#FF5722" stroke-width="6.5" stroke-linecap="square"/>
 </svg>

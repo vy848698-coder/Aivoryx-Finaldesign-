@@ -249,308 +249,93 @@ if ($limit > 0) {
 }
 
 
+
+
 /* ---------------- The two emails ----------------
-   Deliberately plain: black text on white, one ordinary font, no
-   logo, no colour, no buttons. They should read like a letter a
-   person typed, not a template. */
-$site     = rtrim(isset($cfg['site']) ? $cfg['site'] : '', '/');
-$siteHost = preg_replace('~^https?://~', '', $site);
-$when     = date('j F Y, g:i a');
+   Templates live in emails.php: one look for every form. Each form only
+   decides what goes in them. */
+require __DIR__ . '/emails.php';
 
-function ax_e($v) { return htmlspecialchars((string)$v, ENT_QUOTES, 'UTF-8'); }
-
-/* One wrapper for both: a single column of 15px Arial, the way a
-   mail client sets a message someone wrote by hand. */
-function ax_letter($inner) {
-  return '<div style="font-family:Arial,Helvetica,sans-serif;font-size:15px;'
-    . 'line-height:1.6;color:#222222;max-width:600px">' . $inner . '</div>';
-}
-function ax_p($html, $extra = '') {
-  return '<p style="margin:0 0 14px' . $extra . '">' . $html . '</p>';
-}
-
+$when = date('j F Y, g:i a');
+/* A short reference both sides can quote: AX-YYMMDD-XXXX. */
+$ref  = 'AX-' . date('ymd') . '-' . strtoupper(bin2hex(random_bytes(2)));
 /* wa.me / tel: need a country code. A bare 10-digit Indian mobile
    has none, so add 91 rather than build a link that silently fails. */
 $waNum = strlen($digits) === 10 ? '91' . $digits : $digits;
 
-
-/* ----- Quick lead (homepage popup) — one short note to the owner ----- */
 if ($quick) {
-  $who  = $name !== '' ? $name : ($email !== '' ? $email : $phone);
-  $rows = array();
-  if ($name !== '')  $rows['Name']  = ax_e($name);
-  if ($phone !== '') $rows['Phone'] = '<a href="tel:+' . ax_e($waNum) . '" style="color:#222222">' . ax_e($phone) . '</a>';
-  if ($email !== '') $rows['Email'] = '<a href="mailto:' . ax_e($email) . '" style="color:#222222">' . ax_e($email) . '</a>';
-  $rowsHtml = '';
-  foreach ($rows as $k => $v) {
-    $rowsHtml .= '<tr><td style="padding:3px 16px 3px 0;color:#666666;vertical-align:top;white-space:nowrap">'
-      . $k . ':</td><td style="padding:3px 0;vertical-align:top">' . $v . '</td></tr>';
-  }
-  $howTo = $email !== '' ? 'Reply to this email to answer them directly.'
-         : ($phone !== '' ? 'Call or WhatsApp them on the number above.'
-         : 'Only a name was left — no way to reach them was given.');
-
-  $html = ax_letter(
-      ax_p('Someone left their details in the welcome popup on the homepage.')
-    . '<table cellpadding="0" cellspacing="0" border="0" style="margin:0 0 14px;font-size:15px;line-height:1.6;color:#222222">'
-    . $rowsHtml . '</table>'
-    . ax_p(ax_e($howTo))
-    . '<p style="margin:20px 0 0;font-size:13px;color:#888888">Sent from the popup on '
-    . ax_e($page !== '' ? $page : 'the website') . ' &middot; ' . ax_e($when) . '</p>'
-  );
-  $text = "Someone left their details in the welcome popup on the homepage.\n\n"
-    . ($name !== ''  ? "Name:  " . $name  . "\n" : '')
-    . ($phone !== '' ? "Phone: " . $phone . "\n" : '')
-    . ($email !== '' ? "Email: " . $email . "\n" : '')
-    . "\n" . $howTo . "\n\nSent from the popup on " . ($page !== '' ? $page : 'the website') . " - " . $when . "\n";
-
-  try {
-    ax_send($cfg, $cfg['to'], $cfg['to_name'], 'Quick lead from the website: ' . $who, $html, $text,
-      $email !== '' ? $email : null, $name);
-  } catch (Exception $e) {
-    error_log('[aivoryx] quick lead send failed: ' . $e->getMessage());
-    ax_out(false, "We couldn't send that just now. Please try WhatsApp, or call us.", 502);
-  }
-  ax_out(true, 'Got it. We\'ll be in touch the same working day.');
+  $source   = 'Homepage popup';
+  $who      = $name !== '' ? $name : ($email !== '' ? $email : $phone);
+  $headline = $who . ' left their details';
+  $rows     = array('Name' => $name, 'Email' => $email, 'Phone' => $phone);
+  $blocks   = array();
+  $subject  = 'New quick lead: ' . $who . ' (homepage popup)';
+  $thanks   = 'Thank you for saying hello.';
+  $recap    = array('Sent from' => 'The welcome popup on our homepage');
+  $wrote    = false;
+} elseif ($pricing) {
+  $source   = 'How we price page';
+  $headline = $name . ' wants: ' . $build;
+  $rows     = array('Name' => $name, 'Email' => $email, 'Phone' => $phone,
+                    'Wants to build' => $build, 'Budget' => $budgetMode,
+                    'Budget, in their words' => $budgetNote,   /* owner only, never in the auto-reply */
+                    'Matters most' => $priority, 'Starting point' => $direction);
+  $blocks   = array('Project information' => $message);
+  $subject  = 'New enquiry: ' . $name . ' (' . $build . ', How we price)';
+  $thanks   = 'Thank you for telling us about your project.';
+  $recap    = array('Looking to build' => $build, 'Budget' => $budgetMode, 'Matters most' => $priority);
+  $wrote    = $message !== '';
+} elseif ($contact) {
+  $source   = 'Contact page';
+  $headline = $name . ' needs: ' . $need;
+  $rows     = array('Name' => $name, 'Email' => $email, 'Phone' => $phone,
+                    'Needs' => $need, 'Plans to start' => $start);
+  $blocks   = array('The idea' => $message, 'Additional details' => $details);
+  $subject  = 'New enquiry: ' . $name . ' (' . $need . ', Contact page)';
+  $thanks   = 'Thank you for telling us about your idea.';
+  $recap    = array('You need' => $need, 'Planning to start' => $start);
+  $wrote    = true;
+} else {
+  $source   = 'Homepage enquiry';
+  $headline = $name . ' is looking for: ' . $need;
+  $rows     = array('Name' => $name, 'Email' => $email, 'Phone' => $phone,
+                    'Looking for' => $need, 'Budget' => $budget);
+  $blocks   = array('Project description' => $message);
+  $subject  = 'New enquiry: ' . $name . ' (' . $need . ', homepage)';
+  $thanks   = 'Thank you for contacting Aivoryx.';
+  $recap    = array('Looking for' => $need, 'Budget' => $budget);
+  $wrote    = $message !== '';
 }
 
-/* ----- How-we-price enquiry — owner note + a confirmation that repeats
-   only fixed choices (never budget_note or the message, which a stranger
-   typed). ----- */
-if ($pricing) {
-  $rows = array('Name' => ax_e($name),
-    'Email' => '<a href="mailto:' . ax_e($email) . '" style="color:#222222">' . ax_e($email) . '</a>');
-  if ($phone !== '') $rows['Phone'] = '<a href="tel:+' . ax_e($waNum) . '" style="color:#222222">' . ax_e($phone) . '</a>';
-  $rows['Wants to build'] = ax_e($build);
-  $rows['Budget']         = ax_e($budgetMode);
-  if ($budgetNote !== '') $rows['Their words'] = ax_e($budgetNote);
-  $rows['Matters most']   = ax_e($priority);
-  if ($direction !== '')  $rows['Starting point'] = ax_e($direction);
-
-  $rowsHtml = '';
-  foreach ($rows as $k => $v) {
-    $rowsHtml .= '<tr><td style="padding:3px 16px 3px 0;color:#666666;vertical-align:top;white-space:nowrap">'
-      . $k . ':</td><td style="padding:3px 0;vertical-align:top">' . $v . '</td></tr>';
-  }
-  $ownerHtml = ax_letter(
-      ax_p('A new enquiry has come in through the How we price page.')
-    . '<table cellpadding="0" cellspacing="0" border="0" style="margin:0 0 14px;font-size:15px;line-height:1.6;color:#222222">'
-    . $rowsHtml . '</table>'
-    . ($message !== '' ? ax_p('<span style="color:#666666">Project information:</span><br>' . nl2br(ax_e($message))) : '')
-    . ax_p('Reply to this email to answer ' . ax_e($name) . ' directly.')
-    . '<p style="margin:20px 0 0;font-size:13px;color:#888888">Sent from the form on '
-    . ax_e($page !== '' ? $page : 'the website') . ' &middot; ' . ax_e($when) . '</p>'
-  );
-  $ownerText = "A new enquiry has come in through the How we price page.\n\n";
-  foreach ($rows as $k => $v) $ownerText .= str_pad($k . ':', 16) . html_entity_decode(strip_tags($v), ENT_QUOTES, 'UTF-8') . "\n";
-  $ownerText .= ($message !== '' ? "\nProject information:\n" . $message . "\n" : '')
-    . "\nReply to this email to answer " . $name . " directly.\n\n"
-    . "Sent from the form on " . ($page !== '' ? $page : 'the website') . " - " . $when . "\n";
-
-  try {
-    ax_send($cfg, $cfg['to'], $cfg['to_name'], 'Website enquiry from ' . $name . ' (How we price)',
-      $ownerHtml, $ownerText, $email, $name);
-  } catch (Exception $e) {
-    error_log('[aivoryx] pricing enquiry send failed: ' . $e->getMessage());
-    ax_out(false, "We couldn't send that just now. Please try WhatsApp, or call us.", 502);
-  }
-
-  if (!empty($cfg['autoreply'])) {
-    $first = preg_split('/\s+/', $name);
-    $first = ax_cut($first[0], 30);
-    if (!preg_match('/^[\p{L}\p{M}\'’-]+$/u', $first)) $first = 'there';
-    $replyHtml = ax_letter(
-        ax_p('Dear ' . ax_e($first) . ',')
-      . ax_p('Thank you for telling us about your project. We have your answers and '
-          . 'will get back to you the same working day.')
-      . ax_p('For your reference, you told us:')
-      . '<p style="margin:0 0 14px;padding-left:14px;border-left:2px solid #dddddd;color:#555555">'
-      . ax_e($build) . '<br>' . ax_e($budgetMode) . '<br>Matters most: ' . ax_e($priority) . '</p>'
-      . ax_p('Nothing is agreed or payable until you have a written proposal in front of you and are happy with it.')
-      . ax_p('If you need to reach us sooner, you can call or WhatsApp us on +91 93995 93499.')
-      . ax_p('Kind regards,<br>Aivoryx'
-          . ($site ? '<br><a href="' . ax_e($site) . '" style="color:#222222">' . ax_e($siteHost) . '</a>' : ''),
-          ';margin-top:20px')
-    );
-    $replyText = "Dear " . $first . ",\n\n"
-      . "Thank you for telling us about your project. We have your answers and will get back to you the same working day.\n\n"
-      . "For your reference, you told us:\n\n  " . $build . "\n  " . $budgetMode . "\n  Matters most: " . $priority . "\n\n"
-      . "Nothing is agreed or payable until you have a written proposal in front of you and are happy with it.\n\n"
-      . "If you need to reach us sooner, you can call or WhatsApp us on +91 93995 93499.\n\n"
-      . "Kind regards,\nAivoryx\n" . ($site ? $siteHost . "\n" : '');
-    try {
-      ax_send($cfg, $email, $name, 'Thank you for telling us about your project', $replyHtml, $replyText, $cfg['to'], $cfg['to_name'], true);
-    } catch (Exception $e) {
-      error_log('[aivoryx] pricing auto-reply failed: ' . $e->getMessage());
-    }
-  }
-  ax_out(true, 'Sent. We\'ll reply to ' . $email . ' the same day.');
-}
-
-/* ----- Contact page enquiry — owner note + a confirmation that repeats
-   only fixed choices (never the idea or details, which a stranger typed). ----- */
-if ($contact) {
-  $rows = array('Name' => ax_e($name),
-    'Email' => '<a href="mailto:' . ax_e($email) . '" style="color:#222222">' . ax_e($email) . '</a>');
-  if ($phone !== '') $rows['Phone'] = '<a href="tel:+' . ax_e($waNum) . '" style="color:#222222">' . ax_e($phone) . '</a>';
-  $rows['Needs']        = ax_e($need);
-  $rows['Plans to start'] = ax_e($start);
-
-  $rowsHtml = '';
-  foreach ($rows as $k => $v) {
-    $rowsHtml .= '<tr><td style="padding:3px 16px 3px 0;color:#666666;vertical-align:top;white-space:nowrap">'
-      . $k . ':</td><td style="padding:3px 0;vertical-align:top">' . $v . '</td></tr>';
-  }
-  $ownerHtml = ax_letter(
-      ax_p('A new enquiry has come in through the Contact page.')
-    . '<table cellpadding="0" cellspacing="0" border="0" style="margin:0 0 14px;font-size:15px;line-height:1.6;color:#222222">'
-    . $rowsHtml . '</table>'
-    . ax_p('<span style="color:#666666">The idea:</span><br>' . nl2br(ax_e($message)))
-    . ($details !== '' ? ax_p('<span style="color:#666666">Additional details:</span><br>' . nl2br(ax_e($details))) : '')
-    . ax_p('Reply to this email to answer ' . ax_e($name) . ' directly.')
-    . '<p style="margin:20px 0 0;font-size:13px;color:#888888">Sent from the form on '
-    . ax_e($page !== '' ? $page : 'the website') . ' &middot; ' . ax_e($when) . '</p>'
-  );
-  $ownerText = "A new enquiry has come in through the Contact page.\n\n";
-  foreach ($rows as $k => $v) $ownerText .= str_pad($k . ':', 16) . html_entity_decode(strip_tags($v), ENT_QUOTES, 'UTF-8') . "\n";
-  $ownerText .= "\nThe idea:\n" . $message . "\n"
-    . ($details !== '' ? "\nAdditional details:\n" . $details . "\n" : '')
-    . "\nReply to this email to answer " . $name . " directly.\n\n"
-    . "Sent from the form on " . ($page !== '' ? $page : 'the website') . " - " . $when . "\n";
-
-  try {
-    ax_send($cfg, $cfg['to'], $cfg['to_name'], 'Website enquiry from ' . $name . ' (Contact)',
-      $ownerHtml, $ownerText, $email, $name);
-  } catch (Exception $e) {
-    error_log('[aivoryx] contact enquiry send failed: ' . $e->getMessage());
-    ax_out(false, "We couldn't send that just now. Please try WhatsApp, or call us.", 502);
-  }
-
-  if (!empty($cfg['autoreply'])) {
-    $first = preg_split('/\s+/', $name);
-    $first = ax_cut($first[0], 30);
-    if (!preg_match('/^[\p{L}\p{M}\'’-]+$/u', $first)) $first = 'there';
-    $replyHtml = ax_letter(
-        ax_p('Dear ' . ax_e($first) . ',')
-      . ax_p('Thank you for telling us about your idea. Your enquiry has been received, and the people '
-          . 'who would build it will read it and get back to you the same working day.')
-      . ax_p('For your reference, you told us:')
-      . '<p style="margin:0 0 14px;padding-left:14px;border-left:2px solid #dddddd;color:#555555">'
-      . ax_e($need) . '<br>Planning to start: ' . ax_e($start) . '<br><br>Plus the description you wrote — we have it.</p>'
-      . ax_p('Nothing is agreed or payable until you have a written proposal in front of you and are happy with it.')
-      . ax_p('If you need to reach us sooner, you can call or WhatsApp us on +91 93995 93499.')
-      . ax_p('Kind regards,<br>Aivoryx'
-          . ($site ? '<br><a href="' . ax_e($site) . '" style="color:#222222">' . ax_e($siteHost) . '</a>' : ''),
-          ';margin-top:20px')
-    );
-    $replyText = "Dear " . $first . ",\n\n"
-      . "Thank you for telling us about your idea. Your enquiry has been received, and the people who would build it will read it and get back to you the same working day.\n\n"
-      . "For your reference, you told us:\n\n  " . $need . "\n  Planning to start: " . $start . "\n\n  Plus the description you wrote - we have it.\n\n"
-      . "Nothing is agreed or payable until you have a written proposal in front of you and are happy with it.\n\n"
-      . "If you need to reach us sooner, you can call or WhatsApp us on +91 93995 93499.\n\n"
-      . "Kind regards,\nAivoryx\n" . ($site ? $siteHost . "\n" : '');
-    try {
-      ax_send($cfg, $email, $name, 'Thank you for telling us about your idea', $replyHtml, $replyText, $cfg['to'], $cfg['to_name'], true);
-    } catch (Exception $e) {
-      error_log('[aivoryx] contact auto-reply failed: ' . $e->getMessage());
-    }
-  }
-  ax_out(true, 'Sent. We\'ll reply to ' . $email . ' the same working day.');
-}
-
-/* ----- 1. To the owner ----- */
-$rows = array(
-  'Name'        => ax_e($name),
-  'Phone'       => '<a href="tel:+' . ax_e($waNum) . '" style="color:#222222">' . ax_e($phone) . '</a>',
-  'Email'       => '<a href="mailto:' . ax_e($email) . '" style="color:#222222">' . ax_e($email) . '</a>',
-  'Looking for' => ax_e($need),
-  'Budget'      => ax_e($budget),
-);
-$rowsHtml = '';
-foreach ($rows as $k => $v) {
-  $rowsHtml .= '<tr><td style="padding:3px 16px 3px 0;color:#666666;vertical-align:top;white-space:nowrap">'
-    . $k . ':</td><td style="padding:3px 0;vertical-align:top">' . $v . '</td></tr>';
-}
-
-$ownerHtml = ax_letter(
-    ax_p('A new enquiry has come in through the website.')
-  . '<table cellpadding="0" cellspacing="0" border="0" style="margin:0 0 14px;font-size:15px;line-height:1.6;color:#222222">'
-  . $rowsHtml . '</table>'
-  . ($message !== ''
-      ? ax_p('<span style="color:#666666">Message:</span><br>' . nl2br(ax_e($message)))
-      : '')
-  . ax_p('Simply reply to this email to answer ' . ax_e($name) . ' directly.')
-  . '<p style="margin:20px 0 0;font-size:13px;color:#888888">Sent from the form on '
-  . ax_e($page !== '' ? $page : 'the website') . ' &middot; ' . ax_e($when) . '</p>'
-);
-
-$ownerText =
-    "A new enquiry has come in through the website.\n\n"
-  . "Name:        " . $name   . "\n"
-  . "Phone:       " . $phone  . "\n"
-  . "Email:       " . $email  . "\n"
-  . "Looking for: " . $need   . "\n"
-  . "Budget:      " . $budget . "\n"
-  . ($message !== '' ? "\nMessage:\n" . $message . "\n" : '')
-  . "\nSimply reply to this email to answer " . $name . " directly.\n\n"
-  . "Sent from the form on " . ($page !== '' ? $page : 'the website') . " - " . $when . "\n";
-
+/* ----- 1. To our inbox. If this fails, the visitor is told so. ----- */
+list($ownerHtml, $ownerText) = ax_mail_owner($cfg, array(
+  'source' => $source, 'headline' => $headline, 'ref' => $ref, 'when' => $when, 'page' => $page,
+  'name' => $name, 'email' => $email, 'phone' => $phone, 'wa' => $waNum,
+  'rows' => $rows, 'blocks' => $blocks,
+));
 try {
-  ax_send(
-    $cfg, $cfg['to'], $cfg['to_name'],
-    'Website enquiry from ' . $name,
-    $ownerHtml, $ownerText,
-    $email, $name                       /* Reply-To, so replying reaches the enquirer */
-  );
+  ax_send($cfg, $cfg['to'], $cfg['to_name'], $subject, $ownerHtml, $ownerText,
+    $email !== '' ? $email : null, $name);         /* Reply-To: replying reaches the enquirer */
 } catch (Exception $e) {
-  error_log('[aivoryx] enquiry send failed: ' . $e->getMessage());
+  error_log('[aivoryx] ' . $source . ' send failed: ' . $e->getMessage());
   ax_out(false, "We couldn't send that just now. Please try WhatsApp, or call us.", 502);
 }
 
-
-/* ----- 2. To the enquirer -----
-   Best-effort: the enquiry is already safely in the inbox, so a
-   bounce here must not report failure to the sender. */
-if (!empty($cfg['autoreply'])) {
-  /* The auto-reply goes to whatever address was typed in, so it must not
-     carry text a stranger wrote — otherwise the form becomes a way to send
-     their message (a link, a scam) from our mailbox to anyone. It repeats
-     only the fixed choices, and a first name that looks like a name. */
-  $first = preg_split('/\s+/', $name);
-  $first = ax_cut($first[0], 30);
-  if (!preg_match('/^[\p{L}\p{M}\'’-]+$/u', $first)) $first = 'there';
-
-  $replyHtml = ax_letter(
-      ax_p('Dear ' . ax_e($first) . ',')
-    . ax_p('Thank you for contacting Aivoryx. We have received your enquiry and '
-        . 'will get back to you the same working day.')
-    . ax_p('For your reference, here is what you sent us:')
-    . '<p style="margin:0 0 14px;padding-left:14px;border-left:2px solid #dddddd;color:#555555">'
-    . ax_e($need) . '<br>Budget: ' . ax_e($budget)
-    . ($message !== '' ? '<br><br>Plus the message you wrote — we have it.' : '')
-    . '</p>'
-    . ax_p('If you need to reach us sooner, you can call or WhatsApp us on +91 93995 93499.')
-    . ax_p('Kind regards,<br>Aivoryx'
-        . ($site ? '<br><a href="' . ax_e($site) . '" style="color:#222222">' . ax_e($siteHost) . '</a>' : ''),
-        ';margin-top:20px')
-  );
-
-  $replyText =
-      "Dear " . $first . ",\n\n"
-    . "Thank you for contacting Aivoryx. We have received your enquiry and will get back to you the same working day.\n\n"
-    . "For your reference, here is what you sent us:\n\n"
-    . "  " . $need . "\n"
-    . "  Budget: " . $budget . "\n"
-    . ($message !== '' ? "\n  Plus the message you wrote - we have it.\n" : '')
-    . "\nIf you need to reach us sooner, you can call or WhatsApp us on +91 93995 93499.\n\n"
-    . "Kind regards,\nAivoryx\n"
-    . ($site ? $siteHost . "\n" : '');
-
+/* ----- 2. The auto-reply. Best-effort: the enquiry is already safely in
+   the inbox, so a bounce here must not report failure to the visitor. ----- */
+if (!empty($cfg['autoreply']) && $email !== '') {
+  list($replyHtml, $replyText) = ax_mail_client($cfg, array(
+    'first' => ax_first_name($name), 'thanks' => $thanks,
+    'recap' => $recap, 'wrote' => $wrote, 'ref' => $ref,
+  ));
   try {
-    ax_send($cfg, $email, $name, 'Thank you for your enquiry', $replyHtml, $replyText, $cfg['to'], $cfg['to_name'], true);
+    ax_send($cfg, $email, $name, 'We have your enquiry, ref ' . $ref . ' (Aivoryx)', $replyHtml, $replyText,
+      $cfg['to'], $cfg['to_name'], true);
   } catch (Exception $e) {
-    error_log('[aivoryx] auto-reply failed: ' . $e->getMessage());
+    error_log('[aivoryx] ' . $source . ' auto-reply failed: ' . $e->getMessage());
   }
 }
 
-ax_out(true, 'Sent. We\'ll reply to ' . $email . ' the same day.');
+ax_out(true, $email !== ''
+  ? 'Sent. We\'ll reply to ' . $email . ' the same working day.'
+  : 'Got it. We\'ll be in touch the same working day.');

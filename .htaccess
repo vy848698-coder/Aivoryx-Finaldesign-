@@ -5,6 +5,9 @@
 Options -Indexes
 ServerSignature Off
 
+# Friendly page for any missing URL (absolute asset paths inside).
+ErrorDocument 404 /404.html
+
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
@@ -15,7 +18,7 @@ ServerSignature Off
 
   # Never serve dotfiles (.git, .env …) or project docs.
   RewriteRule (^|/)\.(?!well-known/) - [F,L]
-  RewriteRule \.(md|log|bak|sql|example|sh)$ - [F,L,NC]
+  RewriteRule \.(md|log|bak|sql|example|sh|py|zip)$ - [F,L,NC]
 
   # api/: only the form endpoint is public. config.php and mailer.php are
   # include-only (each also refuses direct requests itself).

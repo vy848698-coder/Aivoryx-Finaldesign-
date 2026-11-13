@@ -171,7 +171,7 @@
   .foot-cta-r{width:100%}
   .foot-cta-r .btn{width:100%;justify-content:center}
   .foot-studio{grid-column:1 / -1}
-  .foot-col:last-child{grid-column:1 / -1}
+  .foot-col:last-child{min-width:0}
   .foot-bar{flex-direction:column;align-items:flex-start;gap:8px}
 }
 
@@ -185,6 +185,7 @@
   .proj.card .p-foot{flex-wrap:wrap}
   .foot-mark{font-size:clamp(56px,calc(22*var(--vw)),76px)}
   .foot-top{column-gap:16px}
+  .foot-col:last-child a{font-size:15px}
 }
 
 @media (prefers-reduced-motion:reduce){
